@@ -1,0 +1,4 @@
+git log - show all commits (press q to quit)
+git status - tells you what branch you are on and if your branch is up to date. Shows tracked and untracked files
+git add - adds untracked files and tracks them (git add . - to add all untracked files)
+git commit -m "" - commit tracked files (add message inbwteen quotes)
