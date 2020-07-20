@@ -17,33 +17,40 @@ app.get(`/`, (req, res) => {
     res.render(`index.ejs`);
 })
 
+app.get(`/players`, (req, res) => {
+    const playerData = req.app.get('playerData');
+
+    //*Go to the show page and pass through the json data
+    res.render(`results.ejs`, {playerData});
+})
+
+app.get(`/players/:id`, (req, res) => {
+
+})
+
 app.post(`/search/player`, async (req, res) => {
     try {
         //*Get the form data
         const player = req.body.playerName;
 
-        //*Send request to the api and parse to JSON
+        //*Send request to the api and parse the data sent back to JSON
         const response = await fetch(`https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=${player}`);
         const playerData = await response.json();
         
-        //*Go to the show page and pass through the json data
-        res.render(`show.ejs`, {playerData});
+        app.set('playerData', playerData);
+
+        //*TODO Redirect to results endpoint which renders result page querey string idk
+        res.redirect(`/players`);
+        
     } catch (error) {
         console.error(error);
     }
-    
-
-    //? Maybe save data to the database
 })
 
 app.post(`/search/team`, (req, res) => {
     //*Get the form data
     
     //*Send request to the api and parse to JSON
-
-    //? Maybe save data to the database (rather than having a global variable be floating around)
-
-
 })
 //#endregion
 
