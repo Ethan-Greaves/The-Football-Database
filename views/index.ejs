@@ -10,6 +10,21 @@
     <link rel="stylesheet" href="/Stylesheets/CSS/index.css">
 </head>
 <body>
-    <h1>LANDING PAGE!</h1>
+    <%- include ("partials/navbar.ejs") %> 
+
+    <div class="container">
+        <h1 class="text-center my-5">Welcome to The Football Database!</h1>
+
+        <div class="d-block">
+            <form action="/search/player" method="POST">
+                <label for="" class="mb-2">Search for Player...</label>
+                <input type="text" name="playerName" id="" class="form-control form-group form-inline">
+                <input type="submit" value="Submit!" class="btn btn-default btn-large btn-outline-dark form-group">
+            </form>
+        </div>
+       
+    </div>
+
+    
 </body>
 </html>
