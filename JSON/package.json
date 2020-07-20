@@ -1,0 +1,30 @@
+{
+  "name": "football-database",
+  "version": "1.0.0",
+  "description": "A RESTful app which allows users to search for football players and teams, which sends a request to an external API. Users will be able to log in and save their favourite players and see their recent searches.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Football",
+    "REST",
+    "API",
+    "Database",
+    "Node",
+    "Mongo",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Authentication"
+  ],
+  "author": "Ethan Greaves",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.25",
+    "request": "^2.88.2"
+  }
+}
