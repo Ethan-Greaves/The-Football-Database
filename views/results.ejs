@@ -10,8 +10,7 @@
     <ul>
         <% playerData.player.forEach((individual) => { %> 
             <li>
-                <a href=""></a>
-                <%= individual.strPlayer %> 
+                <a href="/players/<%= individual.idPlayer %> "><%= individual.strPlayer %> </a>
             </li>
         <% }) %> 
     </ul>

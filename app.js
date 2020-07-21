@@ -24,8 +24,18 @@ app.get(`/players`, (req, res) => {
     res.render(`results.ejs`, {playerData});
 })
 
-app.get(`/players/:id`, (req, res) => {
+app.get(`/players/:id`, async (req, res) => {
     //*Retrieve the ID
+    const playerID = req.params.id;
+
+    //*Make a request to the api to retrieve data with the associated ID
+    const response = await fetch(`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=${playerID}`);
+    const playerData = await response.json();
+
+    console.log(playerData);
+
+    //*Render the show page, pass through the data
+    res.render(`show.ejs`, {playerData});
 })
 
 app.post(`/search/player`, async (req, res) => {
