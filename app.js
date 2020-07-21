@@ -6,7 +6,6 @@ const app                   = express();
 //*Body-Parser
 const bodyParser            = require("body-parser");
                             app.use(bodyParser.urlencoded({extended: true}));
-
 //*Fetch
 const fetch                 = require('node-fetch');
 
@@ -18,6 +17,7 @@ app.get(`/`, (req, res) => {
 })
 
 app.get(`/players`, (req, res) => {
+    //*Retrieve the playerData variable that was stored in the search/player route
     const playerData = req.app.get('playerData');
 
     //*Go to the show page and pass through the json data
@@ -25,7 +25,7 @@ app.get(`/players`, (req, res) => {
 })
 
 app.get(`/players/:id`, (req, res) => {
-
+    //*Retrieve the ID
 })
 
 app.post(`/search/player`, async (req, res) => {
@@ -37,9 +37,10 @@ app.post(`/search/player`, async (req, res) => {
         const response = await fetch(`https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=${player}`);
         const playerData = await response.json();
         
+        //*Store the variable in the Express instance
         app.set('playerData', playerData);
 
-        //*TODO Redirect to results endpoint which renders result page querey string idk
+        //*Redirect to players endpoint 
         res.redirect(`/players`);
         
     } catch (error) {
