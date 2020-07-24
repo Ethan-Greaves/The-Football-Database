@@ -13,7 +13,7 @@
 <body>
     <!-- <span id="playerData"><% playerData.player %> </span> -->
 
-    <div class="container-fluid container">
+    <div class="container">
         <!-- * Header -->
         <h1 class="text-center my-5">Player Results...</h1>
 
@@ -21,8 +21,11 @@
         <div class="mb-3">
             <h3 id="numOfResults" class="d-inline">
                 <% let counter = 0 %> 
-                <% playerData.player.forEach(() => {  %> 
-                    <% counter++ %> 
+                <% playerData.player.forEach((individual) => {  %>
+                    <% if (individual.strSport === `Soccer`) { %>
+                        <% counter++ %>
+                    <% } %>
+                     
                 <% }) %> 
                 <%= counter %> 
             </h3>
@@ -32,26 +35,25 @@
         </div>
         
         <!-- * -->
-        <!-- TODO This if isnt working even though it should. find fix. -->
-        <% if (playerData.player !== null) { %>
             <% playerData.player.forEach((individual) => { %> 
-                <div class="border mb-3">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <img class="img-responsive resize" src="<%= individual.strCutout %> " alt="">
-                        </div>
-    
-                        <div class="col-sm-10">
-                            <a href="/players/<%= individual.idPlayer %> "><%= individual.strPlayer %> </a>
+                <% if (individual.strSport === `Soccer`) { %>
+                    <div class="border mb-3">
+                        <div class="row">
+                            <div class="col-2">
+                                <% if (individual.strCutout === null) { %>
+                                    <img class="img-responsive img-fluid resize border" src="/Images/playerResultsPlaceholder.jpg" alt="">
+                                <% } else { %>
+                                    <img class="img-responsive img-fluid resize border" src="<%= individual.strCutout %> " alt="">
+                                <% } %> 
+                            </div>
+        
+                            <div class="col-10">
+                                <a href="/players/<%= individual.idPlayer %> "><%= individual.strPlayer %> </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                <% } %>
             <% }) %> 
-        <% } else { %>
-            <p> null</p>
-        <% } %> 
-        
-        
     </div>
 
 
