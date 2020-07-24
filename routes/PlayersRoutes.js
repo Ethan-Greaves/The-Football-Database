@@ -19,6 +19,8 @@ router.get(`/`, (req, res) => {
 
     //*Go to the show page and pass through the json data
     res.render(`Players/results.ejs`, {playerData});
+
+    console.log(playerData);
 })
 
 router.get(`/:id`, async (req, res) => {

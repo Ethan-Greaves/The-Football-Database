@@ -3,18 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results</title>
+    <title>Player Results</title>
+    <!--* Bootstrap CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <!-- * -->
+    <link rel="stylesheet" href="/Stylesheets/CSS/playerResults.css">
+
 </head>
 <body>
+    <!-- <span id="playerData"><% playerData.player %> </span> -->
 
-    <ul>
-        <% playerData.player.forEach((individual) => { %> 
-            <li>
-                <a href="/players/<%= individual.idPlayer %> "><%= individual.strPlayer %> </a>
-            </li>
-        <% }) %> 
-    </ul>
-  
+    <div class="container-fluid container">
+        <!-- * Header -->
+        <h1 class="text-center my-5">Player Results...</h1>
+
+        <!-- * Number of results sub heading -->
+        <div class="mb-3">
+            <h3 id="numOfResults" class="d-inline">
+                <% let counter = 0 %> 
+                <% playerData.player.forEach(() => {  %> 
+                    <% counter++ %> 
+                <% }) %> 
+                <%= counter %> 
+            </h3>
+            <h3 class="d-inline">
+                <% if (counter === 1) { %> Result <% } else { %> Results <% } %> 
+            </h3>
+        </div>
+        
+        <!-- * -->
+        <!-- TODO This if isnt working even though it should. find fix. -->
+        <% if (playerData.player !== null) { %>
+            <% playerData.player.forEach((individual) => { %> 
+                <div class="border mb-3">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img class="img-responsive resize" src="<%= individual.strCutout %> " alt="">
+                        </div>
     
+                        <div class="col-sm-10">
+                            <a href="/players/<%= individual.idPlayer %> "><%= individual.strPlayer %> </a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %> 
+        <% } else { %>
+            <p> null</p>
+        <% } %> 
+        
+        
+    </div>
+
+
+    <!-- <script src="/JavaScript/CountSearchResults.js"></script> -->
 </body>
 </html>
+
+
+
+<!-- <ul>
+        //<% playerData.player.forEach((individual) => { %> 
+            <li>
+                //<a href="/players/<%= individual.idPlayer %> "><%= individual.strPlayer %> </a>
+            </li>
+        //<% }) %> 
+    </ul> -->

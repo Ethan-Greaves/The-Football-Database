@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,qCAAqC;AACrC,AAAA,OAAO,CAAA;EACH,KAAK,EAAE,gBAAgB;EACvB,MAAM,EAAE,eAAe;CAC1B",
+    "sources": [
+        "../SCSS/playerResults.scss"
+    ],
+    "names": [],
+    "file": "playerResults.css"
+}
