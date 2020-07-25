@@ -8,7 +8,7 @@ $Bootstrap-screen-sizes: (
 
 /** used to restyle size of images */
 .resize{
-    width: 65% !important;
+    width: 100% !important;
     height: auto !important;
 
     @media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {

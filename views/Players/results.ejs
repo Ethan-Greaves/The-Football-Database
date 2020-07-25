@@ -38,19 +38,36 @@
             <% playerData.player.forEach((individual) => { %> 
                 <% if (individual.strSport === `Soccer`) { %>
                     <div class="border mb-3">
-                        <div class="row">
-                            <div class="col-2">
+                        <div class="row no-gutters">
+                            <!-- * Image -->
+                            <div class="col-1">
                                 <% if (individual.strCutout === null) { %>
-                                    <img class="img-responsive img-fluid resize border" src="/Images/playerResultsPlaceholder.jpg" alt="">
+                                    <img class="img-responsive img-fluid resize border border-primary" src="/Images/playerResultsPlaceholder.jpg" alt="">
                                 <% } else { %>
-                                    <img class="img-responsive img-fluid resize border" src="<%= individual.strCutout %> " alt="">
+                                    <img class="img-responsive  resize border border-primary" src="<%= individual.strCutout %> " alt="">
                                 <% } %> 
                             </div>
-        
-                            <div class="col-10">
-                                <a href="/players/<%= individual.idPlayer %> "><%= individual.strPlayer %> </a>
+                            <!-- * Name -->
+                            <div class="col-11">
+                                <div class="row no-gutters">
+                                    <div class="col-4 border text-center border-secondary">
+                                        <p>hello</p>
+                                    </div>
+                                    <div class="col-4 border text-center border-success">
+                                        <p>hello</p>
+                                    </div>
+                                    <div class="col-4 border text-center border-danger">
+                                        <p>hello</p>
+                                    </div>
+                                    <!-- * Description -->
+                                    <div class="col-12 border border-warning">
+                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, minima dicta. Distinctio exercitationem, dolores excepturi iusto inventore unde aperiam quam iste laudantium ex nam commodi deleniti nulla. Dicta, asperiores beatae!</p>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
+                       
                     </div>
                 <% } %>
             <% }) %> 
