@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,qCAAqC;AACrC,AAAA,OAAO,CAAA;EACH,KAAK,EAAE,cAAc;EACrB,MAAM,EAAE,eAAe;CAC1B",
+    "mappings": "AAAA,WAAW;AAQX,qCAAqC;AACrC,AAAA,OAAO,CAAA;EACH,KAAK,EAAE,cAAc;EACrB,MAAM,EAAE,eAAe;CAK1B;;AAHG,MAAM,MAAM,MAAM,MAAM,SAAS,EAAE,KAAK;EAJ5C,AAAA,OAAO,CAAA;IAKC,KAAK,EAAE,eAAe;GAE7B",
     "sources": [
         "../SCSS/playerResults.scss"
     ],

@@ -1,5 +1,17 @@
+/** Maps */
+$Bootstrap-screen-sizes: (
+  "small":          576px,
+  "medium":         768px,
+  "large":          992px,
+  "extra-large":    1200px
+);
+
 /** used to restyle size of images */
 .resize{
     width: 65% !important;
     height: auto !important;
+
+    @media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
+        width: 100% !important;
+      }
 }

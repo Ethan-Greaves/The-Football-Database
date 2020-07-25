@@ -1,6 +1,13 @@
+/** Maps */
 /** used to restyle size of images */
 .resize {
   width: 65% !important;
   height: auto !important;
+}
+
+@media only screen and (max-width: 768px) {
+  .resize {
+    width: 100% !important;
+  }
 }
 /*# sourceMappingURL=playerResults.css.map */
