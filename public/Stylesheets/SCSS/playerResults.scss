@@ -1,6 +1,7 @@
 /** Maps */
 $Bootstrap-screen-sizes: (
-  "small":          576px,
+  "extra-small":    575px
+  "small":          577px,
   "medium":         768px,
   "large":          992px,
   "extra-large":    1200px
@@ -15,3 +16,12 @@ $Bootstrap-screen-sizes: (
         width: 100% !important;
       }
 }
+
+.responsive-border-image{
+  border-right: 1px solid black !important;
+
+  // @media only screen and (max-width: map-get($Bootstrap-screen-sizes, extra-small)){
+  //   border-bottom: 1px solid black !important;
+  // }
+}
+
