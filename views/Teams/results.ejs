@@ -4,14 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results</title>
+     <!--* Bootstrap CDN -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+      <!-- * -->
+    <link rel="stylesheet" href="/Stylesheets/CSS/playerResults.css">
 </head>
 <body>
-    <ul>
-        <% teamData.teams.forEach((team) => { %> 
-            <li>
-                <a href="/teams/<%= team.idTeam %>"><%= team.strTeam %> </a>
-            </li>
-        <% }) %> 
-    </ul>
+    <!-- * Num Of Results -->
+    <%- include ("../partials/Results/numOfResults.ejs", {data: teamData.teams}) %> 
+
+    <!-- * Results -->
+    <% teamData.teams.forEach((team) => { %>
+        <%- include ("../partials/Results/Results.ejs", 
+        {
+            link:               `teams`,
+            id:                 team.idTeam,  
+            sport:              team.strSport,
+            picture:            team.strTeamBadge,
+            backupPicture:      team.strTeamBadge,
+            firstTitle:         team.strTeam,
+            secondTitle:        team.strLeague,
+            thirdTitle:         team.strStadium,
+            description:        team.strDescriptionEN
+        }) %>
+    <% }) %>  
+
+  
 </body>
 </html>

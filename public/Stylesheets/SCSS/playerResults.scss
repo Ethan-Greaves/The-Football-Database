@@ -1,6 +1,6 @@
 /** Maps */
 $Bootstrap-screen-sizes: (
-  "extra-small":    575px
+  "extra-small":    575px,
   "small":          577px,
   "medium":         768px,
   "large":          992px,
@@ -25,3 +25,13 @@ $Bootstrap-screen-sizes: (
   // }
 }
 
+a{
+  color: inherit;
+   &:hover{
+     color: inherit;
+     text-decoration: none;
+     -webkit-transform: scale(1.2) !important;
+     -ms-transform: scale(1.2) !important;
+     transform: scale(1.2) !important;
+   }
+}

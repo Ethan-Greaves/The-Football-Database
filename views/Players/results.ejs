@@ -11,78 +11,24 @@
 
 </head>
 <body>
-    <!-- <span id="playerData"><% playerData.player %> </span> -->
-
-    <div class="container">
-        <!-- * Header -->
-        <h1 class="text-center my-5">Player Results...</h1>
-
-        <!-- * Number of results sub heading -->
-        <div class="mb-3">
-            <h3 id="numOfResults" class="d-inline">
-                <% let counter = 0 %> 
-                <% playerData.player.forEach((individual) => {  %>
-                    <% if (individual.strSport === `Soccer`) { %>
-                        <% counter++ %>
-                    <% } %>
-                     
-                <% }) %> 
-                <%= counter %> 
-            </h3>
-            <h3 class="d-inline">
-                <% if (counter === 1) { %> Result <% } else { %> Results <% } %> 
-            </h3>
-        </div>
+    <!-- * Number of results -->
+    <%- include ("../partials/Results/numOfResults.ejs", {data: playerData.player}) %> 
         
-        <!-- * -->
-            <% playerData.player.forEach((individual) => { %> 
-                <a href="/players/<%= individual.idPlayer %>">
-                <% if (individual.strSport === `Soccer`) { %>
-                    <div class="border mb-3 border-dark">
-                        <div class="row no-gutters">
-                            <!-- * Image -->
-                            <div class="col-sm-4 col-lg-2 col-xl-1">
-                                <% if (individual.strCutout === null) { %>
-                                    <img class="img-responsive img-fluid resize border border-secondary" src="/Images/playerResultsPlaceholder.jpg" alt="">
-                                <% } else { %>
-                                    <img class="img-responsive  resize border border-secondary" src="<%= individual.strCutout %> " alt="">
-                                <% } %> 
-                            </div>
-                            <!-- * Name -->
-                            <div class="col-sm-8 col-lg-10 col-xl-11">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col-4 text-center border-secondary border ">
-                                        <strong><p><%= individual.strPlayer %> </p></strong>
-                                    </div>
-                                    <div class="col-4 text-center border-secondary border">
-                                        <% if (individual.strTeam === "_Retired Soccer") { %>
-                                         <% individual.strTeam = "Retired" %> 
-                                        <% } %>
-                                        <strong><p><%= individual.strTeam %> </p></strong>
-                                    </div>
-                                    <div class="col-4 text-center border-secondary border">
-                                        <strong><p><%= individual.strNationality %> </p></strong>
-                                    </div>
-                                    <!-- * Description -->
-                                    <div class="col-12">
-                                        <% if (individual.strDescriptionEN !== null) { %>
-                                            <p class="mx-3"><%= individual.strDescriptionEN.substring(0,125); %>... </p>
-                                        <% } else {%>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, minima? Consectetur numquam, deleniti dolor ab laboriosam earum rem. Libero qui, doloribus ratione ea necessitatibus ab facilis voluptatibus quis repellendus dolorum!</p>
-                                        <% } %> 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                       
-                    </div>
-                <% } %>
-            </a>
-            <% }) %> 
-    </div>
-
-
-    <!-- <script src="/JavaScript/CountSearchResults.js"></script> -->
+    <!-- * Results -->
+    <% playerData.player.forEach((individual) => { %>
+        <%- include ("../partials/Results/Results.ejs", 
+        {
+            link:               `players`,
+            id:                 individual.idPlayer,  
+            sport:              individual.strSport,
+            picture:            individual.strCutout,
+            backupPicture:      individual.strThumb,
+            firstTitle:         individual.strPlayer,
+            secondTitle:        individual.strTeam,
+            thirdTitle:         individual.strNationality,
+            description:        individual.strDescriptionEN
+        }) %>
+    <% }) %>         
 </body>
 </html>
 
