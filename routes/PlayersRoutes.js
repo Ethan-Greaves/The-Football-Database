@@ -12,13 +12,14 @@ const fetch                         = require('node-fetch');
 //#region PLAYERS
 //TODO This is a global variable, kind of okay because seperation of concern has been used with routes so not really global global, but might be a better way
 let playerData;
+let formData;
 
 router.get(`/`, (req, res) => {
     //*Retrieve the playerData variable that was stored in the search/player route
     //const playerData = req.router.get('playerData');
 
     //*Go to the show page and pass through the json data
-    res.render(`Players/results.ejs`, {playerData});
+    res.render(`Players/results.ejs`, {playerData, formData});
 })
 
 router.get(`/:id`, async (req, res) => {
@@ -47,6 +48,7 @@ router.post(`/`, async (req, res) => {
         //*Store the variable in the Express instance
         //router.set(`playerData`, data);
         playerData = data;
+        formData = req.body;
 
         //*Redirect to another endpoint 
         res.redirect(`/players`);

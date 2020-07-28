@@ -8,36 +8,31 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- * -->
     <link rel="stylesheet" href="/Stylesheets/CSS/playerResults.css">
-
 </head>
 <body>
-    <!-- * Number of results -->
-    <%- include ("../partials/Results/numOfResults.ejs", {data: playerData.player}) %> 
-        
     <!-- * Results -->
-    <% playerData.player.forEach((individual) => { %>
-        <%- include ("../partials/Results/Results.ejs", 
-        {
-            link:               `players`,
-            id:                 individual.idPlayer,  
-            sport:              individual.strSport,
-            picture:            individual.strCutout,
-            backupPicture:      individual.strThumb,
-            firstTitle:         individual.strPlayer,
-            secondTitle:        individual.strTeam,
-            thirdTitle:         individual.strNationality,
-            description:        individual.strDescriptionEN
-        }) %>
-    <% }) %>         
+    <% if (playerData.player === null) { %>
+        <%- include ("../partials/error.ejs", {data: formData.playerName}) %> 
+    <% } else { %>
+        <!-- * Number of results -->
+        <%- include ("../partials/Results/numOfResults.ejs", {data: playerData.player}) %> 
+
+        <% playerData.player.forEach((individual) => { %>
+            <%- include ("../partials/Results/Results.ejs", 
+            {
+                link:               `players`,
+                id:                 individual.idPlayer,  
+                sport:              individual.strSport,
+                picture:            individual.strCutout,
+                backupPicture:      individual.strThumb,
+                firstTitle:         individual.strPlayer,
+                secondTitle:        individual.strTeam,
+                thirdTitle:         individual.strNationality,
+                description:        individual.strDescriptionEN
+            }) %>
+        <% }) %>         
+    <% } %> 
+    
+    
 </body>
 </html>
-
-
-
-<!-- <ul>
-        //<% playerData.player.forEach((individual) => { %> 
-            <li>
-                //<a href="/players/<%= individual.idPlayer %> "><%= individual.strPlayer %> </a>
-            </li>
-        //<% }) %> 
-    </ul> -->

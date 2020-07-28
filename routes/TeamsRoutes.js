@@ -11,14 +11,14 @@ const fetch                         = require('node-fetch');
 
 //#region TEAMS
 let teamData;
+let formData;
 
 router.get(`/`, (req, res) => {
     //*Retrieve the playerData variable that was stored in the search/player route
     //const teamData = req.app.get('teamData');
 
     //*Go to the show page and pass through the json data
-    res.render(`Teams/results.ejs`, {teamData});
-
+    res.render(`Teams/results.ejs`, {teamData, formData});
 })
 
 router.get(`/:id`, (req, res) => {
@@ -39,6 +39,7 @@ router.post(`/`, async (req, res) => {
         //*Store the variable in the Express instance
         //app.set(expressInstanceName, data);
         teamData = data;
+        formData = req.body;
 
         //*Redirect to another endpoint 
         res.redirect(`/teams`);
