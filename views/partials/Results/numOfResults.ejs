@@ -1,0 +1,22 @@
+<% if (data != null) { %>
+    <div class="container">
+        <!-- * Header -->
+        <h1 class="text-center my-5">Results...</h1>
+    
+        <!-- * Number of results sub heading -->
+        <div class="mb-3">
+            <h3 id="numOfResults" class="d-inline">
+                <% let counter = 0 %> 
+                <% data.forEach((individual) => {  %>
+                    <% if (individual.strSport === `Soccer`) { %>
+                        <% counter++ %>
+                    <% } %>
+                     
+                <% }) %> 
+                <%= counter %> 
+            </h3>
+            <h3 class="d-inline">
+                <% if (counter === 1) { %> Result <% } else { %> Results <% } %> 
+            </h3>
+        </div>
+<% } %>

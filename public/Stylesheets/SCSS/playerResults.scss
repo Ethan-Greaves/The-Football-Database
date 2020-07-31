@@ -1,0 +1,34 @@
+/** Maps */
+$Bootstrap-screen-sizes: (
+  "extra-small":    575px,
+  "small":          577px,
+  "medium":         768px,
+  "large":          992px,
+  "extra-large":    1200px
+);
+
+/** used to restyle size of images */
+.resize{
+    width: 100% !important;
+    height: auto !important;
+
+    @media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
+        width: 100% !important;
+      }
+}
+
+.responsive-border-image{
+  border-right: 1px solid black !important;
+
+  // @media only screen and (max-width: map-get($Bootstrap-screen-sizes, extra-small)){
+  //   border-bottom: 1px solid black !important;
+  // }
+}
+
+a{
+  color: inherit;
+   &:hover{
+     color: inherit;
+     text-decoration: none;
+   }
+}

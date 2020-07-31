@@ -1,0 +1,49 @@
+<!-- <% //data.forEach((element) => { %>  -->
+    <a href="/<%= link %>/<%= id %>">
+        <% if (sport === `Soccer`) { %>
+            <div class="border mb-3 border-dark">
+                <div class="row no-gutters">
+                    <!-- * Image -->
+                    <div class="col-sm-4 col-lg-2 col-xl-1">
+                        <% if (picture !== null) { %>
+                            <img class="img-responsive  resize border border-secondary" src="<%= picture %> " alt="">
+                        <% } else if (backupPicture !== null) { %>
+                            <img class="img-responsive  resize border border-secondary" src="<%= backupPicture %> " alt="">
+                        <% } else { %>
+                            <img class="img-responsive img-fluid resize border border-secondary" src="/Images/playerResultsPlaceholder.jpg" alt="">
+                        <% } %> 
+                    </div>
+                    
+                    <div class="col-sm-8 col-lg-10 col-xl-11">
+                        <div class="row no-gutters align-items-center">
+                            <!-- * Name -->
+                            <div class="col-4 text-center border-secondary border ">
+                                <strong><p><%= firstTitle.substring(0,16); %> </p></strong>
+                            </div>
+                            <!-- * Team -->
+                            <div class="col-4 text-center border-secondary border">
+                                <% if (secondTitle === "_Retired Soccer") { %>
+                                <% secondTitle = "Retired" %> 
+                                <% } %>
+                                <strong><p><%= secondTitle.substring(0,16); %> </p></strong>
+                            </div>
+                            <!-- * Nation -->
+                            <div class="col-4 text-center border-secondary border">
+                                <strong><p><%= thirdTitle.substring(0,16); %> </p></strong>
+                            </div>
+                            <!-- * Description -->
+                            <div class="col-12">
+                                <% if (description !== null) { %>
+                                    <p class="mx-3"><%= description.substring(0,125); %>... </p>
+                                <% } else {%>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, minima? Consectetur numquam, deleniti dolor ab laboriosam earum rem. Libero qui, doloribus ratione ea necessitatibus ab facilis voluptatibus quis repellendus dolorum!</p>
+                                <% } %> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        <% } %>
+    </a>
+<!-- <%// }) %>  -->
