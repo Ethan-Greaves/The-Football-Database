@@ -19,10 +19,14 @@ router.get(`/`, (req, res) => {
 
 router.get(`/:id`, async (req, res) => {
     try {
-        const teamData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=`, req.params.id);
+        const [teamData, teamFixturesData, teamResultsData] = await Promise.all([
+            requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=`, req.params.id),
+            requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=`, req.params.id),
+            requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=`, req.params.id)
+        ]);
 
         //* Render show page and pass throug the team data
-        res.render(`Teams/show.ejs`, {teamData});
+        res.render(`Teams/show.ejs`, {teamData, teamFixturesData, teamResultsData});
 
     } catch (error) {
         console.error(error);
