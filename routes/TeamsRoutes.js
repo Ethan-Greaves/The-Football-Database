@@ -25,7 +25,7 @@ router.get(`/:id`, async (req, res) => {
             requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=`, req.params.id)
         ]);
 
-        //* Render show page and pass throug the team data
+        //* Render show page and pass through the team data
         res.render(`Teams/show.ejs`, {teamData, teamFixturesData, teamResultsData});
 
     } catch (error) {

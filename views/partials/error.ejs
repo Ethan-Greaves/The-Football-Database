@@ -1,8 +1,11 @@
 
 <div class="text-center">
-    <h1 >Uh oh...</h1>
-    <p>'<%= data %>' did not return any results. </p>
+    <h1 >Uh oh...there seems to be a problem</h1>
 
+    <% if (data) { %>
+        <p>'<%= data %>' did not return any results. </p>
+    <% } %>
+    
     <a href="/" class="btn btn-primary">Go Back?</a>
 </div>
 

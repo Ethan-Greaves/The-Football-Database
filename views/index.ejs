@@ -15,8 +15,8 @@
     <div class="container">
         <h1 class="text-center my-5">Welcome to The Football Database!</h1>
         
-        <!-- * PLayer form -->
         <div class="d-block">
+            <!-- * PLayer form -->
             <form action="/players" method="POST">
                 <label for="" class="mb-2">Search for a player...</label>
                 <input type="text" name="playerName" id="" class="form-control form-group form-inline" required>
@@ -30,6 +30,38 @@
                 <input type="submit" value="Submit!" class="btn btn-default btn-large btn-outline-dark form-group">
             </form>
         </div>
+
+        <!-- *Favourites section -->
+        <u><h2 class="mb-3">Favourites</h2></u>
+        <div class="row">
+            <% for( let i = listOfFavourites.length - 1; i >= 0; i--) { %>
+                <div class="col-sm-4 mb-4">
+                    <% if (listOfFavourites[i].teams) { %>
+                        <!-- *Pass through team data -->
+                        <!-- <%= //listOfFavourites[i].teams[0].strTeam %> -->
+                        <%- include ("partials/favouritesCard.ejs", {
+                            picture:        listOfFavourites[i].teams[0].strTeamBadge,
+                            name:           listOfFavourites[i].teams[0].strTeam,
+                            description:    listOfFavourites[i].teams[0].strDescriptionEN.substring(0,100),
+                            link:           `/teams/${listOfFavourites[i].teams[0].idTeam}`
+                        }) %>
+                    <% } else { %>
+                        <!-- *Pass through player data -->
+                        <!-- <%=  //listOfFavourites[i].players[0].strPlayer %>  -->
+                        <%- include ("partials/favouritesCard.ejs", {
+                            picture:        listOfFavourites[i].players[0].strCutout,
+                            name:           listOfFavourites[i].players[0].strPlayer,
+                            description:    listOfFavourites[i].players[0].strDescriptionEN.substring(0,100),
+                            link:           `/players/${listOfFavourites[i].players[0].idPlayer}`
+                        }) %>
+                    <% } %> 
+                </div>
+            <% } %>
+        </div>
+
+
+
+        
     </div>
 </body>
 </html>

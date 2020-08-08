@@ -9,16 +9,22 @@ const bodyParser                    = require("body-parser");
 //*Fetch
 const fetch                         = require('node-fetch');
 
+//*Mongoose
+const mongoose                      = require('mongoose');
+                                    mongoose.connect(`mongodb://localhost/footballDatabase`, { useNewUrlParser: true, useUnifiedTopology: true});
+
 //*Routes
 const indexRoutes                   = require(`./routes/index`);
 const playerRoutes                  = require(`./routes/PlayersRoutes`);
 const teamRoutes                    = require(`./routes/TeamsRoutes`);
+const favouritesRoutes              = require(`./routes/FavouritesRoutes`);
 //#endregion
 
 //#region ROUTES
 app.use(indexRoutes);
 app.use(`/players`, playerRoutes);
 app.use(`/teams`, teamRoutes);
+app.use(`/favourites`, favouritesRoutes);
 //#endregion
 
 //#region SERVER
