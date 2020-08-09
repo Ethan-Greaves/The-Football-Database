@@ -43,7 +43,8 @@
                             picture:        listOfFavourites[i].teams[0].strTeamBadge,
                             name:           listOfFavourites[i].teams[0].strTeam,
                             description:    listOfFavourites[i].teams[0].strDescriptionEN.substring(0,100),
-                            link:           `/teams/${listOfFavourites[i].teams[0].idTeam}`
+                            showLink:       `/teams/${listOfFavourites[i].teams[0].idTeam}`,
+                            removeLink:     `/favourites/${listOfFavourites[i].teams[0].idTeam}/delete?_method=DELETE` 
                         }) %>
                     <% } else { %>
                         <!-- *Pass through player data -->
@@ -52,7 +53,8 @@
                             picture:        listOfFavourites[i].players[0].strCutout,
                             name:           listOfFavourites[i].players[0].strPlayer,
                             description:    listOfFavourites[i].players[0].strDescriptionEN.substring(0,100),
-                            link:           `/players/${listOfFavourites[i].players[0].idPlayer}`
+                            showLink:       `/players/${listOfFavourites[i].players[0].idPlayer}`,
+                            removeLink:     `/favourites/${listOfFavourites[i].players[0].idPlayer}/delete?_method=DELETE`
                         }) %>
                     <% } %> 
                 </div>

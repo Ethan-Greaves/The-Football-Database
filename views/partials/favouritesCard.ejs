@@ -4,6 +4,10 @@
     <div class="card-body">
       <h5 class="card-title"><%= name %> </h5>
       <p class="card-text"><%= description %>... </p>
-      <a href="<%= link %>" class="btn btn-primary">See More...</a>
+      <a href="<%= showLink %>" class="btn btn-primary">See More...</a>
+
+      <form action="<%= removeLink %>" method="POST">
+        <input type="submit" value="Remove" class="btn btn-danger">
+      </form>
     </div>
 </div>
