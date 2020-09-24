@@ -24,6 +24,20 @@ router.post(`/:id`, async (req, res) => {
     }
 })
 
+router.delete(`/delete`, async (req, res) => {
+    try {
+        //*Remove all favourites from the database model
+        await favouritesModel.deleteMany({});
+        
+         //*Go back to the index page
+        res.redirect(`/`);
+        
+     } catch (error) {
+         console.error(error);
+     }
+
+})
+
 router.delete(`/:id/delete`, async (req, res) =>{
     try {
 
@@ -35,5 +49,7 @@ router.delete(`/:id/delete`, async (req, res) =>{
         console.error(error);
     }
 })
+
+
 
 module.exports = router;

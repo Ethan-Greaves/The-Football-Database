@@ -1,4 +1,22 @@
+@import './Partials/BSScreenSizes';
+
 body{
     background-color: thistle;
     color: black;
+}
+
+.card{
+    
+    // @media only screen and (max-width: map-get($Bootstrap-screen-sizes, small)) {
+    //     margin: auto;
+    //     width: 80%;
+    //   }
+}
+
+.card-img-top{
+    @media only screen and (max-width: map-get($Bootstrap-screen-sizes, small)) {
+        height: 10%;
+        //width: 50%;
+        margin: auto;
+      }
 }

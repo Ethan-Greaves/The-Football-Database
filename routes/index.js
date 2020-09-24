@@ -4,7 +4,7 @@ const express                       = require('express');
 const router                        = express.Router();
 
 //*Models
-const favouritesModel           = require(`../models/favourites/favourites`);
+const favouritesModel               = require(`../models/favourites/favourites`);
 
 //*Module Exports
 const requestDataFromAPI            = require(`../ExportFunctions/requestDataFromAPI.js`);
@@ -12,25 +12,35 @@ const requestDataFromAPI            = require(`../ExportFunctions/requestDataFro
 
 router.get(`/`, async (req, res) => {
     //*Create empty array to store objects of favourites which can be passed through to index.ejs
-    var listOfFavourites = [];
+    var favouritesToDisplay = [];
     let fav;
 
     try {
         const favourites = await favouritesModel.find({});
 
         for (const element of favourites) {
-            //TODO Not sure if the two fetch calls can be done asynchronously to increase speed (is taking about FIVE SECONDS currently to load page with 15 favourites)
-            //*Search through the IDs of teams
-            fav = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=`, element.ID.toString());
-            //*If teams returns null
-            if (fav.teams === null) {
-                //*Search through the players instead
-                fav = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=`, element.ID.toString());
+            //*return an array of objects
+            fav = await Promise.all([
+                requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=`, element.ID.toString()),
+                requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=`, element.ID.toString())
+            ])
+
+            //*Loop through the array of fav objects
+            for (let i = 0; i < fav.length; i++) {
+                //*Loop and access the key for each object in fav
+                for (const key in fav[i]) {
+                    //*If the value of the key in the current iterated object is not null
+                    if (fav[i][key] != null) {
+                        //*Add the object to the list of favourites to be displayed
+                        favouritesToDisplay.push(fav[i]);
+                        //*break out of the loop, becasue we know the rest will be null
+                        break;
+                    }
+                }
             }
-            listOfFavourites.push(fav);
         }
 
-        res.render(`index.ejs`, {listOfFavourites});
+        res.render(`index.ejs`, {listOfFavourites: favouritesToDisplay});
 
     } catch (error) {
         console.error(error);

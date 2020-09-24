@@ -33,36 +33,43 @@
 
         <!-- *Favourites section -->
         <u><h2 class="mb-3">Favourites</h2></u>
-        <div class="row">
-            <% for( let i = listOfFavourites.length - 1; i >= 0; i--) { %>
-                <div class="col-sm-4 mb-4">
-                    <% if (listOfFavourites[i].teams) { %>
-                        <!-- *Pass through team data -->
-                        <!-- <%= //listOfFavourites[i].teams[0].strTeam %> -->
-                        <%- include ("partials/favouritesCard.ejs", {
-                            picture:        listOfFavourites[i].teams[0].strTeamBadge,
-                            name:           listOfFavourites[i].teams[0].strTeam,
-                            description:    listOfFavourites[i].teams[0].strDescriptionEN.substring(0,100),
-                            showLink:       `/teams/${listOfFavourites[i].teams[0].idTeam}`,
-                            removeLink:     `/favourites/${listOfFavourites[i].teams[0].idTeam}/delete?_method=DELETE` 
-                        }) %>
-                    <% } else { %>
-                        <!-- *Pass through player data -->
-                        <!-- <%=  //listOfFavourites[i].players[0].strPlayer %>  -->
-                        <%- include ("partials/favouritesCard.ejs", {
-                            picture:        listOfFavourites[i].players[0].strCutout,
-                            name:           listOfFavourites[i].players[0].strPlayer,
-                            description:    listOfFavourites[i].players[0].strDescriptionEN.substring(0,100),
-                            showLink:       `/players/${listOfFavourites[i].players[0].idPlayer}`,
-                            removeLink:     `/favourites/${listOfFavourites[i].players[0].idPlayer}/delete?_method=DELETE`
-                        }) %>
-                    <% } %> 
-                </div>
-            <% } %>
-        </div>
 
+        <!-- *Remove ALL -->
+        <form action="/favourites/delete?_method=DELETE" method="POST">
+            <input type="submit" value="Remove All" class="btn btn-danger d-block w-25">
+        </form>
 
-
+        <% if (listOfFavourites.length > 0) { %>
+            <div class="row">
+                <% for( let i = listOfFavourites.length - 1; i >= 0; i--) { %>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-4">
+                        <% if (listOfFavourites[i].teams) { %>
+                            <!-- *Pass through team data -->
+                            <%- include ("partials/favouritesCard.ejs", {
+                                picture:            listOfFavourites[i].teams[0].strTeamBadge,
+                                backupPicture:      listOfFavourites[i].teams[0].strTeamBadge,
+                                name:               listOfFavourites[i].teams[0].strTeam,
+                                description:        listOfFavourites[i].teams[0].strDescriptionEN.substring(0,100),
+                                showLink:           `/teams/${listOfFavourites[i].teams[0].idTeam}`,
+                                removeLink:         `/favourites/${listOfFavourites[i].teams[0].idTeam}/delete?_method=DELETE` 
+                            }) %>
+                        <% } else if (listOfFavourites[i].players) { %>
+                            <!-- *Pass through player data -->
+                            <%- include ("partials/favouritesCard.ejs", {
+                                picture:            listOfFavourites[i].players[0].strCutout,
+                                backupPicture:      listOfFavourites[i].players[0].strThumb,
+                                name:               listOfFavourites[i].players[0].strPlayer,
+                                description:        listOfFavourites[i].players[0].strDescriptionEN.substring(0,100),
+                                showLink:           `/players/${listOfFavourites[i].players[0].idPlayer}`,
+                                removeLink:         `/favourites/${listOfFavourites[i].players[0].idPlayer}/delete?_method=DELETE`
+                            }) %>
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+        <% } else { %>
+            <strong><p class="text-center py-5">No favourites selected! Search for a team/player and add them as a favourite.</p></strong>
+        <% } %> 
         
     </div>
 </body>

@@ -1,11 +1,6 @@
 /** Maps */
-$Bootstrap-screen-sizes: (
-  "extra-small":    575px,
-  "small":          577px,
-  "medium":         768px,
-  "large":          992px,
-  "extra-large":    1200px
-);
+//*TODO MAKE THIS A PARTIAL WHICH CAN BE IMPORTED
+@import './Partials/BSScreenSizes';
 
 /** used to restyle size of images */
 .resize{
