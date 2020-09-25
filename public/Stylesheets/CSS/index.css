@@ -1,6 +1,22 @@
+* {
+  font-family: 'Graduate', cursive;
+}
+
 body {
-  background-color: thistle;
-  color: black;
+  background-color: #4e0b4e;
+  background-image: -webkit-gradient(linear, left bottom, right top, from(pink), to(blue));
+  background-image: linear-gradient(to top right, pink, blue);
+  color: white;
+}
+
+.title {
+  border-bottom: 1px solid white;
+  border-bottom-width: 80% !important;
+}
+
+.subTitle {
+  text-align: center;
+  font-family: 'Tangerine', cursive;
 }
 
 @media only screen and (max-width: 577px) {
@@ -9,4 +25,3 @@ body {
     margin: auto;
   }
 }
-/*# sourceMappingURL=index.css.map */

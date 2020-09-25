@@ -1,4 +1,8 @@
-<div class="card">
+<head>
+  <link rel="stylesheet" href="/Stylesheets/CSS/favouriteCard.css">
+</head>
+
+<div class="card favourite">
     <!-- TODO Add secondary picture -->
     <% if (picture) { %>
       <img class="card-img-top img-responsive border border-secondary" src="<%= picture %>">
@@ -9,10 +13,14 @@
     <div class="card-body">
       <h5 class="card-title"><%= name %> </h5>
       <p class="card-text"><%= description %>... </p>
-      <a href="<%= showLink %>" class="btn btn-primary d-block w-100 mb-1">See More...</a>
+    </div>
 
-      <form action="<%= removeLink %>" method="POST">
-        <input type="submit" value="Remove" class="btn btn-danger d-block w-100">
+    <div class="card-footer">
+      <a href="<%= showLink %>" id="left" class="btn btn-primary btn-small d-inline mb-1 favourite-button">See More...</a>
+
+      <form action="<%= removeLink %>" method="POST" class="d-inline">
+        <input type="submit" value="Remove" id="right" class="btn btn-danger d-inline btn-small favourite-button">
       </form>
     </div>
+    
 </div>

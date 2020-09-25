@@ -1,16 +1,28 @@
 @import './Partials/BSScreenSizes';
 
-body{
-    background-color: thistle;
-    color: black;
+*{
+    font-family: 'Graduate', cursive;
 }
 
-.card{
-    
-    // @media only screen and (max-width: map-get($Bootstrap-screen-sizes, small)) {
-    //     margin: auto;
-    //     width: 80%;
-    //   }
+body{
+    background-color: rgb(78, 11, 78);
+    background-image: linear-gradient(
+        to top right,
+        pink,
+        blue
+    );
+
+    color: white;
+}
+
+.title{
+    border-bottom: 1px solid white;
+    border-bottom-width: 80% !important;
+}
+
+.subTitle{
+    text-align: center;
+    font-family: 'Tangerine', cursive;
 }
 
 .card-img-top{

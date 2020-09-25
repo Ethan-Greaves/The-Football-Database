@@ -8,12 +8,19 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- * -->
     <link rel="stylesheet" href="/Stylesheets/CSS/index.css">
+
+    <!-- * Google Font - Graduate -->
+    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
+    <!-- * Tangarine -->
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <%- include ("partials/navbar.ejs") %> 
+    <%- //include ("partials/navbar.ejs") %> 
 
     <div class="container">
-        <h1 class="text-center my-5">Welcome to The Football Database!</h1>
+        <h1 class="text-center mt-4 mb-0 title">Welcome to The Football Database!</h1>
+        <h4 class="subTitle mt-1 mb-5">The hub of football knowledge</h4>
         
         <div class="d-block">
             <!-- * PLayer form -->
@@ -32,14 +39,19 @@
         </div>
 
         <!-- *Favourites section -->
-        <u><h2 class="mb-3">Favourites</h2></u>
+        <div class="row">
+            <u><h2 class="mb-4 col-4">Favourites</h2></u>
 
-        <!-- *Remove ALL -->
-        <form action="/favourites/delete?_method=DELETE" method="POST">
-            <input type="submit" value="Remove All" class="btn btn-danger d-block w-25">
-        </form>
+            <% if (listOfFavourites.length > 0) { %>
 
-        <% if (listOfFavourites.length > 0) { %>
+                <% if (listOfFavourites.length > 1) { %>
+                    <!-- *Remove ALL -->
+                    <form action="/favourites/delete?_method=DELETE" method="POST" class="col-4 ml-4 mt-1">
+                        <input type="submit" value="Remove All" class="btn btn-danger">
+                    </form>
+                <% } %>
+        </div>
+
             <div class="row">
                 <% for( let i = listOfFavourites.length - 1; i >= 0; i--) { %>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-4">
