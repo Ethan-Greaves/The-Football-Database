@@ -54,10 +54,11 @@
 
             <div class="row">
                 <% for( let i = listOfFavourites.length - 1; i >= 0; i--) { %>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 mb-4">
+                    <div class="col-12  col-xs-12 col-sm-6 col-md-6 col-lg-4 mb-4">
                         <% if (listOfFavourites[i].teams) { %>
                             <!-- *Pass through team data -->
                             <%- include ("partials/favouritesCard.ejs", {
+                                flag:               countryFlags[listOfFavourites[i].teams[0].strCountry],
                                 picture:            listOfFavourites[i].teams[0].strTeamBadge,
                                 backupPicture:      listOfFavourites[i].teams[0].strTeamBadge,
                                 name:               listOfFavourites[i].teams[0].strTeam,
@@ -68,6 +69,7 @@
                         <% } else if (listOfFavourites[i].players) { %>
                             <!-- *Pass through player data -->
                             <%- include ("partials/favouritesCard.ejs", {
+                                flag:               countryFlags[listOfFavourites[i].players[0].strNationality],
                                 picture:            listOfFavourites[i].players[0].strCutout,
                                 backupPicture:      listOfFavourites[i].players[0].strThumb,
                                 name:               listOfFavourites[i].players[0].strPlayer,

@@ -8,6 +8,7 @@ const favouritesModel               = require(`../models/favourites/favourites`)
 
 //*Module Exports
 const requestDataFromAPI            = require(`../ExportFunctions/requestDataFromAPI.js`);
+const countryFlags                  = require(`../ExportFunctions/CountryFlags`)
 //#endregion
 
 router.get(`/`, async (req, res) => {
@@ -40,7 +41,7 @@ router.get(`/`, async (req, res) => {
             }
         }
 
-        res.render(`index.ejs`, {listOfFavourites: favouritesToDisplay});
+        res.render(`index.ejs`, {listOfFavourites: favouritesToDisplay, countryFlags});
 
     } catch (error) {
         console.error(error);

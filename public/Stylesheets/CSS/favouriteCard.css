@@ -1,7 +1,63 @@
 .favourite {
   color: black;
+  -webkit-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
 }
 
 .favourite-button {
   position: static;
 }
+
+.card-img-top {
+  max-height: 220px !important;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.border-dark {
+  border-radius: 20px !important;
+  border-left: 3px solid lightseagreen !important;
+  border-right: 3px solid lightseagreen !important;
+}
+
+.card-title {
+  border-bottom: 1px solid white;
+}
+
+.card {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(white), color-stop(white), color-stop(gold), to(white));
+  background-image: linear-gradient(to top right, white, white, gold, white);
+}
+
+.parent {
+  position: relative;
+}
+
+.image1 {
+  position: relative;
+  -o-object-fit: fill;
+     object-fit: fill;
+  width: 100%;
+  height: 225px !important;
+  z-index: 0;
+  opacity: 0.8;
+}
+
+.image2 {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  z-index: 3;
+  left: 0;
+  bottom: 0;
+  border: 1px solid balck;
+}
+
+.imageBackup {
+  width: 100%;
+  position: relative;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+/*# sourceMappingURL=favouriteCard.css.map */
