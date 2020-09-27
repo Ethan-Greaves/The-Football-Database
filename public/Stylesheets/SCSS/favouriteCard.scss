@@ -75,8 +75,8 @@
       width: 100%;
       position: relative;
       height: 225px !important;
-      object-fit: scale-down;
-
+      object-fit: contain;
+      border: 2px solid black !important;
   }
 
   .border-top{

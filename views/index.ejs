@@ -72,7 +72,12 @@
                                 flag:               countryFlags[listOfFavourites[i].players[0].strNationality],
                                 picture:            listOfFavourites[i].players[0].strCutout,
                                 backupPicture:      listOfFavourites[i].players[0].strThumb,
-                                info1Title:         calculatePlayerAge(listOfFavourites[i].players[0].dateBorn),
+                                info1Title:         "Age:", 
+                                info1:              calculatePlayerAge(listOfFavourites[i].players[0].dateBorn),
+                                info2Title:         "Nat:", 
+                                info2:              listOfFavourites[i].players[0].strNationality.substr(0, 3),    
+                                info3Title:         "Pos:",
+                                info3:              shortenPositionString(listOfFavourites[i].players[0].strPosition),
                                 showLink:           `/players/${listOfFavourites[i].players[0].idPlayer}`,
                                 removeLink:         `/favourites/${listOfFavourites[i].players[0].idPlayer}/delete?_method=DELETE`
                             }) %>

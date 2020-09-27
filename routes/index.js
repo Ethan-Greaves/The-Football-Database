@@ -10,6 +10,7 @@ const favouritesModel               = require(`../models/favourites/favourites`)
 const requestDataFromAPI            = require(`../ExportFunctions/requestDataFromAPI.js`);
 const countryFlags                  = require(`../ExportFunctions/CountryFlags`);
 const calculatePlayerAge            = require(`../ExportFunctions/calculatePlayerAge`);
+const shortenPositionString         = require(`../ExportFunctions/shortenPositionString`);
 //#endregion
 
 router.get(`/`, async (req, res) => {
@@ -42,7 +43,7 @@ router.get(`/`, async (req, res) => {
             }
         }
 
-        res.render(`index.ejs`, {listOfFavourites: favouritesToDisplay, countryFlags, calculatePlayerAge});
+        res.render(`index.ejs`, {listOfFavourites: favouritesToDisplay, countryFlags, calculatePlayerAge, shortenPositionString});
 
     } catch (error) {
         console.error(error);

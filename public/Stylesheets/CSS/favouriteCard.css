@@ -57,10 +57,12 @@
   width: 100%;
   position: relative;
   height: 225px !important;
-  -o-object-fit: scale-down;
-     object-fit: scale-down;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border: 2px solid black !important;
 }
 
 .border-top {
   border-width: 1.5px !important;
 }
+/*# sourceMappingURL=favouriteCard.css.map */
