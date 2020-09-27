@@ -8,7 +8,8 @@ const favouritesModel               = require(`../models/favourites/favourites`)
 
 //*Module Exports
 const requestDataFromAPI            = require(`../ExportFunctions/requestDataFromAPI.js`);
-const countryFlags                  = require(`../ExportFunctions/CountryFlags`)
+const countryFlags                  = require(`../ExportFunctions/CountryFlags`);
+const calculatePlayerAge            = require(`../ExportFunctions/calculatePlayerAge`);
 //#endregion
 
 router.get(`/`, async (req, res) => {
@@ -41,7 +42,7 @@ router.get(`/`, async (req, res) => {
             }
         }
 
-        res.render(`index.ejs`, {listOfFavourites: favouritesToDisplay, countryFlags});
+        res.render(`index.ejs`, {listOfFavourites: favouritesToDisplay, countryFlags, calculatePlayerAge});
 
     } catch (error) {
         console.error(error);

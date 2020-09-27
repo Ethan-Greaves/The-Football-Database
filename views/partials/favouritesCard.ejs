@@ -3,35 +3,40 @@
 </head>
 
 <div class="card border-dark favourite">
+  <!-- *Name -->
   <h5 class="card-title mx-auto mt-2"><%= name %> </h5>
-  
+
+    <!-- * Picture(s) -->
     <!-- TODO Add secondary picture -->
     <div class="parent">
       <% if (picture) { %>
-        <img src="<%=flag%>" alt="" class="image1">
-        <img class="card-img-top img-responsive  background-image image2" src="<%= picture %>">
-      <% } else {%>
+        <img src="<%=flag%>" alt="" class="flagImage">
+        <img class="card-img-top img-responsive  background-image cutoutImage" src="<%= picture %>">
+      <% } else if (backupPicture) {%>
         <img class="card-img-top img-responsive  background-image imageBackup" src="<%= backupPicture %>">
+      <% } else { %>
+        <img class="card-img-top img-responsive  background-image imageBackup" src="Images/playerResultsPlaceholder.jpg">
       <% } %> 
     </div>
     
-    
+    <!-- * Stats/Info -->
     <div class="card-body">
-      <div class="container">
-        <div class="row mx-auto">
+      <div class="">
+        <div class="row mx-auto border-top border-dark pt-3">
           <!-- <p class="card-text"><%= //description %>... </p> -->
-          <div class="col">Column</div>
-          <div class="col">Column</div>
+          <div class="col"><span class="mr-4"><%= info1Title %> </span><strong class="ml-2">27</strong></div>
+          <div class="col"><span class="mr-4">Pos:</span>  FOR</div>
           <div class="w-100"></div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
+          <div class="col"><span class="mr-4">Nat:</span><strong class="ml-2">ENG</strong></div>
+          <div class="col"><span class="mr-4">Age:</span> </div>
           <div class="w-100"></div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
+          <div class="col"><span class="mr-4">Age:</span> </div>
+          <div class="col"><span class="mr-4">Age:</span> </div>
         </div>
       </div>
     </div>
 
+    <!-- * Buttons -->
     <div class="card-footer mx-auto">
       <a href="<%= showLink %>" id="left" class="btn btn-primary btn-small d-inline mb-1 favourite-button">See More...</a>
 
@@ -39,5 +44,4 @@
         <input type="submit" value="Remove" id="right" class="btn btn-danger d-inline btn-small favourite-button">
       </form>
     </div>
-    
 </div>

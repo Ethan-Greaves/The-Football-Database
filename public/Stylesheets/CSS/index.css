@@ -4,8 +4,8 @@
 
 body {
   background-color: #4e0b4e;
-  background-image: -webkit-gradient(linear, left bottom, right top, from(pink), to(blue));
-  background-image: linear-gradient(to top right, pink, blue);
+  background-image: -webkit-gradient(linear, left bottom, right top, from(pink), to(purple));
+  background-image: linear-gradient(to top right, pink, purple);
   color: white;
 }
 
@@ -25,4 +25,9 @@ body {
     margin: auto;
   }
 }
-/*# sourceMappingURL=index.css.map */
+
+@media only screen and (max-width: 768px) {
+  .favourites {
+    margin: auto;
+  }
+}

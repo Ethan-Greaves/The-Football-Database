@@ -9,7 +9,7 @@ body{
     background-image: linear-gradient(
         to top right,
         pink,
-        blue
+        purple
     );
 
     color: white;
@@ -29,6 +29,12 @@ body{
     @media only screen and (max-width: map-get($Bootstrap-screen-sizes, small)) {
         height: 10%;
         //width: 50%;
+        margin: auto;
+      }
+}
+
+.favourites{
+    @media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
         margin: auto;
       }
 }

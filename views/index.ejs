@@ -54,26 +54,25 @@
 
             <div class="row">
                 <% for( let i = listOfFavourites.length - 1; i >= 0; i--) { %>
-                    <div class="col-12  col-xs-12 col-sm-6 col-md-6 col-lg-4 mb-4">
+                    <div class="col-8 col-xs-8 col-sm-8 col-md-6 col-lg-4 mb-4 favourites">
                         <% if (listOfFavourites[i].teams) { %>
                             <!-- *Pass through team data -->
                             <%- include ("partials/favouritesCard.ejs", {
+                                name:               listOfFavourites[i].teams[0].strTeam,
                                 flag:               countryFlags[listOfFavourites[i].teams[0].strCountry],
                                 picture:            listOfFavourites[i].teams[0].strTeamBadge,
                                 backupPicture:      listOfFavourites[i].teams[0].strTeamBadge,
-                                name:               listOfFavourites[i].teams[0].strTeam,
-                                description:        listOfFavourites[i].teams[0].strDescriptionEN.substring(0,100),
                                 showLink:           `/teams/${listOfFavourites[i].teams[0].idTeam}`,
                                 removeLink:         `/favourites/${listOfFavourites[i].teams[0].idTeam}/delete?_method=DELETE` 
                             }) %>
                         <% } else if (listOfFavourites[i].players) { %>
                             <!-- *Pass through player data -->
                             <%- include ("partials/favouritesCard.ejs", {
+                                name:               listOfFavourites[i].players[0].strPlayer,
                                 flag:               countryFlags[listOfFavourites[i].players[0].strNationality],
                                 picture:            listOfFavourites[i].players[0].strCutout,
                                 backupPicture:      listOfFavourites[i].players[0].strThumb,
-                                name:               listOfFavourites[i].players[0].strPlayer,
-                                description:        listOfFavourites[i].players[0].strDescriptionEN.substring(0,100),
+                                info1Title:         calculatePlayerAge(listOfFavourites[i].players[0].dateBorn),
                                 showLink:           `/players/${listOfFavourites[i].players[0].idPlayer}`,
                                 removeLink:         `/favourites/${listOfFavourites[i].players[0].idPlayer}/delete?_method=DELETE`
                             }) %>
