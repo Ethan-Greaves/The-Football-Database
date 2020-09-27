@@ -1,5 +1,6 @@
 function shortenPositionString(string) {
     let firstLetters = []
+    let letters = "";
 
     if (string === "Goalkeeper")
         string = "goal keeper";
@@ -10,7 +11,7 @@ function shortenPositionString(string) {
         const words = string.split(" "); 
         //* turn those strings into an array of characters
         words.forEach(word => {
-            let letters = word.split("");
+            letters = word.split("");
 
             //*Take the first element from each array and add to shortened position array 
             firstLetters.push(letters[0]);
