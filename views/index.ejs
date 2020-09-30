@@ -54,7 +54,7 @@
 
             <div class="row">
                 <% for( let i = listOfFavourites.length - 1; i >= 0; i--) { %>
-                    <div class="col-8 col-xs-8 col-sm-8 col-md-6 col-lg-4 mb-4 favourites">
+                    <div class="col-9 col-xs-9 col-sm-8 col-md-6 col-lg-4 col-xl-4 mb-4 favourites">
                         <% if (listOfFavourites[i].teams) { %>
                             <!-- *Pass through team data -->
                             <%- include ("partials/favouritesCard.ejs", {
@@ -78,6 +78,13 @@
                                 info2:              listOfFavourites[i].players[0].strNationality.substr(0, 3),    
                                 info3Title:         "Pos:",
                                 info3:              shortenPositionString(listOfFavourites[i].players[0].strPosition),
+                                info4Title:         "Clb:",
+                                info4:              favPlayersTeamBadge[i],
+                                info5Title:         "Hei:",
+                                info5:              formatPlayerHeight(listOfFavourites[i].players[0].strHeight),
+                                info6Title:         "Gen:",
+                                
+                                info6:              formatPlayerGender(listOfFavourites[i].players[0].strGender),
                                 showLink:           `/players/${listOfFavourites[i].players[0].idPlayer}`,
                                 removeLink:         `/favourites/${listOfFavourites[i].players[0].idPlayer}/delete?_method=DELETE`
                             }) %>

@@ -1,54 +1,75 @@
 //#region INITILISATION
 //*Express
-const express                       = require('express');
-const router                        = express.Router();
+const express = require("express");
+const router = express.Router();
 
 //*Models
-const favouritesModel               = require(`../models/favourites/favourites`);
+const favouritesModel = require(`../models/favourites/favourites`);
 
 //*Module Exports
-const requestDataFromAPI            = require(`../ExportFunctions/requestDataFromAPI.js`);
-const countryFlags                  = require(`../ExportFunctions/CountryFlags`);
-const calculatePlayerAge            = require(`../ExportFunctions/calculatePlayerAge`);
-const shortenPositionString         = require(`../ExportFunctions/shortenPositionString`);
+const requestDataFromAPI = require(`../ExportFunctions/requestDataFromAPI.js`);
+const countryFlags = require(`../ExportFunctions/CountryFlags`);
+const calculatePlayerAge = require(`../ExportFunctions/calculatePlayerAge`);
+const shortenPositionString = require(`../ExportFunctions/shortenPositionString`);
+const formatPlayerHeight = require(`../ExportFunctions/formatPlayerHeight`);
+const formatPlayerGender = require(`../ExportFunctions/formatPlayerGender`);
 //#endregion
 
 router.get(`/`, async (req, res) => {
-    //*Create empty array to store objects of favourites which can be passed through to index.ejs
-    var favouritesToDisplay = [];
-    let fav;
+  //*Create empty array to store objects of favourites which can be passed through to index.ejs
+  let favouritesToDisplay = [];
+  let favPlayersTeamBadge = [];
+  let fav;
 
-    try {
-        const favourites = await favouritesModel.find({});
+  try {
+    const favourites = await favouritesModel.find({});
 
-        for (const element of favourites) {
-            //*return an array of objects
-            fav = await Promise.all([
-                requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=`, element.ID.toString()),
-                requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=`, element.ID.toString())
-            ])
+    for (const element of favourites) {
+      //*return an array of objects
+      fav = await Promise.all([
+        requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=`, element.ID.toString()),
+        requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=`, element.ID.toString()),
+      ]);
 
-            //*Loop through the array of fav objects
-            for (let i = 0; i < fav.length; i++) {
-                //*Loop and access the key for each object in fav
-                for (const key in fav[i]) {
-                    //*If the value of the key in the current iterated object is not null
-                    if (fav[i][key] != null) {
-                        //*Add the object to the list of favourites to be displayed
-                        favouritesToDisplay.push(fav[i]);
-                        //*break out of the loop, becasue we know the rest will be null
-                        break;
-                    }
-                }
-            }
+      //*Loop through the array of fav objects
+      for (let i = 0; i < fav.length; i++) {
+        //*Loop and access the key for each object in fav
+        for (const key in fav[i]) {
+          //*If the value of the key in the current iterated object is not null
+          if (fav[i][key] != null) {
+            //*Add the object to the list of favourites to be displayed
+            favouritesToDisplay.push(fav[i]);
+            //*break out of the loop, becasue we know the rest will be null
+            break;
+          }
         }
-
-        res.render(`index.ejs`, {listOfFavourites: favouritesToDisplay, countryFlags, calculatePlayerAge, shortenPositionString});
-
-    } catch (error) {
-        console.error(error);
+      }
     }
 
-})
+    for (let i = 0; i < favouritesToDisplay.length; i++) {
+      if (favouritesToDisplay[i].players) {
+          if (favouritesToDisplay[i].players[0].strTeam != "_Retired Soccer" &&
+              favouritesToDisplay[i].players[0].strTeam != "_Free Agent Soccer" && favouritesToDisplay[i].players[0].strTeam != "_Deceased Soccer") {
+                const team = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=`, favouritesToDisplay[i].players[0].strTeam);
+                favPlayersTeamBadge.push(team.teams[0].strTeamBadge);
+        } else {
+          favPlayersTeamBadge.push("https://www.clipartmax.com/png/middle/307-3077324_x-mark-cross-computer-icons-clip-art-red-cross-icon.png");
+        }
+      }
+    }
+
+    res.render(`index.ejs`, {
+      listOfFavourites: favouritesToDisplay,
+      countryFlags,
+      calculatePlayerAge,
+      shortenPositionString,
+      favPlayersTeamBadge,
+      formatPlayerHeight,
+      formatPlayerGender,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 module.exports = router;

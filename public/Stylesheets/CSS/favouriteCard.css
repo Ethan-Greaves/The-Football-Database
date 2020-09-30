@@ -59,10 +59,14 @@
   height: 225px !important;
   -o-object-fit: contain;
      object-fit: contain;
-  border: 2px solid black !important;
 }
 
 .border-top {
   border-width: 1.5px !important;
+}
+
+.clubBadge {
+  width: 24px !important;
+  height: 24px;
 }
 /*# sourceMappingURL=favouriteCard.css.map */
