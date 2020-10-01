@@ -11,7 +11,7 @@ function calculatePlayerAge(playerBirthday) {
 
     //*Calculate age
 
-    //*First have the current year subtracted by the playter year for a rough estimate of age
+    //*First have the current year subtracted by the player year for a rough estimate of age
     playerAge = currentYear - playerBYear;
 
     //* if current month is less than player birth month, they havent reached birthday yet, so subtract one

@@ -18,7 +18,7 @@ const formatPlayerGender = require(`../ExportFunctions/formatPlayerGender`);
 router.get(`/`, async (req, res) => {
   //*Create empty array to store objects of favourites which can be passed through to index.ejs
   let favouritesToDisplay = [];
-  let favPlayersTeamBadge = [];
+  let favPlayersTeam = [];
   let fav;
 
   try {
@@ -46,14 +46,20 @@ router.get(`/`, async (req, res) => {
       }
     }
 
+    //*Gather the team information for all the favourite players
     for (let i = 0; i < favouritesToDisplay.length; i++) {
       if (favouritesToDisplay[i].players) {
           if (favouritesToDisplay[i].players[0].strTeam != "_Retired Soccer" &&
               favouritesToDisplay[i].players[0].strTeam != "_Free Agent Soccer" && favouritesToDisplay[i].players[0].strTeam != "_Deceased Soccer") {
                 const team = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=`, favouritesToDisplay[i].players[0].strTeam);
-                favPlayersTeamBadge.push(team.teams[0].strTeamBadge);
-        } else {
-          favPlayersTeamBadge.push("https://www.clipartmax.com/png/middle/307-3077324_x-mark-cross-computer-icons-clip-art-red-cross-icon.png");
+                let teamObject = { badge: team.teams[0].strTeamBadge, teamName: team.teams[0].strTeam };
+                favPlayersTeam.push(teamObject);
+          } else {
+            let teamObject = {
+              badge: "https://www.clipartmax.com/png/middle/307-3077324_x-mark-cross-computer-icons-clip-art-red-cross-icon.png",
+              teamName: "None"
+            };
+            favPlayersTeam.push(teamObject);
         }
       }
     }
@@ -63,7 +69,7 @@ router.get(`/`, async (req, res) => {
       countryFlags,
       calculatePlayerAge,
       shortenPositionString,
-      favPlayersTeamBadge,
+      favPlayersTeam,
       formatPlayerHeight,
       formatPlayerGender,
     });
