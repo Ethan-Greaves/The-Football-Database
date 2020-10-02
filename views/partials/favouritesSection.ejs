@@ -1,0 +1,72 @@
+<div class="row">
+    <u><h2 class="mb-4 col-4">Favourites</h2></u>
+
+    <% if (listOfFavourites.length > 0) { %>
+
+        <% if (listOfFavourites.length > 1) { %>
+            <!-- *Remove ALL -->
+            <form action="/favourites/delete?_method=DELETE" method="POST" class="col-4 ml-4 mt-1">
+                <input type="submit" value="Remove All" class="btn btn-danger">
+            </form>
+        <% } %>
+</div>
+
+    <div class="row">
+        <% for( let i = listOfFavourites.length - 1; i >= 0; i--) { %>
+            <div class="col-9 col-xs-9 col-sm-8 col-md-6 col-lg-4 col-xl-4 mb-4 favourites">
+                <% if (listOfFavourites[i].teams) { %>
+                    <% const team = listOfFavourites[i].teams[0]; %> 
+                    <!-- *Pass through team data -->
+                    <%- include ("./favouritesCard.ejs", {
+                        name:               team.strTeam,
+                        flag:               countryFlags[team.strCountry],
+                        picture:            team.strTeamBadge,
+                        backupPicture:      team.strTeamBadge,
+                        info1Title:         "Fou:", 
+                        info1:              team.intFormedYear,
+                        info2Title:         "Nat:", 
+                        info2:              team.strCountry.substr(0, 3),    
+                        info3Title:         "Loc:",
+                        info3:              "ph",
+                        info4Title:         "Kit:",
+                        info4:              teamKits[i],
+                        pictureTooltip:     "ph",
+                        info5Title:         "Lge:",
+                        info5:              turnStringIntoAcronym(team.strLeague),
+                        info6Title:         "Gen:",
+                        info6:              formatPlayerGender(team.strGender),
+                        showLink:           `/teams/${team.idTeam}`,
+                        removeLink:         `/favourites/${team.idTeam}/delete?_method=DELETE` 
+                    }) %>
+                <% } else if (listOfFavourites[i].players) { %>
+                    <!-- *Pass through player data -->
+                    <%- include ("./favouritesCard.ejs", {
+                        name:               listOfFavourites[i].players[0].strPlayer,
+                        flag:               countryFlags[listOfFavourites[i].players[0].strNationality],
+                        picture:            listOfFavourites[i].players[0].strCutout,
+                        backupPicture:      listOfFavourites[i].players[0].strThumb,
+                        info1Title:         "Age:", 
+                        info1:              calculatePlayerAge(listOfFavourites[i].players[0].dateBorn),
+                        info2Title:         "Nat:", 
+                        info2:              listOfFavourites[i].players[0].strNationality.substr(0, 3),    
+                        info3Title:         "Pos:",
+                        info3:              turnStringIntoAcronym(listOfFavourites[i].players[0].strPosition),
+                        info4Title:         "Clb:",
+                        info4:              favPlayersTeam[i].badge,
+                        pictureTooltip:     favPlayersTeam[i].teamName,
+                        info5Title:         "Hei:",
+                        info5:              formatPlayerHeight(listOfFavourites[i].players[0].strHeight),
+                        info6Title:         "Gen:",
+                        
+                        info6:              formatPlayerGender(listOfFavourites[i].players[0].strGender),
+                        showLink:           `/players/${listOfFavourites[i].players[0].idPlayer}`,
+                        removeLink:         `/favourites/${listOfFavourites[i].players[0].idPlayer}/delete?_method=DELETE`
+                    }) %>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+<% } else { %>
+    <strong><p class="text-center py-5">No favourites selected! Search for a team/player and add them as a favourite.</p></strong>
+<% } %> 
+

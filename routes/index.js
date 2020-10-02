@@ -10,7 +10,7 @@ const favouritesModel = require(`../models/favourites/favourites`);
 const requestDataFromAPI = require(`../ExportFunctions/requestDataFromAPI.js`);
 const countryFlags = require(`../ExportFunctions/CountryFlags`);
 const calculatePlayerAge = require(`../ExportFunctions/calculatePlayerAge`);
-const shortenPositionString = require(`../ExportFunctions/shortenPositionString`);
+const turnStringIntoAcronym = require(`../ExportFunctions/turnStringIntoAcronym`);
 const formatPlayerHeight = require(`../ExportFunctions/formatPlayerHeight`);
 const formatPlayerGender = require(`../ExportFunctions/formatPlayerGender`);
 //#endregion
@@ -19,6 +19,7 @@ router.get(`/`, async (req, res) => {
   //*Create empty array to store objects of favourites which can be passed through to index.ejs
   let favouritesToDisplay = [];
   let favPlayersTeam = [];
+  let teamKits = [];
   let fav;
 
   try {
@@ -62,20 +63,37 @@ router.get(`/`, async (req, res) => {
             favPlayersTeam.push(teamObject);
         }
       }
+      else {
+        favPlayersTeam.push(null);
+      }
+    }
+
+    //*Gather the kit information from the teams in the favourites
+    for (let i = 0; i < favouritesToDisplay.length; i++) {
+      if (favouritesToDisplay[i].teams) {
+        const team = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=`, favouritesToDisplay[i].teams[0].strTeam);
+        const kit = team.teams[0].strTeamJersey;
+        teamKits.push(kit);
+      } else {
+        teamKits.push(null);
+      }
     }
 
     res.render(`index.ejs`, {
       listOfFavourites: favouritesToDisplay,
       countryFlags,
       calculatePlayerAge,
-      shortenPositionString,
+      turnStringIntoAcronym,
       favPlayersTeam,
       formatPlayerHeight,
       formatPlayerGender,
+      teamKits
     });
   } catch (error) {
     console.error(error);
   }
 });
+
+
 
 module.exports = router;

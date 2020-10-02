@@ -1,4 +1,4 @@
-function shortenPositionString(string) {
+function turnStringIntoAcronym(string) {
     let firstLetters = []
     let letters = "";
 
@@ -26,4 +26,4 @@ function shortenPositionString(string) {
     }
 }
 
-module.exports = shortenPositionString;
+module.exports = turnStringIntoAcronym;
