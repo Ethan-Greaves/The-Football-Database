@@ -40,6 +40,7 @@ router.get(`/`, async (req, res) => {
           if (fav[i][key] != null) {
             //*Add the object to the list of favourites to be displayed
             favouritesToDisplay.push(fav[i]);
+            
             //*break out of the loop, becasue we know the rest will be null
             break;
           }
@@ -94,6 +95,9 @@ router.get(`/`, async (req, res) => {
   }
 });
 
+function checkIfAlreadyFav(fav, arr) {
+
+}
 
 
 module.exports = router;

@@ -1,0 +1,23 @@
+@mixin FormatBackground {
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-attachment: fixed;
+}
+
+*{
+    font-family: 'Graduate', cursive;
+}
+
+body{
+    background-color: rgb(78, 11, 78);
+    background-image: linear-gradient(
+        to top right,
+        pink,
+        purple
+    );
+
+    color: white;
+    @include FormatBackground;
+    
+}
+

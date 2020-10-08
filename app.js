@@ -18,6 +18,8 @@ const indexRoutes                   = require(`./routes/index`);
 const playerRoutes                  = require(`./routes/PlayersRoutes`);
 const teamRoutes                    = require(`./routes/TeamsRoutes`);
 const favouritesRoutes              = require(`./routes/FavouritesRoutes`);
+
+app.set("view engine", "ejs");
 //#endregion
 
 //#region ROUTES

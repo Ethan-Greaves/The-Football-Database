@@ -1,19 +1,6 @@
 @import './Partials/BSScreenSizes';
 
-*{
-    font-family: 'Graduate', cursive;
-}
 
-body{
-    background-color: rgb(78, 11, 78);
-    background-image: linear-gradient(
-        to top right,
-        pink,
-        purple
-    );
-
-    color: white;
-}
 
 .title{
     border-bottom: 1px solid white;

@@ -5,7 +5,7 @@
 
         <% if (listOfFavourites.length > 1) { %>
             <!-- *Remove ALL -->
-            <form action="/favourites/delete?_method=DELETE" method="POST" class="col-4 ml-4 mt-1">
+            <form action="/favourites/deleteAll?_method=DELETE" method="POST" class="col-4 ml-4 mt-1">
                 <input type="submit" value="Remove All" class="btn btn-danger">
             </form>
         <% } %>
@@ -26,15 +26,15 @@
                         info1:              team.intFormedYear,
                         info2Title:         "Nat:", 
                         info2:              team.strCountry.substr(0, 3),    
-                        info3Title:         "Loc:",
-                        info3:              "ph",
+                        info3Title:         "Gen:",
+                        info3:              formatPlayerGender(team.strGender),
                         info4Title:         "Kit:",
                         info4:              teamKits[i],
-                        pictureTooltip:     "ph",
+                        pictureTooltip:     "",
                         info5Title:         "Lge:",
                         info5:              turnStringIntoAcronym(team.strLeague),
-                        info6Title:         "Gen:",
-                        info6:              formatPlayerGender(team.strGender),
+                        info6Title:         "",
+                        info6:              "",
                         showLink:           `/teams/${team.idTeam}`,
                         removeLink:         `/favourites/${team.idTeam}/delete?_method=DELETE` 
                     }) %>
@@ -57,7 +57,6 @@
                         info5Title:         "Hei:",
                         info5:              formatPlayerHeight(listOfFavourites[i].players[0].strHeight),
                         info6Title:         "Gen:",
-                        
                         info6:              formatPlayerGender(listOfFavourites[i].players[0].strGender),
                         showLink:           `/players/${listOfFavourites[i].players[0].idPlayer}`,
                         removeLink:         `/favourites/${listOfFavourites[i].players[0].idPlayer}/delete?_method=DELETE`
@@ -67,6 +66,6 @@
         <% } %>
     </div>
 <% } else { %>
-    <strong><p class="text-center py-5">No favourites selected! Search for a team/player and add them as a favourite.</p></strong>
+    <strong><p class="text-center py-5 h-50 my-auto">No favourites selected! Search for a team/player and add them as a favourite.</p></strong>
 <% } %> 
 

@@ -13,8 +13,14 @@ const methodOverride        = require(`method-override`);
 
 router.post(`/:id`, async (req, res) => {   
     try {
-        //*Add the ID to the favourites database
-        const createdID = await favouritesModel.create({ID: req.params.id});
+        //*Check if the favourite has already been added
+        const isAlreadyFav = await favouritesModel.exists({ ID: req.params.id });
+
+        //*If not...
+        if (!isAlreadyFav) {
+            //*Add the ID to the favourites database
+            await favouritesModel.create({ID: req.params.id});
+        }
 
         //*Go back to the index page
         res.redirect(`/`);
@@ -24,7 +30,7 @@ router.post(`/:id`, async (req, res) => {
     }
 })
 
-router.delete(`/delete`, async (req, res) => {
+router.delete(`/deleteAll`, async (req, res) => {
     try {
         //*Remove all favourites from the database model
         await favouritesModel.deleteMany({});
