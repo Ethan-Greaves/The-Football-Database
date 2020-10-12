@@ -6,7 +6,8 @@ const router                        = express.Router();
 const requestDataFromAPI            = require(`../ExportFunctions/requestDataFromAPI.js`);
 
 //*Fetch
-const fetch                         = require('node-fetch');
+const fetch = require('node-fetch');
+
 //#endregion
 
 //TODO This is a global variable, kind of okay because seperation of concern has been used with routes so not really global global, but might be a better way

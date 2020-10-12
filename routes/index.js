@@ -13,6 +13,7 @@ const calculatePlayerAge = require(`../ExportFunctions/calculatePlayerAge`);
 const turnStringIntoAcronym = require(`../ExportFunctions/turnStringIntoAcronym`);
 const formatPlayerHeight = require(`../ExportFunctions/formatPlayerHeight`);
 const formatPlayerGender = require(`../ExportFunctions/formatPlayerGender`);
+
 //#endregion
 
 router.get(`/`, async (req, res) => {
@@ -94,10 +95,5 @@ router.get(`/`, async (req, res) => {
     console.error(error);
   }
 });
-
-function checkIfAlreadyFav(fav, arr) {
-
-}
-
 
 module.exports = router;

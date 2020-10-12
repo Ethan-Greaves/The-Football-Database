@@ -9,9 +9,14 @@ const favouritesModel       = require(`../models/favourites/favourites.js`);
 //*Mehtod-override
 const methodOverride        = require(`method-override`);
                             router.use(methodOverride(`_method`));
+                            
+//*Middleware
+const isLoggedIn = require(`../ExportFunctions/Middleware/isLoggedIn`);
+
+
 //#endregion
 
-router.post(`/:id`, async (req, res) => {   
+router.post(`/:id`, isLoggedIn, async (req, res) => {   
     try {
         //*Check if the favourite has already been added
         const isAlreadyFav = await favouritesModel.exists({ ID: req.params.id });

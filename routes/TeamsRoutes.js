@@ -6,7 +6,8 @@ const router                        = express.Router();
 const requestDataFromAPI            = require(`../ExportFunctions/requestDataFromAPI.js`);
 
 //*Fetch
-const fetch                         = require('node-fetch');
+const fetch = require('node-fetch');
+
 //#endregion
 
 let teamData;
