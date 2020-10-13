@@ -5,6 +5,7 @@ const router = express.Router();
 
 //*Models
 const favouritesModel = require(`../models/favourites/favourites`);
+const userModel = require(`../models/user`);
 
 //*Module Exports
 const requestDataFromAPI = require(`../ExportFunctions/requestDataFromAPI.js`);
@@ -21,10 +22,12 @@ router.get(`/`, async (req, res) => {
   let favouritesToDisplay = [];
   let favPlayersTeam = [];
   let teamKits = [];
+  let favourites = [];
   let fav;
 
   try {
-    const favourites = await favouritesModel.find({});
+    if (req.user)
+      favourites = req.user.favourites;
 
     for (const element of favourites) {
       //*return an array of objects

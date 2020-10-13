@@ -6,7 +6,11 @@ const   mongoose    = require('mongoose'),
 
 const userSchema = new mongoose.Schema({
     username: String,
-    password: String
+    password: String,
+    //favourites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Favourites'}]
+    favourites: [{
+        ID: Number
+    }]
 });
 
 userSchema.plugin(PLM);
