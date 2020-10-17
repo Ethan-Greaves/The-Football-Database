@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "AAGA,AAAA,WAAW,CAAA;ECFP,MAAM,EAAE,CAAC;EACT,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,GAAG;EACR,IAAI,EAAE,GAAG;EACT,SAAS,EAAE,qBAAqB;EDAhC,UAAU,EAAE,MAAM;CAKrB;;AAHG,MAAM,MAAM,MAAM,MAAM,SAAS,EAAE,KAAK;EAJ5C,AAAA,WAAW,CAAA;IAKH,SAAS,EAAE,OAAO;GAEzB",
+    "sources": [
+        "../SCSS/error.scss",
+        "../SCSS/Partials/_alignment.scss",
+        "../SCSS/Partials/_BSScreenSizes.scss"
+    ],
+    "names": [],
+    "file": "error.css"
+}

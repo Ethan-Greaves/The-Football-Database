@@ -12,11 +12,30 @@ const fetch = require('node-fetch');
 
 //TODO This is a global variable, kind of okay because seperation of concern has been used with routes so not really global global, but might be a better way
 let playerData;
-let formData;
 
 router.get(`/`, (req, res) => {
     //*Go to the show page and pass through the json data
-    res.render(`Players/results.ejs`, {playerData, formData});
+    res.render(`Players/results.ejs`, {playerData});
+})
+
+router.post(`/`, async (req, res) => {
+    try {
+        playerData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=`, req.body.playerName);
+        if (playerData.player === null) {
+            res.status(404);
+            res.render(`partials/error.ejs`, { data: req.body.playerName });
+        }
+        else {
+            //*Redirect to another endpoint 
+            res.redirect(`/players`);
+        }
+    } catch (error) {
+        console.error(error);
+    }
+})
+
+router.use(`/`, (req, res) => {
+    res.status(404).render(`error.ejs`, { data: req.body.playerName });
 })
 
 router.get(`/:id`, async (req, res) => {
@@ -31,17 +50,6 @@ router.get(`/:id`, async (req, res) => {
     }
 })
 
-router.post(`/`, async (req, res) => {
-    try {
-        playerData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=`, req.body.playerName);
-        formData = req.body;
 
-        //*Redirect to another endpoint 
-        res.redirect(`/players`);
-
-    } catch (error) {
-        console.error(error);
-    }
-})
 
 module.exports = router;

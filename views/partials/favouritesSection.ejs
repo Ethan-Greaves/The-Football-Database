@@ -1,19 +1,18 @@
-<div class="row">
-    <u><h2 class="mb-4 col-4">Favourites</h2></u>
+<div class="row row-md">
+    <u><h2 class="mb-4 col-4 favourites-title d-inline">Favourites</h2></u>
 
     <% if (listOfFavourites.length > 0) { %>
-
         <% if (listOfFavourites.length > 1) { %>
             <!-- *Remove ALL -->
-            <form action="/favourites/deleteAll?_method=DELETE" method="POST" class="col-4 ml-4 mt-1">
-                <input type="submit" value="Remove All" class="btn btn-danger">
+            <form action="/favourites/deleteAll?_method=DELETE" method="POST" class="col-4 ml-4 mt-1 rm-all-btn mb-3 d-inline" onsubmit="return confirm('Are you sure you want to remove all?');">
+                <input type="submit" value="Remove All" class="btn btn-danger ">
             </form>
         <% } %>
 </div>
 
     <div class="row">
         <% for( let i = listOfFavourites.length - 1; i >= 0; i--) { %>
-            <div class="col-9 col-xs-9 col-sm-8 col-md-6 col-lg-4 col-xl-4 mb-4 favourites">
+            <div class="col-9 col-xs-9 col-sm-8 col-md-6 col-lg-4 col-xl-4 mb-2 mt-4 favourites">
                 <% if (listOfFavourites[i].teams) { %>
                     <% const team = listOfFavourites[i].teams[0]; %> 
                     <!-- *Pass through team data -->
@@ -39,27 +38,28 @@
                         removeLink:         `/favourites/${team.idTeam}/delete?_method=DELETE` 
                     }) %>
                 <% } else if (listOfFavourites[i].players) { %>
+                    <% const player = listOfFavourites[i].players[0]; %> 
                     <!-- *Pass through player data -->
                     <%- include ("./favouritesCard.ejs", {
-                        name:               listOfFavourites[i].players[0].strPlayer,
-                        flag:               countryFlags[listOfFavourites[i].players[0].strNationality],
-                        picture:            listOfFavourites[i].players[0].strCutout,
-                        backupPicture:      listOfFavourites[i].players[0].strThumb,
+                        name:               player.strPlayer,
+                        flag:               countryFlags[player.strNationality],
+                        picture:            player.strCutout,
+                        backupPicture:      player.strThumb,
                         info1Title:         "Age:", 
-                        info1:              calculatePlayerAge(listOfFavourites[i].players[0].dateBorn),
+                        info1:              calculatePlayerAge(player.dateBorn),
                         info2Title:         "Nat:", 
-                        info2:              listOfFavourites[i].players[0].strNationality.substr(0, 3),    
+                        info2:              player.strNationality.substr(0, 3),    
                         info3Title:         "Pos:",
-                        info3:              turnStringIntoAcronym(listOfFavourites[i].players[0].strPosition),
+                        info3:              turnStringIntoAcronym(player.strPosition),
                         info4Title:         "Clb:",
                         info4:              favPlayersTeam[i].badge,
                         pictureTooltip:     favPlayersTeam[i].teamName,
                         info5Title:         "Hei:",
-                        info5:              formatPlayerHeight(listOfFavourites[i].players[0].strHeight),
+                        info5:              formatPlayerHeight(player.strHeight),
                         info6Title:         "Gen:",
-                        info6:              formatPlayerGender(listOfFavourites[i].players[0].strGender),
-                        showLink:           `/players/${listOfFavourites[i].players[0].idPlayer}`,
-                        removeLink:         `/favourites/${listOfFavourites[i].players[0].idPlayer}/delete?_method=DELETE`
+                        info6:              formatPlayerGender(player.strGender),
+                        showLink:           `/players/${player.idPlayer}`,
+                        removeLink:         `/favourites/${player.idPlayer}/delete?_method=DELETE`
                     }) %>
                 <% } %>
             </div>

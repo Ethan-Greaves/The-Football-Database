@@ -8,15 +8,16 @@
   font-family: 'Tangerine', cursive;
 }
 
-@media only screen and (max-width: 577px) {
-  .card-img-top {
-    height: 10%;
-    margin: auto;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .favourites {
     margin: auto;
   }
 }
+
+@media only screen and (max-width: 768px) {
+  .row-md {
+    width: 50%;
+    margin: auto;
+  }
+}
+/*# sourceMappingURL=index.css.map */

@@ -1,6 +1,7 @@
 /** Maps */
 //*TODO MAKE THIS A PARTIAL WHICH CAN BE IMPORTED
 @import './Partials/BSScreenSizes';
+@import './Partials/colours';
 
 /** used to restyle size of images */
 .resize{
@@ -26,4 +27,19 @@ a{
      color: inherit;
      text-decoration: none;
    }
+}
+
+.result-card{
+  border-radius: 20px;
+
+  background-image: linear-gradient(
+        to top right,
+        blue,
+        black
+    );
+}
+
+.result-img{
+  max-height: 200px !important;
+  object-fit: scale-down;
 }

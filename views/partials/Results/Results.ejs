@@ -1,34 +1,34 @@
 <!-- <% //data.forEach((element) => { %>  -->
     <a href="/<%= link %>/<%= id %>">
         <% if (sport === `Soccer`) { %>
-            <div class="border mb-3 border-dark">
+            <div class="border mb-3 border-dark result-card">
                 <div class="row no-gutters">
                     <!-- * Image -->
                     <div class="col-sm-4 col-lg-2 col-xl-1">
                         <% if (picture !== null) { %>
-                            <img class="img-responsive resize border border-secondary" src="<%= picture %> " alt="">
+                            <img class="img-responsive resize result-img" src="<%= picture %> " alt="">
                         <% } else if (backupPicture !== null) { %>
-                            <img class="img-responsive resize border border-secondary" src="<%= backupPicture %> " alt="">
+                            <img class="img-responsive resize" src="<%= backupPicture %> " alt="">
                         <% } else { %>
-                            <img class="img-responsive img-fluid resize border border-secondary" src="/Images/playerResultsPlaceholder.jpg" alt="">
+                            <img class="img-responsive img-fluid resize" src="/Images/playerResultsPlaceholder.jpg" alt="">
                         <% } %> 
                     </div>
                     
                     <div class="col-sm-8 col-lg-10 col-xl-11">
                         <div class="row no-gutters align-items-center">
                             <!-- * Name -->
-                            <div class="col-4 text-center border-secondary border ">
+                            <div class="col-4 text-center ">
                                 <strong><p><%= firstTitle.substring(0,16); %> </p></strong>
                             </div>
                             <!-- * Team -->
-                            <div class="col-4 text-center border-secondary border">
+                            <div class="col-4 text-center ">
                                 <% if (secondTitle === "_Retired Soccer") { %>
                                 <% secondTitle = "Retired" %> 
                                 <% } %>
                                 <strong><p><%= secondTitle.substring(0,16); %> </p></strong>
                             </div>
                             <!-- * Nation -->
-                            <div class="col-4 text-center border-secondary border">
+                            <div class="col-4 text-center">
                                 <strong><p><%= thirdTitle.substring(0,16); %> </p></strong>
                             </div>
                             <!-- * Description -->

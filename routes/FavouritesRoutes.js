@@ -36,13 +36,14 @@ router.post(`/:id`, isLoggedIn, async (req, res) => {
         // }
 
         //*Get the current user using req.user
-        //console.log(req.user);
         const user = req.user;
-        //*Find their schema by using find by ID with mongoose 
 
-        //*push the favourite onto their schema
-        user.favourites.push({ ID: req.params.id });
-        user.save();
+        if (!user.favourites.filter(fav => fav.ID == req.params.id).length > 0) {
+             //*push the favourite onto their schema
+             user.favourites.push({ ID: req.params.id });
+             user.save();
+          }
+        
         //*Go back to the index page
         res.redirect(`/`);
 

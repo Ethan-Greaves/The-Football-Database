@@ -1,4 +1,5 @@
 @import './Partials/BSScreenSizes';
+@import './Partials/alignment';
 
 
 
@@ -12,16 +13,15 @@
     font-family: 'Tangerine', cursive;
 }
 
-.card-img-top{
-    @media only screen and (max-width: map-get($Bootstrap-screen-sizes, small)) {
-        height: 10%;
-        //width: 50%;
-        margin: auto;
-      }
-}
 
 .favourites{
     @media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
         margin: auto;
+      }
+}
+
+.row-md {
+    @media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
+       @include horizontal-align;
       }
 }
