@@ -3,7 +3,7 @@
 const express                       = require('express');
 const router                        = express.Router(); 
 //*Module Exports
-const requestDataFromAPI            = require(`../ExportFunctions/requestDataFromAPI.js`);
+const requestDataFromAPI            = require(`../ModuleExports/requestDataFromAPI.js`);
 
 //*Fetch
 const fetch = require('node-fetch');

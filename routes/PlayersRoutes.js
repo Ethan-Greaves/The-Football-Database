@@ -3,7 +3,8 @@
 const express                       = require('express');
 const router                        = express.Router(); 
 //*Module Exports
-const requestDataFromAPI            = require(`../ExportFunctions/requestDataFromAPI.js`);
+const requestDataFromAPI            = require(`../ModuleExports/requestDataFromAPI.js`);
+const customError                   = require(`../ModuleExports/Classes/customError`);
 
 //*Fetch
 const fetch = require('node-fetch');
@@ -21,22 +22,18 @@ router.get(`/`, (req, res) => {
 router.post(`/`, async (req, res) => {
     try {
         playerData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=`, req.body.playerName);
-        if (playerData.player === null) {
-            res.status(404);
-            res.render(`partials/error.ejs`, { data: req.body.playerName });
-        }
-        else {
-            //*Redirect to another endpoint 
+        if (playerData.player != null) 
             res.redirect(`/players`);
-        }
+        else throw new customError(res).NotFound(req.body.playerName);
+        
     } catch (error) {
         console.error(error);
     }
 })
 
-router.use(`/`, (req, res) => {
-    res.status(404).render(`error.ejs`, { data: req.body.playerName });
-})
+// router.use(`/`, (req, res) => {
+//     res.status(404).render(`error.ejs`, { data: req.body.playerName });
+// })
 
 router.get(`/:id`, async (req, res) => {
     try {

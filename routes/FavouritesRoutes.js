@@ -12,7 +12,7 @@ const methodOverride        = require(`method-override`);
                             router.use(methodOverride(`_method`));
                             
 //*Middleware
-const isLoggedIn            = require(`../ExportFunctions/Middleware/isLoggedIn`);
+const isLoggedIn            = require(`../ModuleExports/Middleware/isLoggedIn`);
 
 
 //#endregion

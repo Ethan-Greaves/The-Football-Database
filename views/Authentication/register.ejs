@@ -8,8 +8,11 @@
     <%- include(`../partials/navbar.ejs`) %> 
 
     <%- include ('../partials/authentication/authenticationForm.ejs', {
-        title: "Please sign up...",
-        route: "/register"
+        title: "Register",
+        route: "/register",
+        altAuthLink: "/login",
+        altAuthText: "Sign in"
+
     }) %> 
 </body>
 </html>

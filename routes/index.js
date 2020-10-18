@@ -8,12 +8,12 @@ const favouritesModel = require(`../models/favourites/favourites`);
 const userModel = require(`../models/user`);
 
 //*Module Exports
-const requestDataFromAPI = require(`../ExportFunctions/requestDataFromAPI.js`);
-const countryFlags = require(`../ExportFunctions/CountryFlags`);
-const calculatePlayerAge = require(`../ExportFunctions/calculatePlayerAge`);
-const turnStringIntoAcronym = require(`../ExportFunctions/turnStringIntoAcronym`);
-const formatPlayerHeight = require(`../ExportFunctions/formatPlayerHeight`);
-const formatPlayerGender = require(`../ExportFunctions/formatPlayerGender`);
+const requestDataFromAPI = require(`../ModuleExports/requestDataFromAPI.js`);
+const countryFlags = require(`../ModuleExports/CountryFlags`);
+const calculatePlayerAge = require(`../ModuleExports/calculatePlayerAge`);
+const turnStringIntoAcronym = require(`../ModuleExports/turnStringIntoAcronym`);
+const formatPlayerHeight = require(`../ModuleExports/formatPlayerHeight`);
+const formatPlayerGender = require(`../ModuleExports/formatPlayerGender`);
 
 //#endregion
 
