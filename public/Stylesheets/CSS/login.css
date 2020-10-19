@@ -1,17 +1,17 @@
 .jumbotron {
   text-align: center;
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.65);
   -webkit-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
           box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
   border: 2px solid black;
   width: 25em;
-  height: 55%;
+  height: 500px !important;
+  position: fixed;
+}
+
+.container {
+  margin: auto;
+  width: 90%;
 }
 
 #title {
@@ -46,4 +46,3 @@ input[type=text]:focus, input[type=password]:focus {
 .form-check-input {
   margin-top: .43rem !important;
 }
-/*# sourceMappingURL=login.css.map */
