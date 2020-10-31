@@ -5,8 +5,14 @@ const   mongoose    = require('mongoose'),
 //#endregion
 
 const userSchema = new mongoose.Schema({
-    username: String,
-    password: String,
+    username: {
+        type: String,
+        // required: true,
+    },
+    password: {
+        type: String,
+        // required: true,
+    },
     //favourites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Favourites'}]
     favourites: [{
         ID: Number

@@ -8,14 +8,11 @@
     border: 2px solid black;
     width: 25em;
     height: 500px !important;
-    position: fixed;
+    //position: absolute;
+    @include align-form-vertically;
+
 }
 
-.container{
-    //@include horizontal-align;
-    margin: auto;
-    width: 90%;
-}
 #title{
     font-weight: bold;
     //font-size: 100%;
@@ -29,10 +26,6 @@
   right: 0;
 }
 
-.upper-section{
-    //font-size: 80%;
-}
-
 #altAuthLink{
     font-size: 80%;
 }
@@ -43,7 +36,15 @@ input[type=text], input[type=password]{
 }
 
 input[type=text]:focus, input[type=password]:focus{
-    border: 4px solid gold;
+   
+}
+
+input:invalid{
+    border: 2px solid red;
+}
+
+input:valid{
+    border: 2px solid green;
 }
 
 .form-check-label, .forgot-password{

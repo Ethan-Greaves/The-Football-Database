@@ -19,15 +19,16 @@ router.get(`/`, (req, res) => {
     res.render(`Players/results.ejs`, {playerData});
 })
 
-router.post(`/`, async (req, res) => {
+router.post(`/`, async (req, res, next) => {
     try {
         playerData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=`, req.body.playerName);
-        if (playerData.player != null) 
+        if (playerData.player != null)
             res.redirect(`/players`);
         else throw new customError(res).NotFound(req.body.playerName);
         
     } catch (error) {
         console.error(error);
+        next(error);
     }
 })
 
@@ -35,7 +36,7 @@ router.post(`/`, async (req, res) => {
 //     res.status(404).render(`error.ejs`, { data: req.body.playerName });
 // })
 
-router.get(`/:id`, async (req, res) => {
+router.get(`/:id`, async (req, res, next) => {
     try {
         const playerData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=`, req.params.id );
 
@@ -44,8 +45,16 @@ router.get(`/:id`, async (req, res) => {
 
     } catch (error) {
         console.error(error);
+        next(error);
     }
 })
+
+//#region ERROR MIDDLEWARE
+router.use((err, req, res, next) => {
+    const { status = 500, message = "Something went wrong" } = err;
+    res.status(status).send(message);
+})
+//#endregion
 
 
 

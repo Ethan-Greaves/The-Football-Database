@@ -17,7 +17,7 @@ const formatPlayerGender = require(`../ModuleExports/formatPlayerGender`);
 
 //#endregion
 
-router.get(`/`, async (req, res) => {
+router.get(`/`, async (req, res, next) => {
   //*Create empty array to store objects of favourites which can be passed through to index.ejs
   let favouritesToDisplay = [];
   let favPlayersTeam = [];
@@ -71,10 +71,7 @@ router.get(`/`, async (req, res) => {
       else {
         favPlayersTeam.push(null);
       }
-    }
 
-    //*Gather the kit information from the teams in the favourites
-    for (let i = 0; i < favouritesToDisplay.length; i++) {
       if (favouritesToDisplay[i].teams) {
         const team = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=`, favouritesToDisplay[i].teams[0].strTeam);
         const kit = team.teams[0].strTeamJersey;
@@ -94,8 +91,10 @@ router.get(`/`, async (req, res) => {
       formatPlayerGender,
       teamKits
     });
+    
   } catch (error) {
     console.error(error);
+    next(error);
   }
 });
 

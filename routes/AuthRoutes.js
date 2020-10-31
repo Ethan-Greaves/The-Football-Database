@@ -31,7 +31,7 @@ router.get(`/register`, (req, res) => {
     res.render(`Authentication/register.ejs`);
 })
 
-router.post(`/register`, async (req, res) => {
+router.post(`/register`, async (req, res, next) => {
     try {
         await user.register({ username: req.body.username }, req.body.password.toString()); 
         await passport.authenticate(`local`)(req, res, () => {
@@ -40,7 +40,8 @@ router.post(`/register`, async (req, res) => {
         
     } catch (error) {
         console.error(error);
-        return res.render(`Authentication/register.ejs`);
+        //return res.render(`Authentication/register.ejs`);
+        next(error);
     }
 })
 

@@ -1,7 +1,7 @@
 {
   "name": "football-database",
   "version": "1.0.0",
-  "description": "A RESTful app which allows users to search for football players and teams, which sends a request to an external API. Users will be able to log in and save their favourite players and see their recent searches.",
+  "description": "A RESTful app which allows users to search for football players and teams, which sends a request to an external API. Users will be able to log in and save their favourite players.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

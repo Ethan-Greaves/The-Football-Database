@@ -7,9 +7,9 @@ const requestDataFromAPI            = require(`../ModuleExports/requestDataFromA
 
 //*Fetch
 const fetch = require('node-fetch');
+const customError = require('../ModuleExports/Classes/customError.js');
 
 //#endregion
-
 let teamData;
 let formData;
 
@@ -18,7 +18,7 @@ router.get(`/`, (req, res) => {
     res.render(`Teams/results.ejs`, {teamData, formData});
 })
 
-router.get(`/:id`, async (req, res) => {
+router.get(`/:id`, async (req, res, next) => {
     try {
         const [teamData, teamFixturesData, teamResultsData] = await Promise.all([
             requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=`, req.params.id),
@@ -31,19 +31,21 @@ router.get(`/:id`, async (req, res) => {
 
     } catch (error) {
         console.error(error);
+        next(error);
     }
 })
 
-router.post(`/`, async (req, res) => {
+router.post(`/`, async (req, res, next) => {
     try {
         teamData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=`, req.body.teamName);
-        formData = req.body;
-
-        //*Redirect to another endpoint 
-        res.redirect(`/teams`);
-
+        
+        if (teamData.teams)
+            //*Redirect to another endpoint 
+            res.redirect(`/teams`);
+        else throw new customError(res).NotFound(req.body.teamName);
     } catch (error) {
         console.error(error);
+        next(error);
     }
 })
 

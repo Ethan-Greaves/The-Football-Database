@@ -1,0 +1,21 @@
+<head>
+    <%- include ("../partials/Meta/defaultHeadData.ejs") %> 
+    <link rel="stylesheet" href="/Stylesheets/CSS/error.css">
+</head>
+
+<div class="text-center error-page">
+    <div class="text-center error-page">
+        <h1> <%= status %>: <%= message %>  </h1>
+    
+        <% if (formData) { %>
+            <p>'<%= data %>' did not return any results. </p>
+        <% } %>
+
+        <% if (unauthorised) { %>
+            <a href="/login" class="btn btn-primary">Login</a>
+        <% } %>
+        
+        <a href="/" class="btn btn-primary">Go Back?</a>
+    </div>
+</div>
+

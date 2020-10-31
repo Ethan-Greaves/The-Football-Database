@@ -1,8 +1,10 @@
+const customError = require('../Classes/customError');
+
 function isLoggedIn(req, res, next) {
     if (req.user)
         return next() || true;
     
-    res.redirect(`/login`);
+    throw new customError(res).Unauthorised();
 }
 
 module.exports = isLoggedIn;

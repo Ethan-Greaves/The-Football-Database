@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ("../partials/Meta/defaultHeadData.ejs") %> 
+    <link rel="stylesheet" href="/Stylesheets/CSS/error.css">
+</head>
+<body>
+    <div class="text-center error-page">
+        <h1> <%= status %>: <%= message %>  </h1>
+    
+        <% if (unauthorised) { %>
+            <a href="/login" class="btn btn-primary">Login</a>
+        <% } %>
+        
+        <a href="/" class="btn btn-primary">Go Back?</a>
+    </div>
+</body>
+</html>

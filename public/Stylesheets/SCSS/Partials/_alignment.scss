@@ -10,3 +10,11 @@
     width: 50%;
     margin: auto;
 }
+
+@mixin align-form-vertically{
+    margin: 0;
+    position: absolute;
+    top: 400px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

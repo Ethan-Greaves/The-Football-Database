@@ -17,24 +17,8 @@ const isLoggedIn            = require(`../ModuleExports/Middleware/isLoggedIn`);
 
 //#endregion
 
-router.post(`/:id`, isLoggedIn, async (req, res) => {   
+router.post(`/:id`, isLoggedIn, async (req, res, next) => {   
     try {
-        // //*Check if the favourite has already been added
-        // const isAlreadyFav = await favouritesModel.exists({ ID: req.params.id });
-
-        // //*If not...
-        // if (!isAlreadyFav) {
-        //     //*Add the ID to the favourites database
-        //     await favouritesModel.create({ID: req.params.id});
-        // }
-
-        // //*check if the user already has this favourite associated with their account
-        // const isAlreadyFav = await userModel.findOne({ "favourites.ID": req.params.id });
-
-        // if (!isAlreadyFav) {
-        //     userModel.favourites.push({ ID: req.params.id });              
-        // }
-
         //*Get the current user using req.user
         const user = req.user;
 
@@ -46,14 +30,13 @@ router.post(`/:id`, isLoggedIn, async (req, res) => {
         
         //*Go back to the index page
         res.redirect(`/`);
-
     } catch (error) {
-        console.error(error);
+        next(error);
     }
 })
 
 //TODO reconfigure the routes to align with the user auth 
-router.delete(`/deleteAll`, async (req, res) => {
+router.delete(`/deleteAll`, (req, res) => {
     try {
         req.user.favourites = [];
         req.user.save();
@@ -67,7 +50,7 @@ router.delete(`/deleteAll`, async (req, res) => {
 
 })
 
-router.delete(`/:id/delete`, async (req, res) =>{
+router.delete(`/:id/delete`, (req, res) =>{
     try {
         if (req.user) {
             //*Obtain the ID of the favourite that needs to be removed
