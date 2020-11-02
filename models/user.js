@@ -1,8 +1,8 @@
-//#region INITILISATION
-const   mongoose    = require('mongoose'),
-        PLM         = require("passport-local-mongoose");
+// #region INITILISATION
+const mongoose = require('mongoose');
+const PLM = require("passport-local-mongoose");
 
-//#endregion
+// #endregion
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         // required: true,
     },
-    //favourites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Favourites'}]
+    // favourites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Favourites'}]
     favourites: [{
         ID: Number
     }]

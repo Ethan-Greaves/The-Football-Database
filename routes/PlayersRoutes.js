@@ -1,21 +1,17 @@
-//#region INITILISATION
-//*Express
+// #region INITILISATION
+//* Express
 const express                       = require('express');
 const router                        = express.Router(); 
-//*Module Exports
+//* Module Exports
 const requestDataFromAPI            = require(`../ModuleExports/requestDataFromAPI.js`);
-const customError                   = require(`../ModuleExports/Classes/customError`);
+const CustomError                   = require(`../ModuleExports/Classes/customError`);
+// #endregion
 
-//*Fetch
-const fetch = require('node-fetch');
-
-//#endregion
-
-//TODO This is a global variable, kind of okay because seperation of concern has been used with routes so not really global global, but might be a better way
+// TODO This is a global variable, kind of okay because seperation of concern has been used with routes so not really global global, but might be a better way
 let playerData;
 
 router.get(`/`, (req, res) => {
-    //*Go to the show page and pass through the json data
+    //* Go to the show page and pass through the json data
     res.render(`Players/results.ejs`, {playerData});
 })
 
@@ -24,10 +20,9 @@ router.post(`/`, async (req, res, next) => {
         playerData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=`, req.body.playerName);
         if (playerData.player != null)
             res.redirect(`/players`);
-        else throw new customError(res).NotFound(req.body.playerName);
+        else throw new CustomError(res).NotFound(req.body.playerName);
         
     } catch (error) {
-        console.error(error);
         next(error);
     }
 })
@@ -38,23 +33,15 @@ router.post(`/`, async (req, res, next) => {
 
 router.get(`/:id`, async (req, res, next) => {
     try {
-        const playerData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=`, req.params.id );
+        playerData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=`, req.params.id );
 
-        //*Render the show page, pass through the data
+        //* Render the show page, pass through the data
         res.render(`Players/show.ejs`, {playerData});
 
     } catch (error) {
-        console.error(error);
         next(error);
     }
 })
-
-//#region ERROR MIDDLEWARE
-router.use((err, req, res, next) => {
-    const { status = 500, message = "Something went wrong" } = err;
-    res.status(status).send(message);
-})
-//#endregion
 
 
 

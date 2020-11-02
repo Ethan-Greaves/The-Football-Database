@@ -1,47 +1,40 @@
-//#region INITILISATION
-//*Express
+// #region INITILISATION
+// *Express
 const express               = require('express');
 const router                = express.Router();
 
-//*Models
-const favouritesModel       = require(`../models/favourites/favourites.js`);  
-const userModel             = require(`../models/user`);
-
-//*Mehtod-override
+// *Mehtod-override
 const methodOverride        = require(`method-override`);
                             router.use(methodOverride(`_method`));
                             
-//*Middleware
+// *Middleware
 const isLoggedIn            = require(`../ModuleExports/Middleware/isLoggedIn`);
 
 
-//#endregion
+// #endregion
 
 router.post(`/:id`, isLoggedIn, async (req, res, next) => {   
     try {
-        //*Get the current user using req.user
-        const user = req.user;
-
-        if (!user.favourites.filter(fav => fav.ID == req.params.id).length > 0) {
-             //*push the favourite onto their schema
-             user.favourites.push({ ID: req.params.id });
-             user.save();
+        if (!req.user.favourites.filter(fav => fav.ID === req.params.id).length > 0) {
+             //* push the favourite onto their schema
+             req.user.favourites.push({ ID: req.params.id });
+             req.user.save();
           }
         
-        //*Go back to the index page
+        //* Go back to the index page
         res.redirect(`/`);
     } catch (error) {
         next(error);
     }
 })
 
-//TODO reconfigure the routes to align with the user auth 
+// TODO reconfigure the routes to align with the user auth 
 router.delete(`/deleteAll`, (req, res) => {
     try {
         req.user.favourites = [];
         req.user.save();
 
-         //*Go back to the index page
+         // *Go back to the index page
         res.redirect(`/`);
         
      } catch (error) {
@@ -53,20 +46,19 @@ router.delete(`/deleteAll`, (req, res) => {
 router.delete(`/:id/delete`, (req, res) =>{
     try {
         if (req.user) {
-            //*Obtain the ID of the favourite that needs to be removed
+            // *Obtain the ID of the favourite that needs to be removed
             const favID = req.params.id;
             const favs = req.user.favourites;
 
-            console.log(favID);
             for (let i = 0; i < favs.length; i++) {
-                if (favs[i].ID == favID) {
+                if (favs[i].ID === favID) {
                     favs.splice(i, 1);
                     req.user.save();
                     break;
                 }
             }
              
-             //*Go back to the index page
+             // *Go back to the index page
              res.redirect(`/`);
         }
         

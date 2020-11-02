@@ -1,6 +1,10 @@
 function formatPlayerGender(string) {
-    string === "Male" ? string = "M" : string = "F";
-    return string;
+    if (string === "Male")
+        return "M";
+    if (string === "Female")
+        return "F";
+    
+    return null;
 }
 
 module.exports = formatPlayerGender;

@@ -1,20 +1,19 @@
-//#region INITILISATION
-//*Express
+// #region INITILISATION
+//* Express
 const express                       = require('express');
 const router                        = express.Router(); 
-//*Module Exports
+//* Module Exports
 const requestDataFromAPI            = require(`../ModuleExports/requestDataFromAPI.js`);
 
-//*Fetch
-const fetch = require('node-fetch');
-const customError = require('../ModuleExports/Classes/customError.js');
+//* Classes
+const CustomError = require('../ModuleExports/Classes/customError.js');
 
-//#endregion
+// #endregion
 let teamData;
 let formData;
 
 router.get(`/`, (req, res) => {
-    //*Go to the show page and pass through the json data
+    //* Go to the show page and pass through the json data
     res.render(`Teams/results.ejs`, {teamData, formData});
 })
 
@@ -30,7 +29,6 @@ router.get(`/:id`, async (req, res, next) => {
         res.render(`Teams/show.ejs`, {teamData, teamFixturesData, teamResultsData});
 
     } catch (error) {
-        console.error(error);
         next(error);
     }
 })
@@ -40,11 +38,10 @@ router.post(`/`, async (req, res, next) => {
         teamData = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=`, req.body.teamName);
         
         if (teamData.teams)
-            //*Redirect to another endpoint 
+            //* Redirect to another endpoint 
             res.redirect(`/teams`);
-        else throw new customError(res).NotFound(req.body.teamName);
+        else throw new CustomError(res).NotFound(req.body.teamName);
     } catch (error) {
-        console.error(error);
         next(error);
     }
 })

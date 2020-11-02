@@ -1,31 +1,33 @@
-//#region INITILISATION
-//*Express
-const express           = require("express");
-const router            = express.Router();
-
+// #region INITILISATION
+// *Express
+const express = require("express");
 const passport          = require('passport');
-const passportLocal     = require(`passport-local`);
+const PassportLocal     = require(`passport-local`);
 const user              = require(`../models/user`);
 
-//*Body-Parser
+const router            = express.Router();
+
+
+
+// *Body-Parser
 const bodyParser        = require("body-parser");
                         router.use(bodyParser.urlencoded({ extended: true }));
                                     
 
-passport.use(new passportLocal(user.authenticate()));
+passport.use(new PassportLocal(user.authenticate()));
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());
-//#endregion
+// #endregion
 
-//#region ROUTES
+// #region ROUTES
 router.get(`/login`, (req, res) => {
-    res.render(`Authentication/login.ejs`/*, {currentUser: req.user}*/);
+    res.render(`Authentication/login.ejs`);
 })
 
 router.post(`/login`, passport.authenticate(`local`, {
     successRedirect: `/`,
     failureRedirect: `/login`,
-}), (req, res) => {})
+}))
 
 router.get(`/register`, (req, res) => {
     res.render(`Authentication/register.ejs`);
@@ -39,8 +41,6 @@ router.post(`/register`, async (req, res, next) => {
         });
         
     } catch (error) {
-        console.error(error);
-        //return res.render(`Authentication/register.ejs`);
         next(error);
     }
 })
@@ -49,7 +49,7 @@ router.get(`/logout`, (req, res) => {
     req.logOut();
     res.redirect(`/`);
 })
-//#endregion
+// #endregion
 
 
 module.exports = router;
