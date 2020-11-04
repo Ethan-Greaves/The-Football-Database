@@ -1,17 +1,9 @@
 // #region INITILISATION
-//* Express
-const express                       = require('express');
-const app                           = express();
-                                    app.use(express.static("public"));
-//* Body-Parser
-const bodyParser                    = require("body-parser");
-                                    app.use(bodyParser.urlencoded({extended: true}));
-//* Fetch
-const fetch                         = require('node-fetch');
 
-//* Mongoose
+const express                       = require('express');
+const bodyParser                    = require("body-parser");
 const mongoose                      = require('mongoose');
-                                    mongoose.connect(`mongodb://localhost/footballDatabase`, { useNewUrlParser: true, useUnifiedTopology: true});
+const passport                      = require('passport');
 
 //* Routes
 const indexRoutes                   = require(`./routes/index`);
@@ -20,8 +12,12 @@ const teamRoutes                    = require(`./routes/TeamsRoutes`);
 const favouritesRoutes              = require(`./routes/FavouritesRoutes`);
 const authRoutes                    = require(`./routes/authRoutes`);
 
-const passport                      = require('passport');
+const app                           = express();
 
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
+mongoose.connect(`mongodb://localhost/footballDatabase`, { useNewUrlParser: true, useUnifiedTopology: true});
 
 //* Setup passport and the session
 app.use(require(`express-session`)({
@@ -31,8 +27,6 @@ app.use(require(`express-session`)({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.set("view engine", "ejs");
 // #endregion
 
 // #region MIDDLEWARE

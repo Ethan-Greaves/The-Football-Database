@@ -1,1 +1,0 @@
-//!Only use on an array that is sorted!

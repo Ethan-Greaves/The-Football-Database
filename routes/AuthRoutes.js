@@ -1,19 +1,13 @@
 // #region INITILISATION
 // *Express
-const express = require("express");
-const passport          = require('passport');
 const PassportLocal     = require(`passport-local`);
 const user              = require(`../models/user`);
-
-const router            = express.Router();
-
-
-
-// *Body-Parser
+const express           = require("express");
+const passport          = require('passport');
 const bodyParser        = require("body-parser");
-                        router.use(bodyParser.urlencoded({ extended: true }));
-                                    
 
+const router = express.Router();
+router.use(bodyParser.urlencoded({ extended: true }));
 passport.use(new PassportLocal(user.authenticate()));
 passport.serializeUser(user.serializeUser());
 passport.deserializeUser(user.deserializeUser());

@@ -1,10 +1,9 @@
 // #region INITILISATION
-//* Express
-const express                       = require('express');
-const router                        = express.Router(); 
-//* Module Exports
 const requestDataFromAPI            = require(`../ModuleExports/requestDataFromAPI.js`);
 const CustomError                   = require(`../ModuleExports/Classes/customError`);
+const express                       = require('express');
+
+const router                        = express.Router(); 
 // #endregion
 
 // TODO This is a global variable, kind of okay because seperation of concern has been used with routes so not really global global, but might be a better way
@@ -26,10 +25,6 @@ router.post(`/`, async (req, res, next) => {
         next(error);
     }
 })
-
-// router.use(`/`, (req, res) => {
-//     res.status(404).render(`error.ejs`, { data: req.body.playerName });
-// })
 
 router.get(`/:id`, async (req, res, next) => {
     try {

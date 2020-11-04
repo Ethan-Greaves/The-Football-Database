@@ -1,16 +1,13 @@
 // #region INITILISATION
-// *Express
-const express               = require('express');
-const router                = express.Router();
-
-// *Mehtod-override
 const methodOverride        = require(`method-override`);
-                            router.use(methodOverride(`_method`));
-                            
+const express               = require('express');
+
 // *Middleware
 const isLoggedIn            = require(`../ModuleExports/Middleware/isLoggedIn`);
 
+const router                = express.Router();
 
+router.use(methodOverride(`_method`));
 // #endregion
 
 router.post(`/:id`, isLoggedIn, async (req, res, next) => {   
@@ -49,9 +46,11 @@ router.delete(`/:id/delete`, (req, res) =>{
             // *Obtain the ID of the favourite that needs to be removed
             const favID = req.params.id;
             const favs = req.user.favourites;
-
+            //* Loop through user's favourites
             for (let i = 0; i < favs.length; i++) {
-                if (favs[i].ID === favID) {
+                //* Identify the fav to be reomved
+                if (favs[i].ID === Number(favID)) {
+                    //* Cut out of array and save
                     favs.splice(i, 1);
                     req.user.save();
                     break;

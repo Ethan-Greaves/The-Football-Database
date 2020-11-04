@@ -7,19 +7,18 @@ class customError extends Error{
     }
 
     NotFound(data) {
-        // TODO
         this.status = 404;
         this.message = "Not Found";
-        this.res.status(this.status).render('Errors/notFound.ejs', {status, this.message, data}); //* Strangely cant use 'this' when passing data through ejs frontend
+        const { status, message } = this;
+        this.res.status(this.status).render('Errors/notFound.ejs', {status, message, data}); //* Strangely cant use 'this' when passing data through ejs frontend
     }
 
     Unauthorised() {
-        const status = this.status = 401;
-        const message = this.message = "Unauthorised";
+        this.status = 401;
+        this.message = "Unauthorised";
+        const { status, message } = this;
         this.res.status(this.status).render('Errors/unauthorised.ejs', {status, message, unauthorised: true});
     }
-
-    
 }
 
 module.exports = customError;

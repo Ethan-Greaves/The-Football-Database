@@ -55,7 +55,7 @@ router.get(`/`, async (req, res, next) => {
     for (let i = 0; i < favouritesToDisplay.length; i++) {
       if (favouritesToDisplay[i].players) {
           if (favouritesToDisplay[i].players[0].strTeam !== "_Retired Soccer" &&
-              favouritesToDisplay[i].players[0].strTeam !== "_Free Agent Soccer" && favouritesToDisplay[i].players[0].strTeam != "_Deceased Soccer") {
+              favouritesToDisplay[i].players[0].strTeam !== "_Free Agent Soccer" && favouritesToDisplay[i].players[0].strTeam !== "_Deceased Soccer") {
                 const team = await requestDataFromAPI(`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=`, favouritesToDisplay[i].players[0].strTeam);
                 const teamObject = { badge: team.teams[0].strTeamBadge, teamName: team.teams[0].strTeam };
                 favPlayersTeam.push(teamObject);
