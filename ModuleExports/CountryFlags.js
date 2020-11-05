@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const countryFlags = {
     Afghanistan:                    "https://cdn.countryflags.com/thumbs/afghanistan/flag-wave-250.png",
     Albania:                        "https://cdn.countryflags.com/thumbs/albania/flag-wave-250.png",
