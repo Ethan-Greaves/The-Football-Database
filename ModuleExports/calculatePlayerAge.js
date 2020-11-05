@@ -1,4 +1,5 @@
 function calculatePlayerAge(playerBirthday) {
+	// #region INITIALISATION
 	let playerAge = 0;
 	//* Get the current date
 	const currentDate = new Date();
@@ -10,13 +11,13 @@ function calculatePlayerAge(playerBirthday) {
 	];
 	//* Break down players birthday
 	const [playerBYear, playerBMonth, playerBDay] = playerBirthday.split('-');
+	// #endregion
 
-	//* Calculate age
-
+	// #region CALCULATE AGE
 	//* First have the current year subtracted by the player year for a rough estimate of age
 	playerAge = currentYear - playerBYear;
 
-	//* if current month is less than player birth month, they havent reached birthday yet, so subtract one
+	//* if current month is less than player birth month, they haven't reached birthday yet, so subtract one
 	if (currentMonth < playerBMonth) {
 		playerAge--;
 	}
@@ -26,6 +27,7 @@ function calculatePlayerAge(playerBirthday) {
 	}
 
 	return playerAge;
+	// #endregion
 }
 
 module.exports = calculatePlayerAge;

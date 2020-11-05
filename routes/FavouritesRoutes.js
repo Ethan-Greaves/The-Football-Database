@@ -1,4 +1,4 @@
-// #region INITILISATION
+// #region INITIALISATION
 const methodOverride = require(`method-override`);
 const express = require('express');
 
@@ -46,7 +46,7 @@ router.delete(`/:id/delete`, (req, res) => {
 			const favs = req.user.favourites;
 			//* Loop through user's favourites
 			for (let i = 0; i < favs.length; i++) {
-				//* Identify the fav to be reomved
+				//* Identify the fav to be removed
 				if (favs[i].ID === Number(favID)) {
 					//* Cut out of array and save
 					favs.splice(i, 1);

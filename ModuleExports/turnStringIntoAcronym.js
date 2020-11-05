@@ -7,7 +7,7 @@ function turnStringIntoAcronym(paramString) {
 
 	//* Check if string is more than one word
 	if (string.trim().indexOf(' ') !== -1) {
-		//* split the string into seperate strings
+		//* split the string into separate strings
 		const words = string.split(' ');
 		//* turn those strings into an array of characters
 		words.forEach((word) => {

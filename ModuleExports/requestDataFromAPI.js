@@ -1,4 +1,4 @@
-// #region INITILISATION
+// #region INITIALISATION
 //* Fetch
 const fetch = require('node-fetch');
 // #endregion

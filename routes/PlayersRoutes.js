@@ -1,4 +1,4 @@
-// #region INITILISATION
+// #region INITIALISATION
 const requestDataFromAPI = require(`../ModuleExports/requestDataFromAPI.js`);
 const CustomError = require(`../ModuleExports/Classes/customError`);
 const express = require('express');
@@ -6,7 +6,7 @@ const express = require('express');
 const router = express.Router();
 // #endregion
 
-// TODO This is a global variable, kind of okay because seperation of concern has been used with routes so not really global global, but might be a better way
+// TODO This is a global variable, kind of okay because separation of concern has been used with routes so not really global global, but might be a better way
 let playerData;
 
 router.get(`/`, (req, res) => {

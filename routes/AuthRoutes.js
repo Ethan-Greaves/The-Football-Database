@@ -1,4 +1,4 @@
-// #region INITILISATION
+// #region INITIALISATION
 // *Express
 const PassportLocal = require(`passport-local`);
 const user = require(`../models/user`);

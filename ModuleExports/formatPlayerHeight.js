@@ -5,7 +5,7 @@ function formatPlayerHeight(string) {
 
 		//* No player has a height greater than 2 metres, if it is then we know that the ft height is being displayed first
 		if (height > 2) {
-			//* The height in metres is conatined within brackets so use match to extract it
+			//* The height in metres is contained within brackets so use match to extract it
 			const heightInsideBrackets = string.match(/\((.*)\)/);
 			if (heightInsideBrackets != null) {
 				let heightInMetres = heightInsideBrackets[1];

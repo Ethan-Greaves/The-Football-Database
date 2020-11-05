@@ -1,4 +1,4 @@
-// #region INITILISATION
+// #region INITIALISATION
 const requestDataFromAPI = require(`../ModuleExports/requestDataFromAPI.js`);
 const express = require('express');
 const CustomError = require('../ModuleExports/Classes/customError.js');
