@@ -5,12 +5,15 @@
         "es2020": true,
         "node": true
     },
-    "extends": ["airbnb", "prettier"],
+    "extends": ["airbnb", "prettier", "plugin:node/recommended"],
     "plugins": ["prettier"],
     "parserOptions": {
         "ecmaVersion": 2021
     },
     "rules": {
+        "prettier/prettier": ["error", {
+           "endOfLine":"auto"
+         }],
         "no-plusplus":"off",
         "no-console":"off"
     }
