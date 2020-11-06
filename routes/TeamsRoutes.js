@@ -2,6 +2,8 @@
 const requestDataFromAPI = require(`../ModuleExports/requestDataFromAPI.js`);
 const express = require('express');
 const CustomError = require('../ModuleExports/Classes/customError.js');
+const checkIsFav = require('../ModuleExports/checkIsFav.js');
+const countryFlags = require('../ModuleExports/CountryFlags');
 
 const router = express.Router();
 // #endregion
@@ -31,8 +33,16 @@ router.get(`/:id`, async (req, res, next) => {
 			),
 		]);
 
+		const isFav = checkIsFav(req);
+
 		//* Render show page and pass through the team data
-		res.render(`Teams/show.ejs`, { teamData: singleTeamData, teamFixturesData, teamResultsData });
+		res.render(`Teams/show.ejs`, {
+			teamData: singleTeamData,
+			teamFixturesData,
+			teamResultsData,
+			isFav,
+			countryFlags,
+		});
 	} catch (error) {
 		next(error);
 	}

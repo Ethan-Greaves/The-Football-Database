@@ -2,6 +2,8 @@
 const requestDataFromAPI = require(`../ModuleExports/requestDataFromAPI.js`);
 const CustomError = require(`../ModuleExports/Classes/customError`);
 const express = require('express');
+const countryFlags = require('../ModuleExports/CountryFlags');
+const checkIsFav = require('../ModuleExports/checkIsFav.js');
 
 const router = express.Router();
 // #endregion
@@ -34,8 +36,10 @@ router.get(`/:id`, async (req, res, next) => {
 			req.params.id
 		);
 
+		const isFav = checkIsFav(req);
+
 		//* Render the show page, pass through the data
-		res.render(`Players/show.ejs`, { playerData });
+		res.render(`Players/show.ejs`, { playerData, countryFlags, isFav });
 	} catch (error) {
 		next(error);
 	}

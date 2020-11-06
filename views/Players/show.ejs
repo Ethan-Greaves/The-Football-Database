@@ -5,16 +5,15 @@
     <link rel="stylesheet" href="/Stylesheets/CSS/show.css">
 </head>
 <body>
-    <div class="text-center container">
-        <h1 class="my-3"><%= playerData.players[0].strPlayer %> </h1>
-        <div class="scrollBox">
-            <p><%= playerData.players[0].strDescriptionEN %></p>
-        </div>
-       
-    </div>
-
-    <form action="/favourites/<%= playerData.players[0].idPlayer %>" method="POST">
-        <input type="submit" value="Add Favourite!">
-    </form>
+    <% const player = playerData.players[0]; %> 
+    <%- include ("../partials/Show/show.ejs", {
+        isFav,
+        name:           player.strPlayer,
+        id:             player.idPlayer,
+        description:    player.strDescriptionEN,
+        countryFlag:    countryFlags[player.strNationality],
+        img:            player.strCutout,
+        type:           "player"
+    }) %> 
 </body>
 </html>

@@ -2,6 +2,41 @@
   overflow: auto;
   height: 200px;
   width: auto;
-  border: 8px solid black;
 }
-/*# sourceMappingURL=show.css.map */
+
+h1 {
+  border-bottom: 2px solid white;
+}
+
+.fa-star {
+  color: gold;
+  font-size: x-large;
+}
+
+.favourite-button {
+  border: none;
+  background: none;
+}
+
+.favourite-button:active, .favourite-button:focus {
+  outline: none;
+  border: none;
+}
+
+.cutout {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  left: 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+.flag-bg-img {
+  position: relative;
+  width: 100%;
+  height: 200px;
+}

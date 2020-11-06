@@ -5,27 +5,25 @@
     <link rel="stylesheet" href="/Stylesheets/CSS/playerResults.css">
 </head>
 <body>
-    <% if (teamData.teams === null) { %>
-        <%- include ("../partials/error.ejs", {data: formData.teamName}) %> 
-    <% } else {%>
-        <!-- * Num Of Results -->
-        <%- include ("../partials/Results/numOfResults.ejs", {data: teamData.teams}) %> 
+    <%- include (`../partials/navbar.ejs`) %> 
 
-        <!-- * Results -->
-        <% teamData.teams.forEach((team) => { %>
-            <%- include ("../partials/Results/Results.ejs", 
-            {
-                link:               `teams`,
-                id:                 team.idTeam,  
-                sport:              team.strSport,
-                picture:            team.strTeamBadge,
-                backupPicture:      team.strTeamBadge,
-                firstTitle:         team.strTeam,
-                secondTitle:        team.strLeague,
-                thirdTitle:         team.strStadium,
-                description:        team.strDescriptionEN
-            }) %>
-        <% }) %>  
-    <% } %> 
+    <!-- * Num Of Results -->
+    <%- include ("../partials/Results/numOfResults.ejs", {data: teamData.teams}) %> 
+
+    <!-- * Results -->
+    <% teamData.teams.forEach((team) => { %>
+        <%- include ("../partials/Results/Results.ejs", 
+        {
+            link:               `teams`,
+            id:                 team.idTeam,  
+            sport:              team.strSport,
+            picture:            team.strTeamBadge,
+            backupPicture:      team.strTeamBadge,
+            firstTitle:         team.strTeam,
+            secondTitle:        team.strLeague,
+            thirdTitle:         team.strStadium,
+            description:        team.strDescriptionEN
+        }) %>
+    <% }) %>  
 </body>
 </html>

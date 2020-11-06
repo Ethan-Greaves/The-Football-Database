@@ -2,33 +2,26 @@
 <html lang="en">
 <head>
     <%- include ("../partials/Meta/defaultHeadData.ejs") %> 
-    <!-- * -->
     <link rel="stylesheet" href="/Stylesheets/CSS/playerResults.css">
 </head>
 <body>
     <%- include (`../partials/navbar.ejs`) %> 
+    <!-- * Number of results -->
+    <%- include ("../partials/Results/numOfResults.ejs", {data: playerData.player}) %> 
 
-    <!-- * Results -->
-    <% if (playerData.player === null) { %>
-        <%- include ("../partials/error.ejs", {data: formData.playerName}) %> 
-    <% } else { %>
-        <!-- * Number of results -->
-        <%- include ("../partials/Results/numOfResults.ejs", {data: playerData.player}) %> 
-
-        <% playerData.player.forEach((individual) => { %>
-            <%- include ("../partials/Results/Results.ejs", 
-            {
-                link:               `players`,
-                id:                 individual.idPlayer,  
-                sport:              individual.strSport,
-                picture:            individual.strCutout,
-                backupPicture:      individual.strThumb,
-                firstTitle:         individual.strPlayer,
-                secondTitle:        individual.strTeam,
-                thirdTitle:         individual.strNationality,
-                description:        individual.strDescriptionEN
-            }) %>
-        <% }) %>         
-    <% } %> 
+    <% playerData.player.forEach((individual) => { %>
+        <%- include ("../partials/Results/Results.ejs", 
+        {
+            link:               `players`,
+            id:                 individual.idPlayer,  
+            sport:              individual.strSport,
+            picture:            individual.strCutout,
+            backupPicture:      individual.strThumb,
+            firstTitle:         individual.strPlayer,
+            secondTitle:        individual.strTeam,
+            thirdTitle:         individual.strNationality,
+            description:        individual.strDescriptionEN
+        }) %>
+    <% }) %>         
 </body>
 </html>

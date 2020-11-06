@@ -1,6 +1,52 @@
+$inherited-colour: white;
+
 .scrollBox{
     overflow: auto;
     height: 200px;
     width: auto;
-    border: 8px solid black;
+    //border: 3px solid black;
 }
+
+#favourite-icon{
+
+}
+
+h1{
+    border-bottom: 2px solid $inherited-colour;
+}
+
+.fa-star{
+    color: gold;
+    font-size: x-large;
+}
+
+.favourite-button{
+    border: none;
+    background: none;
+}
+
+.favourite-button:active, .favourite-button:focus{
+    outline: none;
+    border: none;
+}
+
+.cutout{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    left: 0;
+    //bottom: 0;
+    object-fit: contain;
+    overflow: hidden;
+    border: 1px solid black;
+
+}
+
+.flag-bg-img{
+    position: relative;
+    width: 100%;
+    height: 200px;
+    
+}
+

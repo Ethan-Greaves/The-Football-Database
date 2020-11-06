@@ -35,7 +35,7 @@
                         info6Title:         "",
                         info6:              "",
                         showLink:           `/teams/${team.idTeam}`,
-                        removeLink:         `/favourites/${team.idTeam}/delete?_method=DELETE` 
+                        removeLink:         `/favourites/${team.idTeam}/deleteOnCard?_method=DELETE` 
                     }) %>
                 <% } else if (listOfFavourites[i].players) { %>
                     <% const player = listOfFavourites[i].players[0]; %> 
@@ -59,7 +59,7 @@
                         info6Title:         "Gen:",
                         info6:              formatPlayerGender(player.strGender),
                         showLink:           `/players/${player.idPlayer}`,
-                        removeLink:         `/favourites/${player.idPlayer}/delete?_method=DELETE`
+                        removeLink:         `/favourites/${player.idPlayer}/deleteOnCard?_method=DELETE`
                     }) %>
                 <% } %>
             </div>

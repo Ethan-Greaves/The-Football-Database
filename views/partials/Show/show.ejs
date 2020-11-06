@@ -1,0 +1,36 @@
+<%- include (`../navbar.ejs`) %> 
+
+    <div class="text-center container">
+        <!-- * Player name title -->
+        <h1 class="mb-5 d-inline"><%= name %> </h1>
+
+        
+        <% if (!isFav) { %>
+            <form action="/favourites/<%= id %>/<%= type %>" method="POST" class="d-inline" id="favourite-icon">
+                <button type="submit" class="favourite-button">
+                    <i class="far fa-star"></i>
+                </button>
+            </form>
+        <% } else { %>
+            <form action="/favourites/<%= id %>/deleteOnShow/<%= type %>?_method=DELETE" method="POST" class="d-inline" id="favourite-icon">
+                <button type="submit" class="favourite-button">
+                    <i class="fas fa-star"></i>
+                </button>
+            </form>
+        <% } %> 
+        
+        <div class="row mt-5">
+            <div class="col-8">
+                <div class="scrollBox">
+                    <p><%= description %></p>
+                </div>
+            </div>
+            <div class="col-4">
+                <div>
+                    <img class="flag-bg-img img-responsive img-fluid" src="<%= countryFlag %> " alt="">
+                    <img class="cutout img-responsive img-fluid" src="<%= img %>"  alt="Player Cutout">
+                </div>
+            </div>
+        </div>
+        
+    </div>

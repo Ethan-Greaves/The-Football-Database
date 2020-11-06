@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
     <%- include ("../partials/Meta/defaultHeadData.ejs") %> 
-    <link rel="stylesheet" href="Stylesheets/CSS/defaults.css">
+    <link rel="stylesheet" href="/Stylesheets/CSS/show.css">
 </head>
 <body>
-    <!-- * Hard code `0` value into array as there should only be one result -->
-    <h1 class="text-center"><%= teamData.teams[0].strTeam %> </h1>
-    <!-- <h2><%=// teamFixturesData.events[0].strEvent %> </h2> -->
-
-    <form action="/favourites/<%= teamData.teams[0].idTeam %>" method="POST">
-        <input type="submit" value="Add Favourite!">
-    </form>
-    
+    <% const team = teamData.teams[0]; %> 
+    <%- include ("../partials/Show/show.ejs", {
+        isFav,
+        name:           team.strTeam,
+        id:             team.idTeam,
+        description:    team.strDescriptionEN,
+        countryFlag:    countryFlags[team.strCountry],
+        img:            team.strTeamBadge,
+        type:           "team"
+    }) %> 
 </body>
 </html>
