@@ -43,17 +43,7 @@ h1 {
           box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
 }
 
-form button {
-  border: none;
-  background: none;
-}
-
-form button:active, form button:focus {
-  outline: none;
-  border: none;
-}
-
-form button .fab {
+a .fab {
   margin: 0px 8px;
   color: white;
   /* blue colors for links too */
@@ -61,9 +51,16 @@ form button .fab {
   /* no underline */
 }
 
-form button .fab:hover {
-  background-image: -webkit-gradient(linear, left bottom, right top, from(white), color-stop(white), color-stop(gold), to(white));
-  background-image: linear-gradient(to top right, white, white, gold, white);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+a .fa-facebook:hover {
+  color: #3b5998;
+}
+
+a .fa-twitter:hover {
+  color: #00acee;
+}
+
+a .fa-instagram:hover {
+  background: #f09433;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
 }

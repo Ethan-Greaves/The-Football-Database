@@ -24,19 +24,13 @@
         <% if (facebookLink || twitterLink || instagramLink || websiteLink) { %>
             <div class="d-block mt-2">
                 <% if (facebookLink) { %>
-                    <form action="social/<%= facebookLink %>" method="GET" class="d-inline">
-                        <button type="submit"><i class="fab fa-facebook fa-lg"></i></a></button>
-                    </form>
+                    <a href="https://<%= facebookLink %>"><i class="fab fa-facebook fa-lg"></i></a>
                 <% } %>
                 <% if (twitterLink) { %>
-                    <form action="social/<%= twitterLink %>" method="GET" class="d-inline">
-                        <button type="submit"><i class="fab fa-twitter fa-lg"></i></a></button>
-                    </form>
+                    <a href="https://<%= twitterLink %>"><i class="fab fa-twitter fa-lg"></i></a>
                 <% } %>
                 <% if (instagramLink) { %>
-                    <form action="social/<%= instagramLink %>" method="GET" class="d-inline">
-                        <button type="submit"><i class="fab fa-instagram fa-lg"></i></a></button>
-                    </form>
+                    <a href="https://<%= instagramLink %>"><i class="fab fa-instagram fa-lg"></i></a>
                 <% } %>
             </div>
         <% } %>
