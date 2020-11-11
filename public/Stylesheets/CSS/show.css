@@ -27,16 +27,43 @@ h1 {
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: 3;
+  z-index: 1;
   left: 0;
+  bottom: 0;
   -o-object-fit: contain;
      object-fit: contain;
   overflow: hidden;
-  border: 1px solid black;
 }
 
 .flag-bg-img {
   position: relative;
   width: 100%;
   height: 200px;
+  -webkit-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
+}
+
+form button {
+  border: none;
+  background: none;
+}
+
+form button:active, form button:focus {
+  outline: none;
+  border: none;
+}
+
+form button .fab {
+  margin: 0px 8px;
+  color: white;
+  /* blue colors for links too */
+  text-decoration: initial;
+  /* no underline */
+}
+
+form button .fab:hover {
+  background-image: -webkit-gradient(linear, left bottom, right top, from(white), color-stop(white), color-stop(gold), to(white));
+  background-image: linear-gradient(to top right, white, white, gold, white);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -45,4 +45,8 @@ router.get(`/:id`, async (req, res, next) => {
 	}
 });
 
+router.get(`/social/:siteLink/:profile`, (req, res) => {
+	res.status(301).redirect(`https://${req.params.siteLink}/${req.params.profile}`);
+});
+
 module.exports = router;

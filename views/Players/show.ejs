@@ -10,10 +10,19 @@
         isFav,
         name:           player.strPlayer,
         id:             player.idPlayer,
+        facebookLink:   player.strFacebook,
+        twitterLink:    player.strTwitter,
+        instagramLink:  player.strInstagram,
+        websiteLink:    player.strWebsite,
         description:    player.strDescriptionEN,
         countryFlag:    countryFlags[player.strNationality],
         img:            player.strCutout,
-        type:           "player"
+        type:           "player",
+        carouselImg1:   player.strThumb,
+        carouselImg2:   player.strFanart1,
+        carouselImg3:   player.strFanart2,
+        carouselImg4:   player.strRender
     }) %> 
+    <%- include('../partials/footer.ejs') %> 
 </body>
 </html>

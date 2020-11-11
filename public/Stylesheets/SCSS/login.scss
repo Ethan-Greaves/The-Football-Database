@@ -35,10 +35,6 @@ input[type=text], input[type=password]{
     height: 36px;
 }
 
-input[type=text]:focus, input[type=password]:focus{
-   
-}
-
 input:invalid{
     border: 2px solid red;
 }
@@ -53,8 +49,4 @@ input:valid{
 
 .form-check-input{
     margin-top: .43rem !important;
-}
-
-.middle-section{
-    
 }
