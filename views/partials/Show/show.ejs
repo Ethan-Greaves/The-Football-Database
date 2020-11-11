@@ -2,26 +2,25 @@
 
     <div class="text-center container">
         <!-- * Name title -->
-        <h1 class="mb-5 d-inline"><%= name %> </h1>
+        <h1 class="mb-5 d-inline"><%= name %></h1>
 
         <!-- * Favourite button -->
         <% if (!isFav) { %>
             <form action="/favourites/<%= id %>/<%= type %>" method="POST" class="d-inline" id="favourite-icon">
                 <button type="submit" class="favourite-button">
-                    <i class="far fa-star"></i>
+                    <i class="far fa-star fa-2x"></i>
                 </button>
             </form>
         <% } else { %>
             <form action="/favourites/<%= id %>/deleteOnShow/<%= type %>?_method=DELETE" method="POST" class="d-inline" id="favourite-icon">
                 <button type="submit" class="favourite-button">
-                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star fa-2x"></i>
                 </button>
             </form>
         <% } %> 
 
         <!-- * Social media icons -->
-        <!-- TODO make the link direct to a route which then takes user to external webpage e.g twitter -->
-        <% if (facebookLink || twitterLink || instagramLink || websiteLink) { %>
+        <% if (facebookLink || twitterLink || instagramLink) { %>
             <div class="d-block mt-2">
                 <% if (facebookLink) { %>
                     <a href="https://<%= facebookLink %>"><i class="fab fa-facebook fa-lg"></i></a>
@@ -35,28 +34,28 @@
             </div>
         <% } %>
         
-        
-        <!-- * Description -->
         <div class="row mt-4">
-            <div class="col-8">
-                <div class="scrollBox">
-                    <p><%= description %></p>
-                </div>
-            </div>
             <!-- * Profile image -->
-            <div class="col-4">
+            <div class="col-9 col-sm-4 profile-img">
                 <div>
                     <img class="flag-bg-img img-responsive img-fluid" src="<%= countryFlag %> " alt="">
                     <img class="cutout img-responsive img-fluid" src="<%= img %>"  alt="Player Cutout">
                 </div>
             </div>
+            <!-- * Description -->
+            <div class="col-12 col-sm-8">
+                <div class="scrollBox">
+                    <p class="text-left"><%= description %></p>
+                </div>
+            </div>
         </div>
 
-        <div class="row mt-3">
-            <div class="col-6">
-                <!-- * Carousel images -->
+        <div class="row mt-4">
+            <!-- * Carousel images -->
+            <div class="col-12 col-sm-4 slideshow">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
+                        <!-- TODO turn this into a for loop -->
                         <% if (carouselImg1) { %>
                             <div class="carousel-item active">
                                 <img class="d-block w-100" src="<%= carouselImg1 %>" alt="First slide">
@@ -77,6 +76,16 @@
                                 <img class="d-block w-100" src="<%= carouselImg4 %>" alt="Third slide">
                             </div>
                         <% } %>
+                        <% if (carouselImg5) { %>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="<%= carouselImg5 %>" alt="Third slide">
+                            </div>
+                        <% } %>
+                        <% if (carouselImg6) { %>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="<%= carouselImg6 %>" alt="Third slide">
+                            </div>
+                        <% } %>
                     </div>
                     <!-- * Carousel buttons -->
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -89,6 +98,45 @@
                     </a>
                 </div>
             </div>
+            <!-- * Other images -->
+            <div class="col-4">
+                <u><p>Nation:</p></u>
+                <img src="<%= countryFlag %>" alt="flag" class="other-img-left"                
+                data-toggle="tooltip" data-placement="top" title="<%= otherImgLeftTooltip %> ">
+            </div>
+            <div class="col-4">
+                
+                <u><p><%= otherImgRightTitle %> </p></u>
+                <% if (type === "Player") { %>
+                    <a href="<%= link %>">                
+                        <img src="<%= otherImgRight %>" alt="flag" class="other-img-right" 
+                        data-toggle="tooltip" data-placement="top" title="<%= otherImgRightTooltip %> ">
+                    </a>
+                <% } else { %>
+                    <img src="<%= otherImgRight %>" alt="flag" class="other-img-right" 
+                    data-toggle="tooltip" data-placement="top" title="<%= otherImgRightTooltip %> ">
+                <% } %>
+            </div>
         </div>
-        
+
+        <!-- * Exclusive Team Data -->
+        <!-- * Contains data such as fixtures, results and stadium info which a player does not have -->
+        <% if (type === "team") { %>
+
+        <% } %>
+
+        <hr class="my-5">
+
+        <!-- * Small data -->
+        <div class="row small-data mb-5">
+            <% for( let i = 0; i < smallData.length; i++ ) { %>
+                <% if (!smallData[i].content) { %>
+                  <% smallData[i].content = "N/A"; %>
+                <% } %>
+                <div class="col-3">
+                    <u><p class="d-block"><%= smallData[i].title %> </p></u>
+                    <p class="d-block"><%= smallData[i].content %> </p>
+                </div>
+            <% } %>
+         </div>
     </div>

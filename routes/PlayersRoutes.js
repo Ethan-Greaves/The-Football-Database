@@ -4,6 +4,7 @@ const CustomError = require(`../ModuleExports/Classes/customError`);
 const express = require('express');
 const countryFlags = require('../ModuleExports/CountryFlags');
 const checkIsFav = require('../ModuleExports/checkIsFav.js');
+const calculatePlayerAge = require('../ModuleExports/calculatePlayerAge');
 
 const router = express.Router();
 // #endregion
@@ -12,6 +13,8 @@ const router = express.Router();
 let playerData;
 
 router.get(`/`, (req, res) => {
+	//* Gather the players team data
+
 	//* Go to the show page and pass through the json data
 	res.render(`Players/results.ejs`, { playerData });
 });
@@ -36,13 +39,27 @@ router.get(`/:id`, async (req, res, next) => {
 			req.params.id
 		);
 
+		const playersTeam = await requestDataFromAPI(
+			'https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=',
+			playerData.players[0].strTeam
+		);
+
 		const isFav = checkIsFav(req);
 
 		//* Render the show page, pass through the data
-		res.render(`Players/show.ejs`, { playerData, countryFlags, isFav });
+		res.render(`Players/show.ejs`, {
+			playerData,
+			playersTeam,
+			countryFlags,
+			isFav,
+			calculatePlayerAge,
+		});
 	} catch (error) {
 		next(error);
 	}
 });
 
+router.get(`/goToTeam/:id`, (req, res) => {
+	res.redirect(`/teams/${req.params.id}`);
+});
 module.exports = router;

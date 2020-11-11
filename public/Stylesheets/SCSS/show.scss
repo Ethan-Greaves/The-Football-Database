@@ -1,4 +1,7 @@
 $inherited-colour: white;
+@import './Partials/BSScreenSizes';
+@import './Partials/alignment';
+@import './Partials/instagramBackground';
 
 @mixin removeButtonClickFeedback {
 	&:active,
@@ -52,26 +55,67 @@ h1 {
 	box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
 }
 
-	a {
-		.fab {
-			margin: 0px 8px;
-			color: white; /* blue colors for links too */
-			text-decoration: initial; /* no underline */
-		}
-
-		.fa-facebook:hover {
-			color: #3b5998;
-		}
-
-		.fa-twitter:hover {
-			color: #00acee;
-        }
-        
-        .fa-instagram:hover{
-            background: #f09433; 
-            background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
-            background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
-            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
-        }
+a {
+	.fab {
+		margin: 0px 8px;
+		color: white;
+		text-decoration: initial;
 	}
+
+	.fa-facebook:hover {
+		color: #3b5998;
+	}
+
+	.fa-twitter:hover {
+		color: #00acee;
+	}
+
+	.fa-instagram:hover {
+		@include instaBackground;
+	}
+}
+
+.carousel-item {
+	img {
+		object-fit: contain;
+		height: 200px;
+		width: 100%;
+	}
+}
+
+.small-data{
+    margin-top: 2.25em;
+}
+
+.other-img-right, .other-img-left{
+    height: 155px;
+    width: auto;
+}
+
+.other-img-left{
+    width: max-content;
+}
+
+hr{
+    border-top: 1px solid rgba(255, 255, 255, 0.486);
+    width: 65%;
+}
+
+@media only screen and (max-width: map-get($Bootstrap-screen-sizes, extra-small)) {
+	.profile-img, .slideshow {
+        @include horizontal-align();
+        margin-bottom: 2em;
+    }
+
+    .fa-star{
+        margin-top: .5em;
+    }
+
+    .scrollBox{
+        height: 300px;
+    }
+
+    .slideshow{
+        margin-top: 1.5em;
+    }
+}

@@ -6,22 +6,40 @@
 </head>
 <body>
     <% const player = playerData.players[0]; %> 
+    <% const team = playersTeam.teams[0]; %> 
+    <% const smallData = [
+                {title: "Hometown:", content: player.strBirthLocation},
+                {title: "Age:", content: calculatePlayerAge(player.dateBorn)},
+                {title: "Wage:", content: player.strWage},
+                {title: "Agent:", content: player.strAgent},
+                {title: "Price Tag:", content: player.strSigning},
+                {title: "Height:", content: player.strHeight},
+                {title: "Weight:", content: player.strWeight},
+                {title: "Position:", content: player.strPosition},
+            ] %> 
     <%- include ("../partials/Show/show.ejs", {
         isFav,
-        name:           player.strPlayer,
-        id:             player.idPlayer,
-        facebookLink:   player.strFacebook,
-        twitterLink:    player.strTwitter,
-        instagramLink:  player.strInstagram,
-        websiteLink:    player.strWebsite,
-        description:    player.strDescriptionEN,
-        countryFlag:    countryFlags[player.strNationality],
-        img:            player.strCutout,
-        type:           "player",
-        carouselImg1:   player.strThumb,
-        carouselImg2:   player.strFanart1,
-        carouselImg3:   player.strFanart2,
-        carouselImg4:   player.strRender
+        smallData,
+        name:                   player.strPlayer,
+        id:                     player.idPlayer,
+        facebookLink:           player.strFacebook,
+        twitterLink:            player.strTwitter,
+        instagramLink:          player.strInstagram,
+        description:            player.strDescriptionEN,
+        countryFlag:            countryFlags[player.strNationality],
+        img:                    player.strCutout,
+        type:                   "player",
+        carouselImg1:           player.strThumb,
+        carouselImg2:           player.strRender,
+        carouselImg3:           player.strFanart1,
+        carouselImg4:           player.strFanart2,
+        carouselImg5:           player.strFanart3,
+        carouselImg6:           player.strFanart4,
+        otherImgRightTitle:     "Club:",
+        otherImgRight:          team.strTeamBadge,
+        otherImgRightTooltip:   team.strTeam,
+        otherImgLeftTooltip:    player.strNationality,
+        link:                   `goToteam/${team.idTeam}`
     }) %> 
     <%- include('../partials/footer.ejs') %> 
 </body>
