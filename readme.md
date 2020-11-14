@@ -1,5 +1,14 @@
-# The Football Database ⚽
+<h1 align="center">⚽ The Football Database ⚽</h1> 
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Made%20by-Ethan%20Greaves-green" >
+</p>
+
+<hr>
+<h4 align="center"><a  href="https://www.google.com">Live Demo</a></h4>
+<hr>
+
+## Overview 📖
 The Football Database is a web application created using Node.js/Express. Users can search for any football team or player and a fetch request is made to [The Sports DB API](https://www.thesportsdb.com/api.php) to give back information. An authentication system was also created using [Passport.js](http://www.passportjs.org/) which allows users to login and add favourites which appears on the home page.
 
 ## Technologies used 👨‍💻
@@ -16,8 +25,6 @@ The Football Database is a web application created using Node.js/Express. Users 
 * Fetch
 
 ## Visuals 🎬
-
-**Adding favourites**
 
 ## Setup ⚙️
 
