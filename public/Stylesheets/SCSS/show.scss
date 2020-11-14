@@ -103,8 +103,8 @@ hr{
 	// position: absolute;
 	// right: 15%;
 	// top: 10%;
-	width: 80%;
-	height: 80%;
+	width: 100%;
+	height: 100%;
 	filter: grayscale(100%);
 }
 
@@ -136,7 +136,7 @@ hr{
     }
 }
 
-@media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
+@media only screen and (max-width: map-get($Bootstrap-screen-sizes, large)) {
 	.stadium-pic{
 	
 		width: 80%;

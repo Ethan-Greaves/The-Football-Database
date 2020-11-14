@@ -47,7 +47,7 @@ async function acquireHomeAwayTeamInfo(matches, singleTeamData) {
 
 	//* Loop through all the promised teams
 	for (let i = 0; i < promisedTeamsData.length; i++) {
-		// *If there is home team data inside the obj
+		// *If there is home team data inside an iteration of home away info obj
 		if ('homeTeamData' in homeAwayTeamInfo[i]) {
 			//* We know the promised team is the away team
 			homeAwayTeamInfo[i].awayTeamData = {

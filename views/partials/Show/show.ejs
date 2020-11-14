@@ -101,14 +101,14 @@
 
 	<div class="row mt-4">
 		<!-- * Profile image -->
-		<div class="col-xs-12 col-md-5 col-lg-4 profile-img w-75 h-75 mb-3">
+		<div class="col-9 col-md-7 col-lg-4 profile-img w-75 h-75 mb-3">
 			<div>
 				<img class="flag-bg-img img-responsive img-fluid" src="<%= countryFlag %> " alt="" />
 				<img class="cutout img-responsive img-fluid" src="<%= img %>" alt="Player Cutout" />
 			</div>
 		</div>
 		<!-- * Description -->
-		<div class="col-xs-12 col-md-7 col-lg-8 mb-3">
+		<div class="col-12 col-md-12 col-lg-8 mb-3">
 			<div class="scrollBox">
 				<p class="text-left"><%= description %></p>
 			</div>
@@ -213,7 +213,7 @@
 	<div class="row small-data mb-5">
 		<% for( let i = 0; i < smallData.length; i++ ) { %> <% if (!smallData[i].content) { %> <%
 		smallData[i].content = "N/A"; %> <% } %>
-		<div class="col-xs-4 col-sm-6 col-md-3">
+		<div class="col-6 col-sm-4 col-md-3">
 			<u><strong><p class="d-block"><%= smallData[i].title %></p></strong></u>
 			<p class="d-block"><%= smallData[i].content %></p>
 		</div>
@@ -241,11 +241,11 @@
 
 	<!-- * Game info -->
 	<div class="row">
-		<div class="col-6">
+		<div class="col-12 col-lg-6 mb-4">
 			<!-- * Results -->
 			<%= gameInfo(results, resultBadges, "Results", true) %> 
 		</div>
-		<div class="col-6">
+		<div class="col-12 col-lg-6 mb-3">
 			<!-- * Fixtures -->
 			<%= gameInfo(fixtures, fixtureBadges, "Fixtures") %> 
 		</div>
