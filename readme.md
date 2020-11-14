@@ -3,18 +3,20 @@
 The Football Database is a web application created using Node.js/Express. Users can search for any football team or player and a fetch request is made to [The Sports DB API](https://www.thesportsdb.com/api.php) to give back information. An authentication system was also created using [Passport.js](http://www.passportjs.org/) which allows users to login and add favourites which appears on the home page.
 
 ##### Click here to go to deployed version - 
+[<button class="button-save large">Big Fat Button</button>]
 
 # Technologies used
 
 * HTML
 * CSS/SCSS
-* JavaScript
+* Bootstrap 4
+* JavaScript (ES6 - classes, async/await, const/let, arrow functions, template strings, destructuring)
 * Embedded JavaScript (EJS)
 * Node.js
 * Express
 * MongodDB
 * Mongoose
-
+* Fetch
 
 # Installation
 
