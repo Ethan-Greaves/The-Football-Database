@@ -4,12 +4,12 @@
 const express = require('express');
 
 //* Module Exports
-const requestDataFromAPI = require(`../ModuleExports/requestDataFromAPI.js`);
+const requestDataFromAPI = require(`../ModuleExports/HelperFunctions/requestDataFromAPI.js`);
 const countryFlags = require(`../ModuleExports/CountryFlags`);
-const calculatePlayerAge = require(`../ModuleExports/calculatePlayerAge`);
-const turnStringIntoAcronym = require(`../ModuleExports/turnStringIntoAcronym`);
-const formatPlayerHeight = require(`../ModuleExports/formatPlayerHeight`);
-const formatPlayerGender = require(`../ModuleExports/formatPlayerGender`);
+const calculatePlayerAge = require(`../ModuleExports/HelperFunctions/calculatePlayerAge`);
+const turnStringIntoAcronym = require(`../ModuleExports/HelperFunctions/turnStringIntoAcronym`);
+const formatPlayerHeight = require(`../ModuleExports/HelperFunctions/formatPlayerHeight`);
+const formatPlayerGender = require(`../ModuleExports/HelperFunctions/formatPlayerGender`);
 // #endregion
 
 const router = express.Router();
@@ -36,7 +36,7 @@ router.get(`/`, async (req, res, next) => {
 				requestDataFromAPI(
 					`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=`,
 					element.ID.toString()
-				),
+				)
 			]);
 
 			//* Loop through the array of fav objects
@@ -73,7 +73,7 @@ router.get(`/`, async (req, res, next) => {
 					const teamObject = {
 						badge:
 							'https://www.clipartmax.com/png/middle/307-3077324_x-mark-cross-computer-icons-clip-art-red-cross-icon.png',
-						teamName: 'None',
+						teamName: 'None'
 					};
 					favPlayersTeam.push(teamObject);
 				}
@@ -101,7 +101,7 @@ router.get(`/`, async (req, res, next) => {
 			favPlayersTeam,
 			formatPlayerHeight,
 			formatPlayerGender,
-			teamKits,
+			teamKits
 		});
 	} catch (error) {
 		next(error);

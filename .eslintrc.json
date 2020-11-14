@@ -14,7 +14,7 @@
         "prettier/prettier": ["error", {
            "endOfLine":"auto"
          }],
-        "no-plusplus":"off",
-        "no-console":"off"
+        "no-console":"warn",
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
     }
 }

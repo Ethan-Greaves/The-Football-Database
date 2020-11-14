@@ -19,11 +19,11 @@ function calculatePlayerAge(playerBirthday) {
 
 	//* if current month is less than player birth month, they haven't reached birthday yet, so subtract one
 	if (currentMonth < playerBMonth) {
-		playerAge--;
+		playerAge -= 1;
 	}
 	//* If we are currently in the player birth month then we need to be more specific and check the day
 	else if (currentMonth === playerBMonth && currentDay < playerBDay) {
-		playerAge--;
+		playerAge -= 1;
 	}
 
 	return playerAge;

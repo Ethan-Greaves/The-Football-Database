@@ -1,0 +1,40 @@
+<% function gameInfo(gameInfo, badges, title, score){ %>
+	<u><h4 class="mb-4"><%= title %> </h4></u>
+	<% for( let i = 0; i < gameInfo.length; i++ ) { %>
+	<hr class="my-2" />
+	<div class="row">
+		<div class="col-6 text-right">
+			<p><%= swapFixtureDateAround(gameInfo[i].dateEvent) %></p>
+		</div>
+		<div class="col-6 text-left">
+			<p>KO: <%= gameInfo[i].strTime %></p>
+		</div>
+	</div>
+
+	<% if (badges[i].homeTeamData) { %>
+		<a href="/teams/<%= badges[i].homeTeamData.id %> ">
+			<img class="fixture-badges" src="<%= badges[i].homeTeamData.badge %>" alt="" data-toggle="tooltip"
+			data-placement="top" title="<%= badges[i].homeTeamData.name %> "/>
+		</a>
+	<% } else { %>
+		<img class="fixture-badges" src="<%= badges[i].home %>" alt="" />
+	<% } %> 
+
+	<% if (score) { %>
+		<span class="mx-4"><%= results[i].intHomeScore %> - <%= results[i].intAwayScore %></span>
+	<% } else { %>
+		<span class="mx-4">vs</span>
+	<% } %> 
+	
+	<% if (badges[i].awayTeamData) { %>
+		<a href="/teams/<%= badges[i].awayTeamData.id %> ">
+			<img class="fixture-badges" src="<%= badges[i].awayTeamData.badge %>" alt="" data-toggle="tooltip"
+			data-placement="top" title="<%= badges[i].awayTeamData.name %> "/>
+		</a>
+	<% } else { %>
+		<img class="fixture-badges" src="<%= badges[i].away %>" alt="" />
+	<% } %> 
+
+	<p class="mt-2"><%= gameInfo[i].strLeague %></p>
+	<% } %>
+<% } %> 

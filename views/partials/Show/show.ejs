@@ -1,3 +1,58 @@
+<!-- * ------------------------------------------------------------------------------------------ -->
+<!-- * HELPER FUNCTION(S) -->
+<!-- * ------------------------------------------------------------------------------------------ -->
+
+<% function gameInfo(gameInfo, badges, title, score){ %>
+	<u><h4 class="mb-4"><%= title %> </h4></u>
+	<% for( let i = 0; i < gameInfo.length; i++ ) { %>
+	<hr class="my-2" />
+	<div class="row">
+		<!-- * Match Date -->
+		<div class="col-6 text-right">
+			<p><%= swapFixtureDateAround(gameInfo[i].dateEvent) %></p>
+		</div>
+		<div class="col-6 text-left">
+			<p>KO: <%= gameInfo[i].strTime %></p>
+		</div>
+	</div>
+
+	<!-- * Home team badge -->
+	<%= displayTeamBadge(badges[i].homeTeamData) %> 
+
+	<!-- * Score or "VS" -->
+	<% if (score) { %>
+		<span class="mx-4"><%= results[i].intHomeScore %> - <%= results[i].intAwayScore %></span>
+	<% } else { %>
+		<span class="mx-4">vs</span>
+	<% } %> 
+	
+	<!-- * Away team badge -->
+	<%= displayTeamBadge(badges[i].awayTeamData) %> 
+
+	<!-- * Competition -->
+	<p class="mt-2"><%= gameInfo[i].strLeague %></p>
+	<% } %>
+<% } %> 
+
+
+<% function displayTeamBadge(teamData) { %>
+	<% if ("name" in teamData) { %>
+		<a href="/teams/<%= teamData.id %> ">
+			<img class="fixture-badges" src="<%= teamData.badge %>" alt="" data-toggle="tooltip"
+			data-placement="top" title="<%= teamData.name %> "/>
+		</a>
+	<% } else { %>
+		<img class="fixture-badges" src="<%= teamData.badge %>" alt="" />
+	<% } %> 
+<% } %> 
+
+<!-- * ------------------------------------------------------------------------------------------ -->
+
+
+<!-- * ------------------------------------------------------------------------------------------ -->
+<!-- * HTML -->
+<!-- * ------------------------------------------------------------------------------------------ -->
+
 <%- include (`../navbar.ejs`) %>
 
 <div class="text-center container mb-5">
@@ -46,14 +101,14 @@
 
 	<div class="row mt-4">
 		<!-- * Profile image -->
-		<div class="col-9 col-sm-4 profile-img">
+		<div class="col-xs-12 col-md-5 col-lg-4 profile-img w-75 h-75 mb-3">
 			<div>
 				<img class="flag-bg-img img-responsive img-fluid" src="<%= countryFlag %> " alt="" />
 				<img class="cutout img-responsive img-fluid" src="<%= img %>" alt="Player Cutout" />
 			</div>
 		</div>
 		<!-- * Description -->
-		<div class="col-12 col-sm-8">
+		<div class="col-xs-12 col-md-7 col-lg-8 mb-3">
 			<div class="scrollBox">
 				<p class="text-left"><%= description %></p>
 			</div>
@@ -62,7 +117,7 @@
 
 	<div class="row mt-4">
 		<!-- * Carousel images -->
-		<div class="col-12 col-sm-4 slideshow">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 slideshow w-100 h-100 mb-3">
 			<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 				<div class="carousel-inner">
 					<!-- TODO turn this into a for loop -->
@@ -114,9 +169,10 @@
 			</div>
 		</div>
 		<!-- * Other images -->
-		<div class="col-4">
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 			<u><p>Nation:</p></u>
 			<img
+				class="mb-4"
 				src="<%= countryFlag %>"
 				alt="flag"
 				class="other-img-left"
@@ -125,13 +181,13 @@
 				title="<%= otherImgLeftTooltip %> "
 			/>
 		</div>
-		<div class="col-4">
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 			<u><p><%= otherImgRightTitle %></p></u>
 			<% if (type === "player") { %>
 			<a href="<%= link %>">
 				<img
 					src="<%= otherImgRight %>"
-					alt="flag"
+					alt=""
 					class="other-img-right"
 					data-toggle="tooltip"
 					data-placement="top"
@@ -141,7 +197,7 @@
 			<% } else { %>
 			<img
 				src="<%= otherImgRight %>"
-				alt="flag"
+				alt=""
 				class="other-img-right"
 				data-toggle="tooltip"
 				data-placement="top"
@@ -157,8 +213,8 @@
 	<div class="row small-data mb-5">
 		<% for( let i = 0; i < smallData.length; i++ ) { %> <% if (!smallData[i].content) { %> <%
 		smallData[i].content = "N/A"; %> <% } %>
-		<div class="col-3">
-			<u><p class="d-block"><%= smallData[i].title %></p></u>
+		<div class="col-xs-4 col-sm-6 col-md-3">
+			<u><strong><p class="d-block"><%= smallData[i].title %></p></strong></u>
 			<p class="d-block"><%= smallData[i].content %></p>
 		</div>
 		<% } %>
@@ -171,10 +227,10 @@
 	<!-- * Stadium Data -->
 	<u><h4 class="mb-3">Stadium:</h4></u>
 	<div class="row">
-		<div class="col-4">
+		<div class="col-xs-12 col-lg-4">
 			<img src="<%= stadiumPic %> " alt="Stadium Picture" class="stadium-pic" />
 		</div>
-		<div class="col-8">
+		<div class="col-lg-8 col-xs-12">
 			<div class="scrollBox">
 				<p class="text-left"><%= stadiumDescription %></p>
 			</div>
@@ -183,51 +239,18 @@
 
 	<hr class="my-5" />
 
+	<!-- * Game info -->
 	<div class="row">
 		<div class="col-6">
-			<!-- * Fixtures -->
-			<u><h4 class="mb-4">Fixtures</h4></u>
-			<% for( let i = 0; i < fixtures.length; i++ ) { %>
-			<hr class="my-2" />
-			<div class="row">
-				<div class="col-6 text-right">
-					<p><%= swapFixtureDateAround(fixtures[i].dateEvent) %></p>
-				</div>
-				<div class="col-6 text-left">
-					<p><%= fixtures[i].strTime %></p>
-				</div>
-			</div>
-
-			<img class="fixture-badges" src="<%= fixtureBadges[i].home %>" alt="" />
-			<span class="mx-4">vs</span>
-			<img class="fixture-badges" src="<%= fixtureBadges[i].away %>" alt="" />
-
-			<p class="mt-2"><%= fixtures[i].strLeague %></p>
-			<% } %>
+			<!-- * Results -->
+			<%= gameInfo(results, resultBadges, "Results", true) %> 
 		</div>
 		<div class="col-6">
-			<!-- * Results -->
-			<u><h4 class="mb-4">Results</h4></u>
-			<% for( let i = 0; i < results.length; i++ ) { %>
-				<hr class="my-2" />
-				<div class="row">
-					<div class="col-6 text-right">
-						<p><%= swapFixtureDateAround(results[i].dateEvent) %></p>
-					</div>
-					<div class="col-6 text-left">
-						<p><%= results[i].strTime %></p>
-					</div>
-				</div>
-
-				<img class="fixture-badges" src="<%= resultBadges[i].home %>" alt="" />
-				<span class="mx-4"><%= results[i].intHomeScore %> - <%= results[i].intAwayScore %> </span>
-				<img class="fixture-badges" src="<%= resultBadges[i].away %>" alt="" />
-
-				<p class="mt-2"><%= results[i].strLeague %></p>
-
-			<% } %>
+			<!-- * Fixtures -->
+			<%= gameInfo(fixtures, fixtureBadges, "Fixtures") %> 
 		</div>
 	</div>
-
 	<% } %>
 </div>
+
+

@@ -1,58 +1,13 @@
 // #region INITIALISATION
-const requestDataFromAPI = require(`../ModuleExports/requestDataFromAPI.js`);
+const requestDataFromAPI = require(`../ModuleExports/HelperFunctions/requestDataFromAPI.js`);
 const express = require('express');
 const CustomError = require('../ModuleExports/Classes/customError.js');
-const checkIsFav = require('../ModuleExports/checkIsFav.js');
+const checkIsFav = require('../ModuleExports/HelperFunctions/checkIsFav.js');
 const countryFlags = require('../ModuleExports/CountryFlags');
-const swapFixtureDateAround = require('../ModuleExports/swapFixtureDateAround');
+const swapFixtureDateAround = require('../ModuleExports/HelperFunctions/swapFixtureDateAround');
+const acquireHomeAwayTeamInfo = require('../ModuleExports/HelperFunctions/acquireHomeAwayTeamInfo');
 
 const router = express.Router();
-// #endregion
-
-// #region HELPER FUNCTIONS
-async function acquireHomeAwayBadges(fixtures, singleTeamData) {
-	const HomeAwayBadges = [];
-	const fixtureBadges = {};
-	const promises = [];
-
-	for (let i = 0; i < fixtures.length; i++) {
-		if (fixtures[i].idHomeTeam === singleTeamData.teams[0].idTeam) {
-			fixtureBadges.home = singleTeamData.teams[0].strTeamBadge;
-
-			promises.push(
-				requestDataFromAPI(
-					'https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=',
-					fixtures[i].idAwayTeam
-				)
-			);
-
-			HomeAwayBadges.push({ home: fixtureBadges.home });
-		} else {
-			fixtureBadges.away = singleTeamData.teams[0].strTeamBadge;
-
-			promises.push(
-				requestDataFromAPI(
-					'https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=',
-					fixtures[i].idHomeTeam
-				)
-			);
-
-			HomeAwayBadges.push({ away: fixtureBadges.away });
-		}
-	}
-
-	const promisedBadges = await Promise.all(promises);
-
-	for (let i = 0; i < promisedBadges.length; i++) {
-		if ('home' in HomeAwayBadges[i]) {
-			HomeAwayBadges[i].away = promisedBadges[i].teams[0].strTeamBadge;
-		} else {
-			HomeAwayBadges[i].home = promisedBadges[i].teams[0].strTeamBadge;
-		}
-	}
-
-	return HomeAwayBadges;
-}
 // #endregion
 
 let multipleTeamsData;
@@ -82,10 +37,8 @@ router.get(`/:id`, async (req, res, next) => {
 		const fixtures = teamFixturesData.events;
 		const { results } = teamResultsData;
 		const isFav = checkIsFav(req);
-		const resultBadges = await acquireHomeAwayBadges(results, singleTeamData);
-		const fixtureBadges = await acquireHomeAwayBadges(fixtures, singleTeamData);
-
-		console.log(resultBadges);
+		const resultBadges = await acquireHomeAwayTeamInfo(results, singleTeamData);
+		const fixtureBadges = await acquireHomeAwayTeamInfo(fixtures, singleTeamData);
 
 		//* Render show page and pass through the team data
 		res.render(`Teams/show.ejs`, {

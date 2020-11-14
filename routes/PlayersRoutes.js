@@ -1,10 +1,10 @@
 // #region INITIALISATION
-const requestDataFromAPI = require(`../ModuleExports/requestDataFromAPI.js`);
+const requestDataFromAPI = require(`../ModuleExports/HelperFunctions/requestDataFromAPI.js`);
 const CustomError = require(`../ModuleExports/Classes/customError`);
 const express = require('express');
 const countryFlags = require('../ModuleExports/CountryFlags');
-const checkIsFav = require('../ModuleExports/checkIsFav.js');
-const calculatePlayerAge = require('../ModuleExports/calculatePlayerAge');
+const checkIsFav = require('../ModuleExports/HelperFunctions/checkIsFav.js');
+const calculatePlayerAge = require('../ModuleExports/HelperFunctions/calculatePlayerAge');
 
 const router = express.Router();
 // #endregion
