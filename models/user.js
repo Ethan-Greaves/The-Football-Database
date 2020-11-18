@@ -13,6 +13,38 @@ const userSchema = new mongoose.Schema({
 			ID: Number,
 		},
 	],
+
+	favouritePlayers: [
+		{
+			_id: false,
+			ID: Number,
+			Type: String,
+			Name: String,
+			Picture: String,
+			Age: Number,
+			Nation: String,
+			Position: String,
+			Club: { Badge: String, name: String },
+			Height: String,
+			Gender: String,
+			Added: Date,
+		},
+	],
+	favouriteTeams: [
+		{
+			_id: false,
+			ID: Number,
+			Type: String,
+			Name: String,
+			Badge: String,
+			Founded: Number,
+			Nation: String,
+			Gender: String,
+			Kit: String,
+			League: String,
+			Added: Date,
+		},
+	],
 });
 
 userSchema.plugin(PLM);

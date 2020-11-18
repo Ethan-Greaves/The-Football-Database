@@ -1,6 +1,11 @@
 // #region INITIALISATION
 const methodOverride = require(`method-override`);
 const express = require('express');
+const requestDataFromAPI = require('../ModuleExports/HelperFunctions/requestDataFromAPI');
+const calculatePlayerAge = require('../ModuleExports/HelperFunctions/calculatePlayerAge');
+const turnStringIntoAcrynom = require('../ModuleExports/HelperFunctions/turnStringIntoAcronym');
+const formatPlayerHeight = require('../ModuleExports/HelperFunctions/formatPlayerHeight');
+const formatPlayerGender = require('../ModuleExports/HelperFunctions/formatPlayerGender');
 
 // *Middleware
 const isLoggedIn = require(`../ModuleExports/Middleware/isLoggedIn`);
@@ -37,11 +42,70 @@ function removeFavourite(req) {
 
 router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 	try {
-		if (!req.user.favourites.filter((fav) => fav.ID === req.params.id).length > 0) {
-			//* push the favourite onto their schema
-			req.user.favourites.push({ ID: req.params.id });
-			req.user.save();
+		// if (!req.user.favourites.filter((fav) => fav.ID === req.params.id).length > 0) {
+		//* push the favourite onto their schema
+		if (req.params.type === 'team') {
+			const teamData = await requestDataFromAPI(
+				'https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=',
+				req.params.id
+			);
+
+			const team = teamData.teams[0];
+
+			req.user.favouriteTeams.push({
+				ID: req.params.id,
+				Type: req.params.type,
+				Name: team.strTeam,
+				Badge: team.strTeamLogo,
+				Founded: team.intFormedYear,
+				Nation: team.strCountry,
+				Gender: formatPlayerGender(team.strGender),
+				Kit: team.strTeamJersey,
+				League: turnStringIntoAcrynom(team.strLeague),
+				Added: new Date(),
+			});
+		} else {
+			//* Make an API request to get the player's data
+			const playerData = await requestDataFromAPI(
+				'https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=',
+				req.params.id
+			);
+
+			//* Shorten player variable
+			const player = playerData.players[0];
+
+			//* Make another API request to get the player's team data
+			const playersTeamData = await requestDataFromAPI(
+				'https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=',
+				player.idTeam
+			);
+
+			const playersTeam = playersTeamData.teams[0];
+
+			//* Sort out which picture to store in the DB
+			let playerPic = null;
+			if (player.strCutout === null) playerPic = player.strRender;
+			else playerPic = player.strCutout;
+
+			const playerfavouriteInfo = {
+				ID: req.params.id,
+				Type: req.params.type,
+				Name: player.strPlayer,
+				Picture: playerPic,
+				Age: calculatePlayerAge(player.dateBorn),
+				Nation: player.strNationality,
+				Position: turnStringIntoAcrynom(player.strPosition),
+				Club: { Badge: playersTeam.strTeamBadge, name: playersTeam.strTeam },
+				Height: formatPlayerHeight(player.strHeight),
+				Gender: formatPlayerGender(player.strGender),
+				Added: new Date(),
+			};
+
+			req.user.favouritePlayers.push(playerfavouriteInfo);
 		}
+
+		req.user.save();
+		// }
 
 		checkTypeRedirect(req, res);
 	} catch (error) {
