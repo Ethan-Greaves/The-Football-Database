@@ -6,6 +6,7 @@ const express = require('express');
 //* Module Exports
 const merge = require('../ModuleExports/Sorting/MergeSort/merge');
 const mergeSort = require('../ModuleExports/Sorting/MergeSort/mergeSort');
+const countryFlags = require('../ModuleExports/CountryFlags');
 
 // #endregion
 
@@ -19,7 +20,7 @@ router.get(`/`, (req, res) => {
 		favourites = mergeSort(merge(req.user.favouritePlayers, req.user.favouriteTeams));
 	}
 
-	res.render('index.ejs', { favourites });
+	res.render('index.ejs', { favourites, countryFlags });
 });
 
 module.exports = router;

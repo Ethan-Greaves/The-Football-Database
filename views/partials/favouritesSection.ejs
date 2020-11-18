@@ -1,8 +1,8 @@
 <div class="row row-md">
     <u><h2 class="mb-4 col-4 favourites-title d-inline">Favourites</h2></u>
 
-    <% if (listOfFavourites.length > 0) { %>
-        <% if (listOfFavourites.length > 1) { %>
+    <% if (favourites.length > 0) { %>
+        <% if (favourites.length > 1) { %>
             <!-- *Remove ALL -->
             <form action="/favourites/deleteAll?_method=DELETE" method="POST" class="col-4 ml-4 mt-1 rm-all-btn mb-3 d-inline" onsubmit="return confirm('Are you sure you want to remove all?');">
                 <input type="submit" value="Remove All" class="btn btn-danger ">
@@ -11,55 +11,55 @@
 </div>
 
     <div class="row">
-        <% for( let i = listOfFavourites.length - 1; i >= 0; i--) { %>
+        <% for( let i = 0; i < favourites.length; i++) { %>
             <div class="col-9 col-xs-9 col-sm-8 col-md-6 col-lg-4 col-xl-4 mb-2 mt-4 favourites">
-                <% if (listOfFavourites[i].teams) { %>
-                    <% const team = listOfFavourites[i].teams[0]; %> 
+                <% if (favourites[i].Type === 'team') { %>
+                    <% const team = favourites[i] %> 
                     <!-- *Pass through team data -->
                     <%- include ("./favouritesCard.ejs", {
-                        name:               team.strTeam,
-                        flag:               countryFlags[team.strCountry],
-                        picture:            team.strTeamBadge,
-                        backupPicture:      team.strTeamBadge,
+                        name:               team.Name,
+                        flag:               countryFlags[team.Nation],
+                        picture:            team.Badge,
+                        backupPicture:      team.Badge,
                         info1Title:         "Fou:", 
-                        info1:              team.intFormedYear,
+                        info1:              team.Founded,
                         info2Title:         "Nat:", 
-                        info2:              team.strCountry.substr(0, 3),    
+                        info2:              team.Nation.substr(0, 3),    
                         info3Title:         "Gen:",
-                        info3:              formatPlayerGender(team.strGender),
+                        info3:              team.Gender,
                         info4Title:         "Kit:",
-                        info4:              teamKits[i],
+                        info4:              team.Kit,
                         pictureTooltip:     "",
                         info5Title:         "Lge:",
-                        info5:              turnStringIntoAcronym(team.strLeague),
+                        info5:              team.League,
                         info6Title:         "",
                         info6:              "",
-                        showLink:           `/teams/${team.idTeam}`,
-                        removeLink:         `/favourites/${team.idTeam}/deleteOnCard?_method=DELETE` 
+                        showLink:           `/teams/${team.ID}`,
+                        removeLink:         `/favourites/${team.ID}/deleteOnCard?_method=DELETE` 
                     }) %>
-                <% } else if (listOfFavourites[i].players) { %>
-                    <% const player = listOfFavourites[i].players[0]; %> 
+                <% } else { %>
+                    <% const player = favourites[i]; %> 
                     <!-- *Pass through player data -->
                     <%- include ("./favouritesCard.ejs", {
-                        name:               player.strPlayer,
-                        flag:               countryFlags[player.strNationality],
-                        picture:            player.strCutout,
-                        backupPicture:      player.strThumb,
+                        name:               player.Name,
+                        flag:               countryFlags[player.Nation],
+                        picture:            player.Picture,
+                        backupPicture:      player.Picture,
                         info1Title:         "Age:", 
-                        info1:              calculatePlayerAge(player.dateBorn),
+                        info1:              player.Age,
                         info2Title:         "Nat:", 
-                        info2:              player.strNationality.substr(0, 3),    
+                        info2:              player.Nation.substr(0, 3),    
                         info3Title:         "Pos:",
-                        info3:              turnStringIntoAcronym(player.strPosition),
+                        info3:              player.Position,
                         info4Title:         "Clb:",
-                        info4:              favPlayersTeam[i].badge,
-                        pictureTooltip:     favPlayersTeam[i].teamName,
+                        info4:              player.Club.Badge,
+                        pictureTooltip:     player.Club.name,
                         info5Title:         "Hei:",
-                        info5:              formatPlayerHeight(player.strHeight),
+                        info5:              player.Height,
                         info6Title:         "Gen:",
-                        info6:              formatPlayerGender(player.strGender),
-                        showLink:           `/players/${player.idPlayer}`,
-                        removeLink:         `/favourites/${player.idPlayer}/deleteOnCard?_method=DELETE`
+                        info6:              player.Gender,
+                        showLink:           `/players/${player.ID}`,
+                        removeLink:         `/favourites/${player.ID}/deleteOnCard?_method=DELETE`
                     }) %>
                 <% } %>
             </div>
