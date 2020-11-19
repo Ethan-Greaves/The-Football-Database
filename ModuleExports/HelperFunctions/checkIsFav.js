@@ -1,12 +1,17 @@
+// #region INITILISATION
+const merge = require('../Sorting/MergeSort/merge');
+// #endregion
+
 function checkIsFav(req) {
 	let isFav = false;
 
 	if (req.user) {
 		//* Merge the user favourites into one array. Doesnt have to be sorted.
+		const favourites = merge(req.user.favouritePlayers, req.user.favouriteTeams);
 
 		//* Loop through merged array
-		for (let i = 0; i < req.user.favourites.length; i++) {
-			if (req.user.favourites[i].ID === Number(req.params.id)) {
+		for (let i = 0; i < favourites.length; i++) {
+			if (favourites[i].ID === Number(req.params.id)) {
 				isFav = true;
 			}
 		}

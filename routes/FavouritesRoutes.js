@@ -6,6 +6,7 @@ const calculatePlayerAge = require('../ModuleExports/HelperFunctions/calculatePl
 const turnStringIntoAcrynom = require('../ModuleExports/HelperFunctions/turnStringIntoAcronym');
 const formatPlayerHeight = require('../ModuleExports/HelperFunctions/formatPlayerHeight');
 const formatPlayerGender = require('../ModuleExports/HelperFunctions/formatPlayerGender');
+const merge = require('../ModuleExports/Sorting/MergeSort/merge');
 
 // *Middleware
 const isLoggedIn = require(`../ModuleExports/Middleware/isLoggedIn`);
@@ -25,13 +26,19 @@ function removeFavourite(req) {
 	if (req.user) {
 		// *Obtain the ID of the favourite that needs to be removed
 		const favID = req.params.id;
-		const favs = req.user.favourites;
+		const favs = merge(req.user.favouritePlayers, req.user.favouriteTeams);
 		//* Loop through user's favourites
 		for (let i = 0; i < favs.length; i++) {
 			//* Identify the fav to be removed
 			if (favs[i].ID === Number(favID)) {
-				//* Cut out of array and save
-				favs.splice(i, 1);
+				//* Check type
+				if (favs[i].Type.toString() === 'team') {
+					//* Cut out of array
+					req.user.favouriteTeams.splice(i, 1);
+				} else {
+					req.user.favouritePlayers.splice(i, 1);
+				}
+
 				req.user.save();
 				break;
 			}
@@ -56,7 +63,7 @@ router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 				ID: req.params.id,
 				Type: req.params.type,
 				Name: team.strTeam,
-				Badge: team.strTeamLogo,
+				Badge: team.strTeamBadge,
 				Founded: team.intFormedYear,
 				Nation: team.strCountry,
 				Gender: formatPlayerGender(team.strGender),
@@ -82,16 +89,12 @@ router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 
 			const playersTeam = playersTeamData.teams[0];
 
-			//* Sort out which picture to store in the DB
-			let playerPic = null;
-			if (player.strCutout === null) playerPic = player.strRender;
-			else playerPic = player.strCutout;
-
 			const playerfavouriteInfo = {
 				ID: req.params.id,
 				Type: req.params.type,
 				Name: player.strPlayer,
-				Picture: playerPic,
+				Picture: player.strCutout,
+				BackupPicture: player.strThumb,
 				Age: calculatePlayerAge(player.dateBorn),
 				Nation: player.strNationality,
 				Position: turnStringIntoAcrynom(player.strPosition),
@@ -116,7 +119,8 @@ router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 // TODO reconfigure the routes to align with the user auth
 router.delete(`/deleteAll`, (req, res) => {
 	try {
-		req.user.favourites = [];
+		req.user.favouritePlayers = [];
+		req.user.favouriteTeams = [];
 		req.user.save();
 
 		// *Go back to the index page

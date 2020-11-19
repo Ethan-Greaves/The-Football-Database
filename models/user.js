@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
 			Type: String,
 			Name: String,
 			Picture: String,
+			BackupPicture: String,
 			Age: Number,
 			Nation: String,
 			Position: String,
