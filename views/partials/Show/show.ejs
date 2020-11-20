@@ -88,11 +88,11 @@
 	<% if (facebookLink || twitterLink || instagramLink) { %>
 	<div class="d-block mt-2">
 		<% if (facebookLink) { %>
-		<a href="https://<%= facebookLink %>"><i class="fab fa-facebook fa-lg"></i></a>
+		<a href="https://<%= facebookLink %>" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
 		<% } %> <% if (twitterLink) { %>
-		<a href="https://<%= twitterLink %>"><i class="fab fa-twitter fa-lg"></i></a>
+		<a href="https://<%= twitterLink %>" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
 		<% } %> <% if (instagramLink) { %>
-		<a href="https://<%= instagramLink %>"><i class="fab fa-instagram fa-lg"></i></a>
+		<a href="https://<%= instagramLink %>" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
 		<% } %>
 	</div>
 	<% } %>

@@ -1,5 +1,4 @@
 // #region INITILISATION
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -11,6 +10,7 @@ const playerRoutes = require(`./routes/PlayersRoutes`);
 const teamRoutes = require(`./routes/TeamsRoutes`);
 const favouritesRoutes = require(`./routes/FavouritesRoutes`);
 const authRoutes = require(`./routes/AuthRoutes`);
+const settingsRoutes = require('./routes/SettingsRoutes');
 
 const app = express();
 
@@ -46,6 +46,7 @@ app.use(indexRoutes);
 app.use(`/players`, playerRoutes);
 app.use(`/teams`, teamRoutes);
 app.use(`/favourites`, favouritesRoutes);
+app.use(`/settings`, settingsRoutes);
 app.use(authRoutes);
 // #endregion
 
