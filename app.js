@@ -37,6 +37,7 @@ app.use(passport.session());
 // #region MIDDLEWARE
 app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
+	res.locals.darkMode = req.session.darkMode;
 	next();
 });
 // #endregion

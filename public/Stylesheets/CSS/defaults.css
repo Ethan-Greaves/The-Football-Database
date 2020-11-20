@@ -8,22 +8,3 @@ body {
   background-size: auto;
   background-attachment: fixed;
 }
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-image: -webkit-gradient(linear, left bottom, right top, from(#161616), to(#161616));
-    background-image: linear-gradient(to top right, #161616, #161616);
-    color: white;
-  }
-  input[type="text"], input[type="password"], textarea {
-    background: #4b4a4a;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  body {
-    background-image: -webkit-gradient(linear, left bottom, right top, from(pink), to(purple));
-    background-image: linear-gradient(to top right, pink, purple);
-    color: white;
-  }
-}

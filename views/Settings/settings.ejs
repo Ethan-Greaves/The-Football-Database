@@ -9,12 +9,14 @@
 
     <u><h1 class="text-center">Settings</h1></u>
 
-    <p>dark mode is <%= darkMode %></p>
     <div class="settings">
         <form action="settings/configureSettings" method="POST">
             <label for="darkMode">Dark Mode</label>
-            <input type="checkbox" name="darkMode" id="darkMode">
-
+            <% if (darkMode) { %>
+                <input type="checkbox" name="darkMode" id="darkMode" checked>
+            <% } else { %>
+                <input type="checkbox" name="darkMode" id="darkMode">
+            <% } %> 
             <button type="submit" class="d-block mt-5 mx-auto btn btn-danger">Done</button>
         </form>
     </div>

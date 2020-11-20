@@ -14,20 +14,3 @@ body {
 	@include FormatBackground;
 }
 
-@media (prefers-color-scheme: dark) {
-	body {
-		background-image: linear-gradient(to top right, rgb(22, 22, 22), rgb(22, 22, 22));
-		color: white;
-    }
-    
-    input[type="text"], input[type="password"], textarea{
-        background: rgb(75, 74, 74);
-    }
-}
-
-@media (prefers-color-scheme: light) {
-	body {
-		background-image: linear-gradient(to top right, pink, purple);
-		color: white;
-	}
-}
