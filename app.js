@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const session = require('express-session');
+const flash = require('connect-flash');
 
 //* Routes
 const indexRoutes = require(`./routes/index`);
@@ -24,7 +26,7 @@ mongoose.connect(`mongodb://localhost/footballDatabase`, {
 
 //* Setup passport and the session
 app.use(
-	require(`express-session`)({
+	session({
 		secret: 'hello world',
 		resave: false,
 		saveUninitialized: false,
@@ -32,12 +34,16 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(flash());
 // #endregion
 
 // #region MIDDLEWARE
 app.use((req, res, next) => {
 	res.locals.currentUser = req.user;
 	res.locals.darkMode = req.session.darkMode;
+	res.locals.successMessage = req.flash('success');
+	res.locals.errorMessage = req.flash('error');
 	next();
 });
 // #endregion

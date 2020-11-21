@@ -1,0 +1,17 @@
+.error {
+  color: red;
+}
+
+.success {
+  color: lightgreen;
+}
+
+.info {
+  color: lightblue;
+}
+
+.error, .info, .success {
+  font-size: 80%;
+  opacity: 0.8;
+  font-weight: bold;
+}

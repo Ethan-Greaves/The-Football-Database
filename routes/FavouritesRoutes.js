@@ -32,7 +32,7 @@ function removeFavourite(req) {
 			//* Identify the fav to be removed
 			if (favs[i].ID === Number(favID)) {
 				//* Check type
-				if (favs[i].Type.toString() === 'team') {
+				if (favs[i].Type === 'team') {
 					//* Cut out of array
 					req.user.favouriteTeams.splice(i, 1);
 				} else {
@@ -106,10 +106,9 @@ router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 
 			req.user.favouritePlayers.push(playerfavouriteInfo);
 		}
-
 		req.user.save();
 		// }
-
+		req.flash('success', 'Favourite Added!');
 		checkTypeRedirect(req, res);
 	} catch (error) {
 		next(error);
@@ -137,6 +136,7 @@ router.delete(`/:id/deleteOnCard`, (req, res) => {
 
 router.delete(`/:id/deleteOnShow/:type`, (req, res) => {
 	removeFavourite(req);
+	req.flash('success', 'Favourite Removed!');
 	checkTypeRedirect(req, res);
 });
 
