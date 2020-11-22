@@ -55,8 +55,9 @@
 
 <%- include (`../navbar.ejs`) %>
 
-<div class="text-center container mb-5">
-	<p class="success">	<%= successMessage %> </p>
+<div class="text-center container mb-5"> 
+	<!-- * Flash message -->
+	<p class="success fade-out" id="message" ><%= successMessage %></p>
 
 	<!-- * Name title -->
 	<h1 class="mb-5 d-inline"><%= name %></h1>

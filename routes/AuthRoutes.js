@@ -21,10 +21,13 @@ router.get(`/login`, (req, res) => {
 router.post(
 	`/login`,
 	passport.authenticate(`local`, {
-		successRedirect: `/`,
 		failureRedirect: `/login`,
 		failureFlash: true,
-	})
+	}),
+	(req, res) => {
+		req.flash('success', `Welcome back, ${req.user.username}`);
+		res.redirect('/');
+	}
 );
 
 router.get(`/register`, (req, res) => {
@@ -42,7 +45,7 @@ router.post(`/register`, async (req, res, next) => {
 		//* Automatically log them in after registering
 		req.logIn(registeredUser, (error) => {
 			if (!error) {
-				req.flash('success', `Welcome, ${req.user.username}!`);
+				req.flash('success', `Thanks for joining, ${req.user.username}!`);
 				res.redirect('/');
 			} else next(error);
 		});
@@ -53,6 +56,7 @@ router.post(`/register`, async (req, res, next) => {
 });
 
 router.get(`/logout`, (req, res) => {
+	req.flash('success', `${req.user.username} successfully logged out`);
 	req.logOut();
 	res.redirect(`/`);
 });

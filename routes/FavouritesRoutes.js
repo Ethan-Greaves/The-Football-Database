@@ -108,7 +108,6 @@ router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 		}
 		req.user.save();
 		// }
-		req.flash('success', 'Favourite Added!');
 		checkTypeRedirect(req, res);
 	} catch (error) {
 		next(error);
@@ -136,7 +135,6 @@ router.delete(`/:id/deleteOnCard`, (req, res) => {
 
 router.delete(`/:id/deleteOnShow/:type`, (req, res) => {
 	removeFavourite(req);
-	req.flash('success', 'Favourite Removed!');
 	checkTypeRedirect(req, res);
 });
 

@@ -4,12 +4,15 @@
 		<%- include ("partials/Meta/defaultHeadData.ejs") %>
 		<!-- * -->
 		<link rel="stylesheet" href="/Stylesheets/CSS/index.css" />
+		<link rel="stylesheet" href="/Stylesheets/CSS/animations.css" />
+
+		<script src="/JavaScript/removeMessage.js"></script>
 	</head>
-	<body>
+	<body onload="removeMessage()">
 		<%- include ("partials/navbar.ejs") %>
 
 		<div class="container">
-			<p class="success"><%= successMessage %></p>
+			<p class="success fade-out" id="message" ><%= successMessage %></p>
 			<h1 class="text-center mt-4 mb-0 title">Welcome to The Football Database!</h1>
 			<h4 class="subTitle mt-1 mb-5">The hub of football knowledge</h4>
 

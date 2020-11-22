@@ -1,0 +1,20 @@
+@keyframes fade-out {
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+        opacity: 0;
+        display: none;
+	}
+}
+
+.fade-out {
+	animation-name: fade-out;
+    animation-duration: 5s;
+    animation-fill-mode: forwards;
+}
