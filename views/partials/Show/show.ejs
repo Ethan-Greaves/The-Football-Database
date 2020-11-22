@@ -3,51 +3,50 @@
 <!-- * ------------------------------------------------------------------------------------------ -->
 
 <% function gameInfo(gameInfo, badges, title, score){ %>
-	<u><h4 class="mb-4"><%= title %> </h4></u>
-	<% for( let i = 0; i < gameInfo.length; i++ ) { %>
-	<hr class="my-2" />
-	<div class="row">
-		<!-- * Match Date -->
-		<div class="col-6 text-right">
-			<p><%= swapFixtureDateAround(gameInfo[i].dateEvent) %></p>
-		</div>
-		<div class="col-6 text-left">
-			<p>KO: <%= gameInfo[i].strTime %></p>
-		</div>
+<u><h4 class="mb-4"><%= title %></h4></u>
+<% for( let i = 0; i < gameInfo.length; i++ ) { %>
+<hr class="my-2" />
+<div class="row">
+	<!-- * Match Date -->
+	<div class="col-6 text-right">
+		<p><%= swapFixtureDateAround(gameInfo[i].dateEvent) %></p>
 	</div>
+	<div class="col-6 text-left">
+		<p>KO: <%= gameInfo[i].strTime %></p>
+	</div>
+</div>
 
-	<!-- * Home team badge -->
-	<%= displayTeamBadge(badges[i].homeTeamData) %> 
+<!-- * Home team badge -->
+<%= displayTeamBadge(badges[i].homeTeamData) %>
 
-	<!-- * Score or "VS" -->
-	<% if (score) { %>
-		<span class="mx-4"><%= results[i].intHomeScore %> - <%= results[i].intAwayScore %></span>
-	<% } else { %>
-		<span class="mx-4">vs</span>
-	<% } %> 
-	
-	<!-- * Away team badge -->
-	<%= displayTeamBadge(badges[i].awayTeamData) %> 
+<!-- * Score or "VS" -->
+<% if (score) { %>
+<span class="mx-4"><%= results[i].intHomeScore %> - <%= results[i].intAwayScore %></span>
+<% } else { %>
+<span class="mx-4">vs</span>
+<% } %>
 
-	<!-- * Competition -->
-	<p class="mt-2"><%= gameInfo[i].strLeague %></p>
-	<% } %>
-<% } %> 
+<!-- * Away team badge -->
+<%= displayTeamBadge(badges[i].awayTeamData) %>
 
-
-<% function displayTeamBadge(teamData) { %>
-	<% if ("name" in teamData) { %>
-		<a href="/teams/<%= teamData.id %> ">
-			<img class="fixture-badges" src="<%= teamData.badge %>" alt="" data-toggle="tooltip"
-			data-placement="top" title="<%= teamData.name %> "/>
-		</a>
-	<% } else { %>
-		<img class="fixture-badges" src="<%= teamData.badge %>" alt="" />
-	<% } %> 
-<% } %> 
+<!-- * Competition -->
+<p class="mt-2"><%= gameInfo[i].strLeague %></p>
+<% } %> <% } %> <% function displayTeamBadge(teamData) { %> <% if ("name" in teamData) { %>
+<a href="/teams/<%= teamData.id %> ">
+	<img
+		class="fixture-badges"
+		src="<%= teamData.badge %>"
+		alt=""
+		data-toggle="tooltip"
+		data-placement="top"
+		title="<%= teamData.name %> "
+	/>
+</a>
+<% } else { %>
+<img class="fixture-badges" src="<%= teamData.badge %>" alt="" />
+<% } %> <% } %>
 
 <!-- * ------------------------------------------------------------------------------------------ -->
-
 
 <!-- * ------------------------------------------------------------------------------------------ -->
 <!-- * HTML -->
@@ -55,9 +54,9 @@
 
 <%- include (`../navbar.ejs`) %>
 
-<div class="text-center container mb-5"> 
+<div class="text-center container mb-5">
 	<!-- * Flash message -->
-	<p class="success fade-out" id="message" ><%= successMessage %></p>
+	<p class="success fade-out" id="message"><%= successMessage %></p>
 
 	<!-- * Name title -->
 	<h1 class="mb-5 d-inline"><%= name %></h1>
@@ -95,7 +94,9 @@
 		<% } %> <% if (twitterLink) { %>
 		<a href="https://<%= twitterLink %>" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
 		<% } %> <% if (instagramLink) { %>
-		<a href="https://<%= instagramLink %>" target="_blank"><i class="fab fa-instagram fa-lg"></i></a>
+		<a href="https://<%= instagramLink %>" target="_blank"
+			><i class="fab fa-instagram fa-lg"></i
+		></a>
 		<% } %>
 	</div>
 	<% } %>
@@ -186,18 +187,28 @@
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
 			<u><p><%= otherImgRightTitle %></p></u>
-			<% if (type === "player") { %>
-			<a href="<%= link %>">
-				<img
-					src="<%= otherImgRight %>"
-					alt=""
-					class="other-img-right"
-					data-toggle="tooltip"
-					data-placement="top"
-					title="<%= otherImgRightTooltip %> "
-				/>
-			</a>
-			<% } else { %>
+			<% if (type === "player") { %> 
+				<% if (link !== 'goToteam/null') { %>
+					<a href="<%= link %>">
+						<img
+							src="<%= otherImgRight %>"
+							alt=""
+							class="other-img-right"
+							data-toggle="tooltip"
+							data-placement="top"
+							title="<%= otherImgRightTooltip %> "
+						/>
+					</a>
+			<% } else {%>
+					<img
+						src="<%= otherImgRight %>"
+						alt=""
+						class="other-img-right"
+						data-toggle="tooltip"
+						data-placement="top"
+						title="<%= otherImgRightTooltip %> "
+					/>
+			<% } %> <% } else { %>
 			<img
 				src="<%= otherImgRight %>"
 				alt=""
@@ -217,7 +228,9 @@
 		<% for( let i = 0; i < smallData.length; i++ ) { %> <% if (!smallData[i].content) { %> <%
 		smallData[i].content = "N/A"; %> <% } %>
 		<div class="col-6 col-sm-4 col-md-3">
-			<u><strong><p class="d-block"><%= smallData[i].title %></p></strong></u>
+			<u
+				><strong><p class="d-block"><%= smallData[i].title %></p></strong></u
+			>
 			<p class="d-block"><%= smallData[i].content %></p>
 		</div>
 		<% } %>
@@ -246,14 +259,12 @@
 	<div class="row">
 		<div class="col-12 col-lg-6 mb-4">
 			<!-- * Results -->
-			<%= gameInfo(results, resultBadges, "Results", true) %> 
+			<%= gameInfo(results, resultBadges, "Results", true) %>
 		</div>
 		<div class="col-12 col-lg-6 mb-3">
 			<!-- * Fixtures -->
-			<%= gameInfo(fixtures, fixtureBadges, "Fixtures") %> 
+			<%= gameInfo(fixtures, fixtureBadges, "Fixtures") %>
 		</div>
 	</div>
 	<% } %>
 </div>
-
-

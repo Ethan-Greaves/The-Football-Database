@@ -34,15 +34,24 @@ router.post(`/`, async (req, res, next) => {
 
 router.get(`/:id`, async (req, res, next) => {
 	try {
+		let playersTeam = null;
+
 		playerData = await requestDataFromAPI(
 			`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=`,
 			req.params.id
 		);
 
-		const playersTeam = await requestDataFromAPI(
-			'https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=',
-			playerData.players[0].strTeam
-		);
+		//* Check if player has a club
+		if (
+			playerData.players[0].strTeam !== '_Retired Soccer' &&
+			playerData.players[0].strTeam !== '_Free Agent Soccer' &&
+			playerData.players[0].strTeam !== '_Deceased Soccer'
+		) {
+			playersTeam = await requestDataFromAPI(
+				'https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=',
+				playerData.players[0].strTeam
+			);
+		}
 
 		const isFav = checkIsFav(req);
 

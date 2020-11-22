@@ -6,7 +6,13 @@
 </head>
 <body>
     <% const player = playerData.players[0]; %> 
-    <% const team = playersTeam.teams[0]; %> 
+    <% let team %> 
+    <% if (playersTeam === null) { %>
+        <%  team = {strTeamBadge: 'https://www.clipartmax.com/png/middle/307-3077324_x-mark-cross-computer-icons-clip-art-red-cross-icon.png',
+                        strTeam: 'None', idTeam: null} %> 
+    <% } else { %>
+        <%  team = playersTeam.teams[0]; %> 
+    <% } %> 
     <% const smallData = [
                 {title: "Hometown:", content: player.strBirthLocation},
                 {title: "Age:", content: calculatePlayerAge(player.dateBorn)},
