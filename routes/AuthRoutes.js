@@ -1,16 +1,16 @@
 // #region INITIALISATION
 // *Express
 const PassportLocal = require(`passport-local`);
-const user = require(`../models/user`);
+const User = require(`../models/user`);
 const express = require('express');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
-passport.use(new PassportLocal(user.authenticate()));
-passport.serializeUser(user.serializeUser());
-passport.deserializeUser(user.deserializeUser());
+passport.use(new PassportLocal(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 // #endregion
 
 // #region ROUTES
@@ -35,8 +35,20 @@ router.post(`/register`, async (req, res, next) => {
 	try {
 		const { username, password } = req.body;
 		const user = new User({ username });
+
+		//* Register the user onto the database
+		const registeredUser = await User.register(user, password);
+
+		//* Automatically log them in after registering
+		req.logIn(registeredUser, (error) => {
+			if (!error) {
+				req.flash('success', `Welcome, ${req.user.username}!`);
+				res.redirect('/');
+			} else next(error);
+		});
 	} catch (error) {
-		next(error);
+		req.flash('error', error.message);
+		res.redirect('/register');
 	}
 });
 

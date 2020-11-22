@@ -3,9 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const localStrategy = require('passport-local');
+const LocalStrategy = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
+const User = require('./models/user');
 
 //* Routes
 const indexRoutes = require(`./routes/index`);
@@ -35,6 +36,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
 
 app.use(flash());
 // #endregion
