@@ -23,7 +23,7 @@ router.post(
 	passport.authenticate(`local`, {
 		successRedirect: `/`,
 		failureRedirect: `/login`,
-		// failureFlash: true, // optional, see text as well
+		failureFlash: true,
 	})
 );
 
@@ -33,10 +33,8 @@ router.get(`/register`, (req, res) => {
 
 router.post(`/register`, async (req, res, next) => {
 	try {
-		await user.register({ username: req.body.username }, req.body.password.toString());
-		await passport.authenticate(`local`)(req, res, () => {
-			res.redirect(`/`);
-		});
+		const { username, password } = req.body;
+		const user = new User({ username });
 	} catch (error) {
 		next(error);
 	}

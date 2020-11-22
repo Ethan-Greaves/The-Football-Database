@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const localStrategy = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
 
