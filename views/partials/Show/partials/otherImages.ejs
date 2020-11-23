@@ -1,0 +1,46 @@
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    <u><p>Nation:</p></u>
+    <img
+        class="mb-4"
+        src="<%= countryFlag %>"
+        alt="flag"
+        class="other-img-left"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="<%= otherImgLeftTooltip %> "
+    />
+</div>
+<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+    <u><p><%= otherImgRightTitle %></p></u>
+    <% if (type === "player") { %> 
+        <% if (link !== 'goToteam/null') { %>
+            <a href="<%= link %>">
+                <img
+                    src="<%= otherImgRight %>"
+                    alt=""
+                    class="other-img-right"
+                    data-toggle="tooltip"
+                    data-placement="top"
+                    title="<%= otherImgRightTooltip %> "
+                />
+            </a>
+    <% } else {%>
+            <img
+                src="<%= otherImgRight %>"
+                alt=""
+                class="other-img-right"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="<%= otherImgRightTooltip %> "
+            />
+    <% } %> <% } else { %>
+    <img
+        src="<%= otherImgRight %>"
+        alt=""
+        class="other-img-right"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="<%= otherImgRightTooltip %> "
+    />
+    <% } %>
+</div>

@@ -1,0 +1,52 @@
+<!-- * ------------------------------------------------------------------------------------------ -->
+<!-- * HELPER FUNCTION(S) -->
+<!-- * ------------------------------------------------------------------------------------------ -->
+
+<% function gameInfo(gameInfo, badges, title, score){ %>
+	<u><h4 class="mb-4"><%= title %></h4></u>
+	<% for( let i = 0; i < gameInfo.length; i++ ) { %>
+		<hr class="my-2" />
+		<div class="row">
+			<!-- * Match Date -->
+			<div class="col-6 text-right">
+				<p><%= swapFixtureDateAround(gameInfo[i].dateEvent) %></p>
+			</div>
+			<div class="col-6 text-left">
+				<p>KO: <%= gameInfo[i].strTime %></p>
+			</div>
+		</div>
+
+<!-- * Home team badge -->
+<%= displayTeamBadge(badges[i].homeTeamData) %>
+
+<!-- * Score or "VS" -->
+<% if (score) { %>
+<span class="mx-4"><%= results[i].intHomeScore %> - <%= results[i].intAwayScore %></span>
+<% } else { %>
+<span class="mx-4">vs</span>
+<% } %>
+
+<!-- * Away team badge -->
+<%= displayTeamBadge(badges[i].awayTeamData) %>
+
+<!-- * Competition -->
+<p class="mt-2"><%= gameInfo[i].strLeague %></p>
+<% } %> 
+<% } %> 
+
+<% function displayTeamBadge(teamData) { %> 
+	<% if ("name" in teamData) { %>
+		<a href="/teams/<%= teamData.id %> ">
+			<img
+				class="fixture-badges"
+				src="<%= teamData.badge %>"
+				alt=""
+				data-toggle="tooltip"
+				data-placement="top"
+				title="<%= teamData.name %> "
+			/>
+		</a>
+	<% } else { %>
+		<img class="fixture-badges" src="<%= teamData.badge %>" alt="" />
+	<% } %> 
+<% } %>

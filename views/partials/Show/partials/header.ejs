@@ -1,0 +1,44 @@
+<!-- * Name title -->
+<h1 class="mb-5 d-inline"><%= name %></h1>
+
+<!-- * Favourite button -->
+<% if (!isFav) { %>
+<form
+    action="/favourites/<%= id %>/<%= type %>"
+    method="POST"
+    class="d-inline"
+    id="favourite-icon"
+>
+    <button type="submit" class="favourite-button">
+        <i class="far fa-star fa-2x"></i>
+    </button>
+</form>
+<% } else { %>
+<form
+    action="/favourites/<%= id %>/deleteOnShow/<%= type %>?_method=DELETE"
+    method="POST"
+    class="d-inline"
+    id="favourite-icon"
+>
+    <button type="submit" class="favourite-button">
+        <i class="fas fa-star fa-2x"></i>
+    </button>
+</form>
+<% } %>
+
+<!-- * Social media icons -->
+<% if (facebookLink || twitterLink || instagramLink) { %>
+<div class="d-block mt-2">
+    <% if (facebookLink) { %>
+    <a href="https://<%= facebookLink %>" target="_blank"><i class="fab fa-facebook fa-lg"></i></a>
+    <% } %> <% if (twitterLink) { %>
+    <a href="https://<%= twitterLink %>" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
+    <% } %> <% if (instagramLink) { %>
+    <a href="https://<%= instagramLink %>" target="_blank"
+        ><i class="fab fa-instagram fa-lg"></i
+    ></a>
+    <% } %>
+</div>
+<% } %>
+
+<hr class="my-3" />
