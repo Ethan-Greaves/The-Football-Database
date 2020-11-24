@@ -1,8 +1,6 @@
 @import './Partials/BSScreenSizes';
 @import './Partials/alignment';
 
-
-
 .title{
     border-bottom: 1px solid white;
     border-bottom-width: 80% !important;
@@ -24,4 +22,33 @@
     @media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
        @include horizontal-align;
       }
+}
+
+@media only screen and (max-width: map-get($Bootstrap-screen-sizes, extra-small)){
+    .favourites-header{
+        text-align: center !important;
+        margin: auto;
+        display: block;
+    }
+
+    .favourites-title{
+        margin-bottom: 2em;
+    }
+    
+}
+
+@media only screen and (max-width: map-get($Bootstrap-screen-sizes, extra-extra-small)){
+    .card-info{
+        font-size: 78%;
+    }
+}
+
+@media only screen and (max-width: map-get($Bootstrap-screen-sizes, tiny)){
+    .card-info{
+        font-size: 60%;
+    }
+
+    .card{
+        width: 100% !important;
+    }
 }

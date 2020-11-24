@@ -20,3 +20,29 @@
     margin: auto;
   }
 }
+
+@media only screen and (max-width: 575px) {
+  .favourites-header {
+    text-align: center !important;
+    margin: auto;
+    display: block;
+  }
+  .favourites-title {
+    margin-bottom: 2em;
+  }
+}
+
+@media only screen and (max-width: 376px) {
+  .card-info {
+    font-size: 78%;
+  }
+}
+
+@media only screen and (max-width: 321px) {
+  .card-info {
+    font-size: 60%;
+  }
+  .card {
+    width: 100% !important;
+  }
+}

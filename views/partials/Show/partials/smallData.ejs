@@ -1,11 +1,11 @@
 <div class="row small-data mb-5">
-    <% for( let i = 0; i < smallData.length; i++ ) { %> <% if (!smallData[i].content) { %> <%
-    smallData[i].content = "N/A"; %> <% } %>
-    <div class="col-6 col-sm-4 col-md-3">
-        <u
-            ><strong><p class="d-block"><%= smallData[i].title %></p></strong></u
-        >
-        <p class="d-block"><%= smallData[i].content %></p>
-    </div>
-    <% } %>
+    <% for( let i = 0; i < smallData.length; i++ ) { %> 
+        <% if (!smallData[i].content) { %> <%
+            smallData[i].content = "N/A"; %> 
+        <% } %>
+        <div class="col-12 col-sm-6 col-md-3">
+            <u><p class="d-block"><%= smallData[i].title %></p></u>
+            <p class="d-block"><%= smallData[i].content %></p>
+        </div>
+        <% } %>
 </div>

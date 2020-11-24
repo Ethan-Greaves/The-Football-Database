@@ -123,6 +123,9 @@ hr {
   .slideshow {
     margin-top: 1.5em;
   }
+  .game-info-title {
+    margin-top: 5em;
+  }
 }
 
 @media only screen and (max-width: 992px) {

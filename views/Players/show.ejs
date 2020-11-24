@@ -13,6 +13,10 @@
     <% } else { %>
         <%  team = playersTeam.teams[0]; %> 
     <% } %> 
+    <% let playerProfilePic = player.strCutout %>
+    <% if (playerProfilePic === null) { %>
+        <% playerProfilePic = player.strThumb %> 
+    <% } %> 
     <% const smallData = [
                 {title: "Hometown:", content: player.strBirthLocation},
                 {title: "Age:", content: calculatePlayerAge(player.dateBorn)},
@@ -33,7 +37,7 @@
         instagramLink:          player.strInstagram,
         description:            player.strDescriptionEN,
         countryFlag:            countryFlags[player.strNationality],
-        img:                    player.strCutout,
+        img:                    playerProfilePic,
         type:                   "player",
         carouselImg1:           player.strThumb,
         carouselImg2:           player.strRender,

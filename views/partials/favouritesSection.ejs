@@ -1,10 +1,10 @@
-<div class="row row-md">
-    <u><h2 class="mb-4 col-4 favourites-title d-inline">Favourites</h2></u>
+<div class="row favourites-header">
+    <u><h2 class="mb-4 mx-auto col-12 col-md-6 d-inline favourites-title">Favourites</h2></u>
 
     <% if (favourites.length > 0) { %>
         <% if (favourites.length > 1) { %>
             <!-- *Remove ALL -->
-            <form action="/favourites/deleteAll?_method=DELETE" method="POST" class="col-4 ml-4 mt-1 rm-all-btn mb-3 d-inline" onsubmit="return confirm('Are you sure you want to remove all?');">
+            <form action="/favourites/deleteAll?_method=DELETE" method="POST" class="col-6 d-inline mt-1 rm-all-btn" onsubmit="return confirm('Are you sure you want to remove all?');">
                 <input type="submit" value="Remove All" class="btn btn-danger ">
             </form>
         <% } %>
@@ -12,7 +12,7 @@
 
     <div class="row">
         <% for( let i = 0; i < favourites.length; i++) { %>
-            <div class="col-9 col-xs-9 col-sm-8 col-md-6 col-lg-4 col-xl-4 mb-2 mt-4 favourites">
+            <div class="col-11 col-sm-9 col-md-6 col-lg-5 col-xl-4 mb-2 mt-4 favourites">
                 <% if (favourites[i].Type === 'team') { %>
                     <% const team = favourites[i] %> 
                     <!-- *Pass through team data -->

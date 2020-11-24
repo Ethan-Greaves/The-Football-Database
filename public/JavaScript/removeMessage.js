@@ -5,7 +5,6 @@ function removeMessage() {
 	const style = getComputedStyle(element);
 	//* animation duration = "5s" split in half to remove the 's' and get the number
 	const counter = style.animationDuration.split('')[0];
-	console.log(counter);
 
 	setTimeout(() => {
 		successMessage.remove();

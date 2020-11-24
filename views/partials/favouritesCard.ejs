@@ -1,47 +1,77 @@
 <head>
-  <link rel="stylesheet" href="/Stylesheets/CSS/favouriteCard.css">
+	<link rel="stylesheet" href="/Stylesheets/CSS/favouriteCard.css" />
 </head>
 
 <div class="card border-dark favourite">
-  <!-- *Name -->
-  <h5 class="card-title mx-auto mt-2"><%= name %> </h5>
+	<!-- *Name -->
+	<h5 class="card-title mx-auto mt-2"><%= name %></h5>
 
-    <!-- * Picture(s) -->
-    <!-- TODO Add secondary picture -->
-    <div class="parent">
-      <% if (picture) { %>
-        <img src="<%=flag%>" alt="" class="flagImage">
-        <img class="card-img-top img-responsive cutoutImage" src="<%= picture %>">
-      <% } else if (backupPicture) {%>
-        <img class="card-img-top img-responsive imageBackup" src="<%= backupPicture %>">
-      <% } else { %>
-        <img class="card-img-top img-responsive imageBackup" src="Images/playerResultsPlaceholder.jpg">
-      <% } %> 
-    </div>
-    
-    <!-- * Stats/Info -->
-    <div class="card-body">
-      <div class="">
-        <div class="row mx-auto border-top border-dark pt-3">
-          <div class="col"><span class="mr-4"><%= info1Title %></span><strong><%= info1 %> </strong></div>
-          <div class="col"><span class="mr-4"><%= info2Title %></span><strong><%= info2 %> </strong></div>
-          <div class="w-100"></div>
-          <div class="col"><span class="mr-4"><%= info3Title %></span><strong><%= info3 %></strong></div>
-          <div class="col"><span class="mr-4"><%= info4Title %></span><strong><img class="clubBadge" src="<%= info4 %>" alt="" 
-            data-toggle="tooltip" data-placement="right" title="<%= pictureTooltip %> "></strong></div>
-          <div class="w-100"></div>
-          <div class="col"><span class="mr-4"><%= info5Title %></span><strong><%= info5 %></strong></div>
-          <div class="col"><span class="mr-4"><%= info6Title %></span><strong><%= info6 %></strong></div>
-        </div>
-      </div>
-    </div>
+	<!-- * Picture(s) -->
+	<!-- TODO Add secondary picture -->
+	<div class="parent">
+		<% if (picture) { %>
+		  <img src="<%=flag%>" alt="" class="flagImage" />
+		  <img class="card-img-top img-responsive cutoutImage" src="<%= picture %>" />
+		<% } else if (backupPicture) {%>
+		  <img class="card-img-top img-responsive imageBackup" src="<%= backupPicture %>" />
+		<% } else { %>
+      <img
+        class="card-img-top img-responsive imageBackup"
+        src="Images/playerResultsPlaceholder.jpg"
+      />
+		<% } %>
+	</div>
 
-    <!-- * Buttons -->
-    <div class="card-footer mx-auto">
-      <a href="<%= showLink %>" id="left" class="btn btn-primary d-inline mb-1 favourite-button">See More...</a>
+	<!-- * Stats/Info -->
+	<div class="card-body">
+		<div class="">
+			<div class="row border-top border-dark pt-3 mx-auto card-info">
+				<div class="col">
+					<span class="mr-4"><%= info1Title %></span><strong><%= info1 %> </strong>
+				</div>
+				<div class="col">
+					<span class="mr-4"><%= info2Title %></span><strong><%= info2 %> </strong>
+				</div>
+				<div class="w-100"></div>
+				<div class="col">
+					<span class="mr-4"><%= info3Title %></span><strong><%= info3 %></strong>
+				</div>
+				<div class="col">
+					<span class="mr-4"><%= info4Title %></span
+					><strong
+						><img
+							class="clubBadge"
+							src="<%= info4 %>"
+							alt=""
+							data-toggle="tooltip"
+							data-placement="right"
+							title="<%= pictureTooltip %> "
+					/></strong>
+				</div>
+				<div class="w-100"></div>
+				<div class="col">
+					<span class="mr-4"><%= info5Title %></span><strong><%= info5 %></strong>
+				</div>
+				<div class="col">
+					<span class="mr-4"><%= info6Title %></span><strong><%= info6 %></strong>
+				</div>
+			</div>
+		</div>
+	</div>
 
-      <form action="<%= removeLink %>" method="POST" class="d-inline">
-        <input type="submit" value="Remove" id="right" class="btn btn-danger d-inline favourite-button">
-      </form>
-    </div>
+	<!-- * Buttons -->
+	<div class="card-footer mx-auto">
+		<a href="<%= showLink %>" id="left" class="btn btn-primary d-inline mb-1 favourite-button"
+			>See More...</a
+		>
+
+		<form action="<%= removeLink %>" method="POST" class="d-inline">
+			<input
+				type="submit"
+				value="Remove"
+				id="right"
+				class="btn btn-danger d-inline favourite-button"
+			/>
+		</form>
+	</div>
 </div>
