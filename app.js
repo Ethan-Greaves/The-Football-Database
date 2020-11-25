@@ -19,7 +19,10 @@ const authRoutes = require(`./routes/AuthRoutes`);
 const settingsRoutes = require('./routes/SettingsRoutes');
 
 const app = express();
-dotenv.config();
+
+if (process.env.NODE_ENV !== 'production') {
+	dotenv.config();
+}
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
