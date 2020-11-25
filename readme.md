@@ -31,9 +31,9 @@ The Football Database is a web application created using Node.js/Express. Users 
   Searching:
 </p>
 <p float="left">
-  <img src="./Readme/Gifs/AddingFavourites.gif" width="300" /> &nbsp;&nbsp;
-  <img src="./Readme/Gifs/Authentication.gif" width="300" /> &nbsp;&nbsp;
-  <img src="./Readme/Gifs/Searching.gif" width="300" />
+  <img src="./Readme/Gifs/AddingFavourites.gif" width="350" /> &nbsp;&nbsp;
+  <img src="./Readme/Gifs/Authentication.gif" width="350" /> &nbsp;&nbsp;
+  <img src="./Readme/Gifs/Searching.gif" width="350" />
 </p>
 
 
