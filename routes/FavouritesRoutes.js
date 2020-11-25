@@ -49,7 +49,6 @@ function removeFavourite(req) {
 
 router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 	try {
-		// if (!req.user.favourites.filter((fav) => fav.ID === req.params.id).length > 0) {
 		//* push the favourite onto their schema
 		if (req.params.type === 'team') {
 			const teamData = await requestDataFromAPI(
@@ -107,7 +106,6 @@ router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 			req.user.favouritePlayers.push(playerfavouriteInfo);
 		}
 		req.user.save();
-		// }
 		checkTypeRedirect(req, res);
 	} catch (error) {
 		next(error);
