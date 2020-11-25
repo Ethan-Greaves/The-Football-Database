@@ -14,6 +14,7 @@
     <% teamData.teams.forEach((team) => { %>
         <%- include ("../partials/Results/Results.ejs", 
         {
+            countryFlags:       null,
             link:               `teams`,
             id:                 team.idTeam,  
             sport:              team.strSport,

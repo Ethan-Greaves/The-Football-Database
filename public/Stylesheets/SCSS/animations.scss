@@ -8,13 +8,13 @@
 	}
 
 	100% {
-        opacity: 0;
-        display: none;
+		opacity: 0;
+		display: none;
 	}
 }
 
 .fade-out {
 	animation-name: fade-out;
-    animation-duration: 5s;
-    animation-fill-mode: forwards;
+	animation-duration: 5s;
+	animation-fill-mode: forwards;
 }

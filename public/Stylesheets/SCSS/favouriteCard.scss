@@ -1,74 +1,66 @@
-.favourite
-{
-    color: black;
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
-    border-radius: 20px !important;
-    border-left: 2px solid black !important;
-    border-right: 2px solid black !important;
+.favourite {
+	color: black;
+	box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
+	border-radius: 20px !important;
+	border-left: 2px solid black !important;
+	border-right: 2px solid black !important;
 }
-.favourite-button{
-    padding-top: 5px;
-    padding-bottom: 5px;
+.favourite-button {
+	padding-top: 5px;
+	padding-bottom: 5px;
 }
 
 .card-img-top {
-    max-height: 220px !important;
-    //max-width: 150px !important;
-    object-fit: scale-down;
-    background-color: rgba(255, 255, 255, 0);
+	max-height: 220px !important;
+	object-fit: scale-down;
+	background-color: rgba(255, 255, 255, 0);
 }
 
-.card-title{
-    border-bottom: 1px solid white;
+.card-title {
+	border-bottom: 1px solid white;
 }
 
-.card{
-    background-image: linear-gradient(
-        to top right,
-        white,
-        white,
-        gold,
-        white
-    );
+.card {
+	background-image: linear-gradient(to top right, white, white, gold, white);
 }
 
 .parent {
-    position: relative;
-  }
+	position: relative;
+}
 
-  .flagImage {
-    position: relative;
-    object-fit: fill;
-    width: 100%;
-    height: 225px !important;
-    z-index: 0;
-    opacity: 0.8;
-  }
+.flagImage {
+	position: relative;
+	object-fit: fill;
+	width: 100%;
+	height: 225px !important;
+	z-index: 0;
+	opacity: 0.8;
+}
 
-  .cutoutImage {
-    position: absolute;
-    width: 100%;
-    height: auto;
-    z-index: 3;
-    left: 0;
-    bottom: 0;
-    object-fit: contain;
-    overflow: hidden;
-  }
+.cutoutImage {
+	position: absolute;
+	width: 100%;
+	height: auto;
+	z-index: 3;
+	left: 0;
+	bottom: 0;
+	object-fit: contain;
+	overflow: hidden;
+}
 
-  .imageBackup{
-      width: 100%;
-      position: relative;
-      height: 225px !important;
-      object-fit: contain;
-      //border: 2px solid black !important;
-  }
+.imageBackup {
+	width: 100%;
+	position: relative;
+	height: 225px !important;
+	object-fit: contain;
+	//border: 2px solid black !important;
+}
 
-  .border-top{
-      border-width: 1.5px !important;
-  }
+.border-top {
+	border-width: 1.5px !important;
+}
 
-  .clubBadge{
-      width: 24px !important;
-      height: 24px;
-  }
+.clubBadge {
+	width: 24px !important;
+	height: 24px;
+}

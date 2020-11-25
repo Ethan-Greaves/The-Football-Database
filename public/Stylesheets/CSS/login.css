@@ -5,7 +5,7 @@
           box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
   border: 2px solid black;
   width: 25em;
-  height: 500px !important;
+  height: 475px !important;
   margin: 0;
   position: absolute;
   top: 350px;
@@ -30,9 +30,10 @@
   font-size: 80%;
 }
 
-input[type=text], input[type=password] {
+input[type='text'],
+input[type='password'] {
   width: 90%;
-  height: 36px;
+  height: 38px;
 }
 
 input:invalid {
@@ -43,10 +44,11 @@ input:valid {
   border: 2px solid green;
 }
 
-.form-check-label, .forgot-password {
+.form-check-label,
+.forgot-password {
   font-size: 80%;
 }
 
 .form-check-input {
-  margin-top: .43rem !important;
+  margin-top: 0.43rem !important;
 }

@@ -17,7 +17,7 @@
                     <div class="row no-gutters align-items-center">
                         <!-- * Name -->
                         <div class="col-4 text-center border-secondary border">
-                            <strong><p><%= firstTitle.substring(0,16); %> </p></strong>
+                            <strong><p><%= firstTitle.substring(0,18); %> </p></strong>
                         </div>
                         <!-- * Team -->
                         <div class="col-4 text-center border-secondary border">
@@ -28,8 +28,12 @@
                         </div>
                         <!-- * Nation -->
                         <div class="col-4 text-center ">
-                            <img class="d-inline flag mr-1" src="<%= countryFlags[thirdTitle] %> " alt="">
-                            <strong><p class="d-inline"><%= thirdTitle.substring(0,16); %> </p></strong>
+                            <% if (countryFlags) { %>
+                                <img class="d-inline flag mr-1" src="<%= countryFlags[thirdTitle] %> " alt="">
+                                <strong><p class="d-inline"><%= thirdTitle.substring(0,16); %> </p></strong>
+                            <% } else { %>
+                                <strong><p><%= thirdTitle.substring(0,16); %> </p></strong>
+                            <% } %> 
                         </div>
                         <!-- * Description -->
                         <div class="col-12 border-secondary border">

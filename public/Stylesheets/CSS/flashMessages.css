@@ -10,7 +10,9 @@
   color: lightblue;
 }
 
-.error, .info, .success {
+.error,
+.info,
+.success {
   font-size: 80%;
   opacity: 0.8;
   font-weight: bold;

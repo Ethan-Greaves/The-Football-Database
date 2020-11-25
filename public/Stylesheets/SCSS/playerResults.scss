@@ -4,53 +4,51 @@
 @import './Partials/colours';
 
 /** used to restyle size of images */
-.resize{
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover;
+.resize {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover;
 
-    @media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
-        //width: 70% !important;
-        height: 70%;
-      }
+	@media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
+		//width: 70% !important;
+		height: 70%;
+	}
 }
 
-.responsive-border-image{
-  border-right: 1px solid black !important;
+.responsive-border-image {
+	border-right: 1px solid black !important;
 
-  // @media only screen and (max-width: map-get($Bootstrap-screen-sizes, extra-small)){
-  //   border-bottom: 1px solid black !important;
-  // }
+	// @media only screen and (max-width: map-get($Bootstrap-screen-sizes, extra-small)){
+	//   border-bottom: 1px solid black !important;
+	// }
 }
 
-a{
-  color: inherit;
-   &:hover{
-     color: inherit;
-     text-decoration: none;
-   }
+a {
+	color: inherit;
+	&:hover {
+		color: inherit;
+		text-decoration: none;
+	}
 }
 
-.result-card{
-  //border-radius: 20px;
+.result-card {
+	//border-radius: 20px;
 
-  background-image: linear-gradient(
-        to top left,
-        rgb(15, 15, 15),
-        rgb(15, 15, 15),
-        rgb(15, 15, 15),
-        gold
-    );
-
-    //background-color: lightgoldenrodyellow;
+	background-image: linear-gradient(
+		to top left,
+		rgb(15, 15, 15),
+		rgb(15, 15, 15),
+		rgb(15, 15, 15),
+		gold
+	);
 }
 
-.result-img{
-  max-height: 200px !important;
-  object-fit: scale-down;
+.result-img {
+	max-height: 200px !important;
+	object-fit: scale-down;
 }
 
-.flag{
-  width: 1.5em;
-  height: 1em;
+.flag {
+	width: 1.5em;
+	height: 1em;
 }

@@ -74,7 +74,8 @@ a .fa-instagram:hover {
   margin-top: 2.25em;
 }
 
-.other-img-right, .other-img-left {
+.other-img-right,
+.other-img-left {
   height: 155px;
   width: auto;
 }
@@ -109,13 +110,14 @@ hr {
 }
 
 @media only screen and (max-width: 575px) {
-  .profile-img, .slideshow {
+  .profile-img,
+  .slideshow {
     width: 50%;
     margin: auto;
     margin-bottom: 2em;
   }
   .fa-star {
-    margin-top: .5em;
+    margin-top: 0.5em;
   }
   .scrollBox {
     height: 300px;

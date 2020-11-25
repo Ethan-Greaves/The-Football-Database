@@ -1,11 +1,11 @@
 @import './Partials/alignment';
 @import './Partials/BSScreenSizes';
 
-.error-page{
-    @include vertical-align;
-    text-align: center;
+.error-page {
+	@include vertical-align;
+	text-align: center;
 
-    @media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
-        font-size: smaller;
-       }
+	@media only screen and (max-width: map-get($Bootstrap-screen-sizes, medium)) {
+		font-size: smaller;
+	}
 }

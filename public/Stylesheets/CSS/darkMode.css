@@ -4,6 +4,8 @@ body {
   color: white;
 }
 
-input[type="text"], input[type="password"], textarea {
+input[type='text'],
+input[type='password'],
+textarea {
   background: #4b4a4a;
 }

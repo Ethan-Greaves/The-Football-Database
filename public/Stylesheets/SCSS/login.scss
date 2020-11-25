@@ -1,52 +1,51 @@
 @import './Partials/alignment';
 @import './Partials/BSScreenSizes';
 
-.jumbotron{
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.65);
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
-    border: 2px solid black;
-    width: 25em;
-    height: 500px !important;
-    //position: absolute;
-    @include align-form-vertically;
-
+.jumbotron {
+	text-align: center;
+	background-color: rgba(0, 0, 0, 0.65);
+	box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.4), 0 6px 30px 0 rgba(0, 0, 0, 0.4);
+	border: 2px solid black;
+	width: 25em;
+	height: 475px !important;
+	@include align-form-vertically;
 }
 
-#title{
-    font-weight: bold;
-    //font-size: 100%;
+#title {
+	font-weight: bold;
 }
 
-.text{
-    position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+.text {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
 }
 
-#altAuthLink{
-    font-size: 80%;
+#altAuthLink {
+	font-size: 80%;
 }
 
-input[type=text], input[type=password]{
-    width: 90%;
-    height: 36px;
+input[type='text'],
+input[type='password'] {
+	width: 90%;
+	height: 38px;
 }
 
-input:invalid{
-    border: 2px solid red;
+input:invalid {
+	border: 2px solid red;
 }
 
-input:valid{
-    border: 2px solid green;
+input:valid {
+	border: 2px solid green;
 }
 
-.form-check-label, .forgot-password{
-   font-size: 80%;
+.form-check-label,
+.forgot-password {
+	font-size: 80%;
 }
 
-.form-check-input{
-    margin-top: .43rem !important;
+.form-check-input {
+	margin-top: 0.43rem !important;
 }
