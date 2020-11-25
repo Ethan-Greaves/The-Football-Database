@@ -90,6 +90,7 @@ const countryFlags = {
     "United States":                "https://cdn.countryflags.com/thumbs/united-states-of-america/flag-wave-250.png",
     USA:                            "https://cdn.countryflags.com/thumbs/united-states-of-america/flag-wave-250.png",
     Uruguay:                        "https://cdn.countryflags.com/thumbs/uruguay/flag-wave-250.png",
+    "United Kingdom":               "https://cdn.countryflags.com/thumbs/united-kingdom/flag-wave-500.png",
     Venezuela:                      "https://cdn.countryflags.com/thumbs/venezuela/flag-wave-250.png",
     Scotland:                       "https://cdn.countryflags.com/thumbs/scotland/flag-wave-250.png",
     "Northern Ireland":             "https://cdn.countryflags.com/thumbs/northern-ireland/flag-wave-250.png",

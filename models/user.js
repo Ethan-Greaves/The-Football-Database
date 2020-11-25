@@ -7,12 +7,6 @@ const PLM = require('passport-local-mongoose');
 const userSchema = new mongoose.Schema({
 	username: String,
 	password: String,
-	// favourites: [{type: mongoose.Schema.Types.ObjectId, ref: 'Favourites'}]
-	favourites: [
-		{
-			ID: Number,
-		},
-	],
 
 	favouritePlayers: [
 		{

@@ -19,7 +19,6 @@ router.get(`/`, (req, res) => {
 	if (req.user) {
 		favourites = mergeSort(merge(req.user.favouritePlayers, req.user.favouriteTeams));
 	}
-	// console.log(favourites);
 	res.render('index.ejs', { favourites, countryFlags });
 });
 

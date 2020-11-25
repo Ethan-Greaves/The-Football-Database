@@ -2,12 +2,14 @@
 /** used to restyle size of images */
 .resize {
   width: 100% !important;
-  height: auto !important;
+  height: 100% !important;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media only screen and (max-width: 768px) {
   .resize {
-    width: 100% !important;
+    height: 70%;
   }
 }
 
@@ -25,13 +27,17 @@ a:hover {
 }
 
 .result-card {
-  border-radius: 20px;
-  background-image: -webkit-gradient(linear, left bottom, right top, from(blue), to(black));
-  background-image: linear-gradient(to top right, blue, black);
+  background-image: -webkit-gradient(linear, right bottom, left top, from(#0f0f0f), color-stop(#0f0f0f), color-stop(#0f0f0f), to(gold));
+  background-image: linear-gradient(to top left, #0f0f0f, #0f0f0f, #0f0f0f, gold);
 }
 
 .result-img {
   max-height: 200px !important;
   -o-object-fit: scale-down;
      object-fit: scale-down;
+}
+
+.flag {
+  width: 1.5em;
+  height: 1em;
 }

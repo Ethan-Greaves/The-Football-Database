@@ -9,14 +9,11 @@ const calculatePlayerAge = require('../ModuleExports/HelperFunctions/calculatePl
 const router = express.Router();
 // #endregion
 
-// TODO This is a global variable, kind of okay because separation of concern has been used with routes so not really global global, but might be a better way
 let playerData;
 
 router.get(`/`, (req, res) => {
-	//* Gather the players team data
-
 	//* Go to the show page and pass through the json data
-	res.render(`Players/results.ejs`, { playerData });
+	res.render(`Players/results.ejs`, { playerData, countryFlags });
 });
 
 router.post(`/`, async (req, res, next) => {
