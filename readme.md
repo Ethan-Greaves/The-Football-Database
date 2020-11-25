@@ -20,21 +20,19 @@ The Football Database is a web application created using Node.js/Express. Users 
 * Embedded JavaScript (EJS)
 * Node.js
 * Express
-* MongodDB
+* MongoDB
 * Mongoose
 * Fetch
 
 ## Visuals 🎬
-<p float="left">
-  Adding favourites:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  Authentication:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  Searching:
-</p>
-<p float="left">
-  <img src="./Readme/Gifs/AddingFavourites.gif" width="300" /> &nbsp;&nbsp;
-  <img src="./Readme/Gifs/Authentication.gif" width="300" /> &nbsp;&nbsp;
-  <img src="./Readme/Gifs/Searching.gif" width="300" />
-</p>
+<p>Add any team or player to your favourites:</p>
+<img src="./Readme/Gifs/AddingFavourites.gif" width="auto" />
+
+<p>Register, login and logout:</p>
+<img src="./Readme/Gifs/Authentication.gif" width="auto" />
+
+<p>Search across the app to find anything or anyone:</p>
+<img src="./Readme/Gifs/Searching.gif" width="auto" />
 
 
 ## Setup ⚙️
