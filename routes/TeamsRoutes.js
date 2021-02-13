@@ -34,22 +34,22 @@ router.get(`/:id`, async (req, res, next) => {
 				req.params.id
 			),
 		]);
-		const fixtures = teamFixturesData.events;
-		const { results } = teamResultsData;
+		// const fixtures = teamFixturesData.events;
+		// const { results } = teamResultsData;
 		const isFav = checkIsFav(req);
-		const resultBadges = await acquireHomeAwayTeamInfo(results, singleTeamData);
-		const fixtureBadges = await acquireHomeAwayTeamInfo(fixtures, singleTeamData);
+		// const resultBadges = await acquireHomeAwayTeamInfo(results, singleTeamData);
+		// const fixtureBadges = await acquireHomeAwayTeamInfo(fixtures, singleTeamData);
 
 		//* Render show page and pass through the team data
 		res.render(`Teams/show.ejs`, {
 			teamData: singleTeamData,
 			isFav,
 			countryFlags,
-			fixtures,
-			results,
+			// fixtures,
+			// results,
 			swapFixtureDateAround,
-			resultBadges,
-			fixtureBadges,
+			// resultBadges,
+			// fixtureBadges,
 		});
 	} catch (error) {
 		next(error);
