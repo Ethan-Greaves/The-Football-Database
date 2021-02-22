@@ -2,34 +2,33 @@
 
 <div class="text-center container mb-5">
 	<!-- * Header -->
-	<%- include ('./partials/header.ejs') %> 
+	<%- include ('./partials/header.ejs') %>
 
 	<!-- * Profile image and description -->
-	<%- include ('./partials/image&description.ejs') %> 
+	<%- include ('./partials/image&description.ejs') %>
 
 	<div class="row mt-4">
 		<!-- * Carousel images -->
-		<%- include ('./partials/carouselImages.ejs') %> 
+		<%- include ('./partials/carouselImages.ejs') %>
 
 		<!-- * Other images -->
-		<%- include ('./partials/otherImages.ejs') %> 
+		<%- include ('./partials/otherImages.ejs') %>
 	</div>
 
 	<hr class="my-5" />
 
 	<!-- * Small data -->
-	<%- include ('./partials/smallData.ejs') %> 
+	<%- include ('./partials/smallData.ejs') %>
 
 	<!-- * Exclusive Team Data -->
 	<!-- * Contains data such as fixtures, results and stadium info which a player does not have -->
 	<% if (type === "team") { %>
-		<hr class="mt-5 mb-3" />
-		<!-- * Stadium Data -->
-		<%- include ('./partials/stadiumData.ejs') %> 
+	<hr class="mt-5 mb-3" />
+	<!-- * Stadium Data -->
+	<%- include ('./partials/stadiumData.ejs') %>
 
-		<hr class="mt-5" />
+	<hr class="mt-5" />
 
-		<!-- * Game info -->
-		<%- include ('./partials/gameInfo.ejs')  %> 
-	<% } %>
+	<!-- * Game info -->
+	<%- include ('./partials/gameInfo.ejs') %> <% } %>
 </div>

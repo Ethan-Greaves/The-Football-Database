@@ -22,15 +22,15 @@ router.get(`/:id`, async (req, res, next) => {
 	try {
 		const [singleTeamData, teamFixturesData, teamResultsData] = await Promise.all([
 			requestDataFromAPI(
-				`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=`,
+				`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/lookupteam.php?id=`,
 				req.params.id
 			),
 			requestDataFromAPI(
-				`https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=`,
+				`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/eventsnext.php?id=`,
 				req.params.id
 			),
 			requestDataFromAPI(
-				`https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=`,
+				`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/eventslast.php?id=`,
 				req.params.id
 			),
 		]);
@@ -59,7 +59,7 @@ router.get(`/:id`, async (req, res, next) => {
 router.post(`/`, async (req, res, next) => {
 	try {
 		multipleTeamsData = await requestDataFromAPI(
-			`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=`,
+			`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/searchteams.php?t=`,
 			req.body.teamName
 		);
 
