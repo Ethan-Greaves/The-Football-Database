@@ -10,9 +10,7 @@ const merge = require('../ModuleExports/Sorting/MergeSort/merge');
 
 // *Middleware
 const isLoggedIn = require(`../ModuleExports/Middleware/isLoggedIn`);
-
 const router = express.Router();
-
 router.use(methodOverride(`_method`));
 // #endregion
 
@@ -52,7 +50,7 @@ router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 		//* push the favourite onto their schema
 		if (req.params.type === 'team') {
 			const teamData = await requestDataFromAPI(
-				'https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=',
+				`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/lookupteam.php?id=`,
 				req.params.id
 			);
 
@@ -73,7 +71,7 @@ router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 		} else {
 			//* Make an API request to get the player's data
 			const playerData = await requestDataFromAPI(
-				'https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=',
+				`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/lookupplayer.php?id=`,
 				req.params.id
 			);
 
@@ -82,7 +80,7 @@ router.post(`/:id/:type`, isLoggedIn, async (req, res, next) => {
 
 			//* Make another API request to get the player's team data
 			const playersTeamData = await requestDataFromAPI(
-				'https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=',
+				`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/lookupteam.php?id=`,
 				player.idTeam
 			);
 

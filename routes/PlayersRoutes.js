@@ -19,7 +19,7 @@ router.get(`/`, (req, res) => {
 router.post(`/`, async (req, res, next) => {
 	try {
 		playerData = await requestDataFromAPI(
-			`https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p=`,
+			`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/searchplayers.php?p=`,
 			req.body.playerName
 		);
 		if (playerData.player != null) res.redirect(`/players`);
@@ -34,7 +34,7 @@ router.get(`/:id`, async (req, res, next) => {
 		let playersTeam = null;
 
 		playerData = await requestDataFromAPI(
-			`https://www.thesportsdb.com/api/v1/json/1/lookupplayer.php?id=`,
+			`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/lookupplayer.php?id=`,
 			req.params.id
 		);
 
@@ -45,7 +45,7 @@ router.get(`/:id`, async (req, res, next) => {
 			playerData.players[0].strTeam !== '_Deceased Soccer'
 		) {
 			playersTeam = await requestDataFromAPI(
-				'https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=',
+				`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/searchteams.php?t=`,
 				playerData.players[0].strTeam
 			);
 		}

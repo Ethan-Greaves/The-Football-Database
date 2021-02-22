@@ -22,34 +22,34 @@ router.get(`/:id`, async (req, res, next) => {
 	try {
 		const [singleTeamData, teamFixturesData, teamResultsData] = await Promise.all([
 			requestDataFromAPI(
-				`https://www.thesportsdb.com/api/v1/json/1/lookupteam.php?id=`,
+				`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/lookupteam.php?id=`,
 				req.params.id
 			),
 			requestDataFromAPI(
-				`https://www.thesportsdb.com/api/v1/json/1/eventsnext.php?id=`,
+				`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/eventsnext.php?id=`,
 				req.params.id
 			),
 			requestDataFromAPI(
-				`https://www.thesportsdb.com/api/v1/json/1/eventslast.php?id=`,
+				`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/eventslast.php?id=`,
 				req.params.id
 			),
 		]);
-		// const fixtures = teamFixturesData.events;
-		// const { results } = teamResultsData;
+		const fixtures = teamFixturesData.events;
+		const { results } = teamResultsData;
 		const isFav = checkIsFav(req);
-		// const resultBadges = await acquireHomeAwayTeamInfo(results, singleTeamData);
-		// const fixtureBadges = await acquireHomeAwayTeamInfo(fixtures, singleTeamData);
+		const resultBadges = await acquireHomeAwayTeamInfo(results, singleTeamData);
+		const fixtureBadges = await acquireHomeAwayTeamInfo(fixtures, singleTeamData);
 
 		//* Render show page and pass through the team data
 		res.render(`Teams/show.ejs`, {
 			teamData: singleTeamData,
 			isFav,
 			countryFlags,
-			// fixtures,
-			// results,
+			fixtures,
+			results,
 			swapFixtureDateAround,
-			// resultBadges,
-			// fixtureBadges,
+			resultBadges,
+			fixtureBadges,
 		});
 	} catch (error) {
 		next(error);
@@ -59,7 +59,7 @@ router.get(`/:id`, async (req, res, next) => {
 router.post(`/`, async (req, res, next) => {
 	try {
 		multipleTeamsData = await requestDataFromAPI(
-			`https://www.thesportsdb.com/api/v1/json/1/searchteams.php?t=`,
+			`https://www.thesportsdb.com/api/v1/json/${process.env.APIKEY}/searchteams.php?t=`,
 			req.body.teamName
 		);
 
