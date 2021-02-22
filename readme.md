@@ -23,6 +23,7 @@ The Football Database is a web application created using Node.js/Express. Users 
 * MongoDB
 * Mongoose
 * Fetch
+* Heroku
 
 ## Visuals 🎬
 <p>Add any team or player to your favourites:</p>
